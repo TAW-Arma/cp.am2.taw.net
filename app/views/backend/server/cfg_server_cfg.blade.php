@@ -53,7 +53,7 @@ class Missions
     class Mission1
     {
         template                    = "{{ $server->server_cfg->template }}";
-        difficulty                  = "{{ $server->server_cfg->difficulty }}";
+        difficulty                  = "Custom";
         {{ $server->server_cfg->mission_parameters }}
     };
 };
