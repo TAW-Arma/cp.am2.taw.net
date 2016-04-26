@@ -588,6 +588,9 @@ class ServerController extends BaseController
     public function GenerateFiles($server_id)
     {
         $data['server']             = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+
+        $difficulty = $data['server']['server_cfg']['difficulty'];
+        $data['server']['server_dificulty'] = $data['server']['server_dificulty_'.$difficulty];
         $data['bans']               = ServerBans::all();
 
         // shell_exec('C:\\FireDaemon\\FireDaemon.exe --uninstall ' . $data['server']->port . '2');
