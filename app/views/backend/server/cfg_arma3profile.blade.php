@@ -70,12 +70,12 @@ class DifficultyPresets
  
 			// Multiplayer
 			scoreTable = {{ $server->server_dificulty->net_stats }};        // Score table
-			deathMessages = {{ $server->server_dificulty->death_messages }};     // Killed by
-			vonID = {{ $server->server_dificulty->von_id }};             // VON ID
+			deathMessages = {{ $server->server_dificulty->death_messages }};     // Killed by message
+			vonID = {{ $server->server_dificulty->von_id }};             // VON ID, shows who is talking
  
 			// Misc
-			mapContent = 0;        // Extended map content
-			autoReport = {{ $server->server_dificulty->auto_spot }};        // Automatic reporting
+			mapContent = 0;        // Extended map content, shows information on map: spotted enemies if enemyTags, friendly units and assets
+			autoReport = {{ $server->server_dificulty->auto_spot }};        // Automatic enemy reporting
 			multipleSaves = {{ $server->server_dificulty->unlimited_saves }};     // Multiple saves            
 		};
 		aiLevelPreset=2;
