@@ -74,7 +74,7 @@ class DifficultyPresets
 			vonID = {{ $server->server_dificulty->von_id }};             // VON ID
  
 			// Misc
-			mapContent = {{ $server->server_dificulty->extended_info_type }};        // Extended map content
+			mapContent = 0;        // Extended map content
 			autoReport = {{ $server->server_dificulty->auto_spot }};        // Automatic reporting
 			multipleSaves = {{ $server->server_dificulty->unlimited_saves }};     // Multiple saves            
 		};
