@@ -877,7 +877,7 @@ class ServerController extends BaseController
                 if(!isset($gameq[$serverAddress]['gq_online']))
                 {
                     $data[$serverAddress]['online'] = 0;
-                    $data[[$serverAddress]['players'] = [];
+                    $data[$serverAddress]['players'] = [];
                 } else {
                     $data[$serverAddress]['online'] = 1;
                     $data[$serverAddress]['players'] = $gameq[$serverAddress]['players'];

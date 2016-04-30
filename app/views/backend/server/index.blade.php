@@ -185,7 +185,7 @@
             @foreach ($servers as $server)
 
                 var serverAddress = '127.0.0.1:{{ $server->port }}2';
-                if(data[serverAddress] == 1)
+                if(data[serverAddress]['online'] == 1)
                 {
                     $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: green;"></i>');
                 }
