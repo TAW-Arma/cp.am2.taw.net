@@ -13,7 +13,7 @@ class ServerController extends BaseController
 
         if( Auth::user()->can('see_all_servers') ):
 
-            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
             $data['is_admin']           = true;
 
         else:
@@ -22,7 +22,7 @@ class ServerController extends BaseController
             foreach(Auth::user()->servers as $server)
                 $user_servers[]         = $server->id;
 
-            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
+            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
             $data['is_admin']           = false;
 
         endif;
@@ -848,31 +848,33 @@ class ServerController extends BaseController
 
     public function ApiGetPlayerStats()
     {
-        $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+        $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
     
         $GameQ = new \GameQ\GameQ();
 
-        foreach($data['servers'] as $server)
+        foreach($servers as $server)
         {
             $GameQ->addServer([
                 'type' => 'Armedassault3',
                 'host' => '127.0.0.1:' . $server->port . '2',
             ]);
         }
-        $data['gameq']                                         = $GameQ->process();
+        $gameq                                         = $GameQ->process();
 
-        foreach($data['servers'] as $server)
+        $data['players'] = [];
+
+        foreach($servers as $server)
         {
-            if(!isset($data['gameq']['127.0.0.1:' . $server->port . '2']['gq_online']))
+            if(!isset($gameq['127.0.0.1:' . $server->port . '2']['gq_online']))
             {
-                $data['gameq']['127.0.0.1:' . $server->port . '2']['gq_online'] = 0;
+                $gameq['127.0.0.1:' . $server->port . '2']['gq_online'] = 0;
             }
 
-            if(isset($data['gameq']['127.0.0.1:' . $server->port . '2']['num_players']))
+            if(isset($gameq['127.0.0.1:' . $server->port . '2']['num_players']))
             {
-                $data['players']['127.0.0.1:' . $server->port . '2']['num']        = $data['gameq']['127.0.0.1:' . $server->port . '2']['num_players'];
+                $data['players']['127.0.0.1:' . $server->port . '2']['num']        = $gameq['127.0.0.1:' . $server->port . '2']['num_players'];
                 $data['players']['127.0.0.1:' . $server->port . '2']['max']        = $server->server_cfg->maxPlayers;
-                $data['players']['127.0.0.1:' . $server->port . '2']['percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $data['gameq']['127.0.0.1:' . $server->port . '2']['num_players']) : 0 ;
+                $data['players']['127.0.0.1:' . $server->port . '2']['percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $gameq['127.0.0.1:' . $server->port . '2']['num_players']) : 0 ;
                 
             }
             else
@@ -889,14 +891,14 @@ class ServerController extends BaseController
 
     public function ApiGetServerStats()
     {
-        $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+        $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
 
         $data['cpu'] = [];
         $data['mem'] = [];
         $data['net'] = [];
         $pids = '';
         $i = 0;
-        foreach($data['servers'] as $server)
+        foreach($servers as $server)
         {
             if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'))
             {
@@ -931,7 +933,7 @@ class ServerController extends BaseController
         unset($file);
         unset($pids);
 
-        foreach($data['servers'] as $server)
+        foreach($servers as $server)
         {
             if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'))
             {
