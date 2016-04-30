@@ -13,7 +13,7 @@ class ServerController extends BaseController
 
         if( Auth::user()->can('see_all_servers') ):
 
-            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
             $data['is_admin']           = true;
 
         else:
@@ -22,7 +22,7 @@ class ServerController extends BaseController
             foreach(Auth::user()->servers as $server)
                 $user_servers[]         = $server->id;
 
-            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
+            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
             $data['is_admin']           = false;
 
         endif;
