@@ -182,30 +182,36 @@
         {
             var data = result;
 
+            var serverAddress;
             @foreach ($servers as $server)
 
-                var serverAddress = '127.0.0.1:{{ $server->port }}2';
-                if(data[serverAddress]['online'] == 1)
-                {
-                    $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: green;"></i>');
-                }
-                else
-                {
-                    $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: red;"></i>');
-                }
+                serverAddress = '127.0.0.1:{{ $server->port }}2';
+                if(data[serverAddress]) {
+                    if(data[serverAddress]['online'])
+                    {
+                        $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: green;"></i>');
+                    }
+                    else
+                    {
+                        $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: red;"></i>');
+                    }
 
-                $('#{{ $server->id }}-players').attr('aria-valuenow', data[serverAddress]["players_percentage"]);
-                $('#{{ $server->id }}-players').attr('data-original-title', data[serverAddress]["players_percentage"] + '%');
-                $('#{{ $server->id }}-players').attr('style', 'width: ' + data[serverAddress]["players_percentage"] + '%');
+                    $('#{{ $server->id }}-players').attr('aria-valuenow', data[serverAddress]["players_percentage"]);
+                    $('#{{ $server->id }}-players').attr('data-original-title', data[serverAddress]["players_percentage"] + '%');
+                    $('#{{ $server->id }}-players').attr('style', 'width: ' + data[serverAddress]["players_percentage"] + '%');
 
-                $('#{{ $server->id }}-model-title').html('{{ Lang::get('server.status_list') }} ( ' + data[serverAddress]["players_num"] + ' / ' + data[serverAddress]["players_max"] + ' )');
-                
-                $('#{{ $server->id }}-model-content').html('');
-                if(data[serverAddress]['online'] == 1)
-                {
-                    $.each(data[serverAddress]["players"], function() {
-                        $('#{{ $server->id }}-model-content').append('<tr><td>' + this["name"] + '</td><td>' + this["score"] + '</td><td>' + Math.round(this["time"] / 60) + '</td></tr>');
-                    });
+                    $('#{{ $server->id }}-model-title').html('{{ Lang::get('server.status_list') }} ( ' + data[serverAddress]["players_num"] + ' / ' + data[serverAddress]["players_max"] + ' )');
+                    
+                    $('#{{ $server->id }}-model-content').html('');
+                    if(data[serverAddress]['online'])
+                    {
+                        $.each(data[serverAddress]["players"], function() {
+                            var minutes = Math.round(this["time"] / 60)
+                            var hours = Math.floor(minutes / 60);
+                            minutes -= hours * 60;
+                            $('#{{ $server->id }}-model-content').append('<tr><td>' + this["name"] + '</td><td>' + this["score"] + '</td><td>' + hours + ' hours ' + minutes + ' minutes</td></tr>');
+                        });
+                    }
                 }
 
             @endforeach
