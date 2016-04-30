@@ -874,13 +874,16 @@ class ServerController extends BaseController
                 $serverAddress = '127.0.0.1:' . $server->port . '2';
 
                 $data[$serverAddress] = [];
-                if(!isset($gameq[$serverAddress]['gq_online']))
+                if(isset($gameq[$serverAddress]))
                 {
+                    $data[$serverAddress]['online'] = $gameq[$serverAddress]['gq_online'];
+                    $data[$serverAddress]['players'] = $gameq[$serverAddress]['players'];
+                    //$data[$serverAddress]['gameq_queried'] = true;                    
+                    //var_dump($gameq[$serverAddress]);
+                } else {
                     $data[$serverAddress]['online'] = 0;
                     $data[$serverAddress]['players'] = [];
-                } else {
-                    $data[$serverAddress]['online'] = 1;
-                    $data[$serverAddress]['players'] = $gameq[$serverAddress]['players'];
+                    //$data[$serverAddress]['gameq_queried'] = false;
                 }
 
                 if(isset($gameq[$serverAddress]['num_players']))
