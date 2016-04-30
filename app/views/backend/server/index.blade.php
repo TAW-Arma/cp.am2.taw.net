@@ -182,6 +182,19 @@
         {
             var data = result;
 
+            function timeToSteamLikeString(secondsFloat) {
+                var seconds = Math.round(secondsFloat); 
+                var minutes = Math.floor(seconds / 60)
+                seconds -= minutes * 60;
+                var hours = Math.floor(minutes / 60);
+                minutes -= hours * 60;
+                time = '';
+                if(hours > 0) time += hours + 'h ';
+                if(minutes > 0 || time != '') time += minutes + 'm ';
+                if(seconds > 0 || time != '') time += seconds + 's';
+                return time;
+            }
+
             var serverAddress;
             @foreach ($servers as $server)
 
@@ -206,10 +219,8 @@
                     if(data[serverAddress]['online'])
                     {
                         $.each(data[serverAddress]["players"], function() {
-                            var minutes = Math.round(this["time"] / 60)
-                            var hours = Math.floor(minutes / 60);
-                            minutes -= hours * 60;
-                            $('#{{ $server->id }}-model-content').append('<tr><td>' + this["name"] + '</td><td>' + this["score"] + '</td><td>' + hours + ' hours ' + minutes + ' minutes</td></tr>');
+
+                            $('#{{ $server->id }}-model-content').append('<tr><td>' + this["name"] + '</td><td>' + this["score"] + '</td><td>' + timeToSteamLikeString(this["time"]) +'</td></tr>');
                         });
                     }
                 }
