@@ -848,45 +848,63 @@ class ServerController extends BaseController
 
     public function ApiGetPlayerStats()
     {
-        $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
-    
-        $GameQ = new \GameQ\GameQ();
+        try {
 
-        foreach($servers as $server)
-        {
-            $GameQ->addServer([
-                'type' => 'Armedassault3',
-                'host' => '127.0.0.1:' . $server->port . '2',
-            ]);
-        }
-        $gameq                                         = $GameQ->process();
-
-        $data['players'] = [];
-
-        foreach($servers as $server)
-        {
-            if(!isset($gameq['127.0.0.1:' . $server->port . '2']['gq_online']))
-            {
-                $gameq['127.0.0.1:' . $server->port . '2']['gq_online'] = 0;
-            }
-
-            if(isset($gameq['127.0.0.1:' . $server->port . '2']['num_players']))
-            {
-                $data['players']['127.0.0.1:' . $server->port . '2']['num']        = $gameq['127.0.0.1:' . $server->port . '2']['num_players'];
-                $data['players']['127.0.0.1:' . $server->port . '2']['max']        = $server->server_cfg->maxPlayers;
-                $data['players']['127.0.0.1:' . $server->port . '2']['percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $gameq['127.0.0.1:' . $server->port . '2']['num_players']) : 0 ;
-                
-            }
-            else
-            {
-                $data['players']['127.0.0.1:' . $server->port . '2']['num']        = 0;
-                $data['players']['127.0.0.1:' . $server->port . '2']['max']        = (isset($server->server_cfg->maxPlayers)) ? $server->server_cfg->maxPlayers : 0 ;
-                $data['players']['127.0.0.1:' . $server->port . '2']['percentage'] = 0;
-            }
+            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')/*->orderBy('name', 'asc')*/->get();
         
-        }
+            $GameQ = new \GameQ\GameQ();
 
-        return Response::json($data);
+            foreach($servers as &$server)
+            {    
+                // if there is an offline server in the addServer servers, all subsequent servers will not work
+                if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid')) 
+                {
+                    $GameQ->addServer([
+                        'type' => 'Armedassault3',
+                        'host' => '127.0.0.1:' . $server->port . '2'
+                    ]);
+                }
+            }
+            $gameq = $GameQ->process();
+
+            $data['players'] = [];
+
+            foreach($servers as $server)
+            {
+                $serverAddress = '127.0.0.1:' . $server->port . '2';
+
+                $data['gameq'][$serverAddress] = [];
+                if(!isset($gameq[$serverAddress]['gq_online']))
+                {
+                    $gameq[$serverAddress]['gq_online'] = 0;
+                    $data['gameq'][$serverAddress]['players'] = [];
+                    $data['gameq'][$serverAddress]['gq_online'] = false;
+                } else {
+                    $data['gameq'][$serverAddress]['players'] = $gameq[$serverAddress]['players'];
+                    $data['gameq'][$serverAddress]['gq_online'] = $gameq[$serverAddress]['gq_online'];
+                }
+
+                if(isset($gameq[$serverAddress]['num_players']))
+                {
+                    $data['players'][$serverAddress]['num']        = $gameq[$serverAddress]['num_players'];
+                    $data['players'][$serverAddress]['max']        = $server->server_cfg->maxPlayers;
+                    $data['players'][$serverAddress]['percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $gameq[$serverAddress]['num_players']) : 0 ;
+                    
+                }
+                else
+                {
+                    $data['players'][$serverAddress]['num']        = 0;
+                    $data['players'][$serverAddress]['max']        = (isset($server->server_cfg->maxPlayers)) ? $server->server_cfg->maxPlayers : 0 ;
+                    $data['players'][$serverAddress]['percentage'] = 0;
+                }
+            
+            }
+
+            return Response::json($data);
+
+        } catch (Exception $e) {
+            return Response::json(array('exception' => $e->getMessage()));          
+        }
     }
 
     public function ApiGetServerStats()
