@@ -873,29 +873,28 @@ class ServerController extends BaseController
             {
                 $serverAddress = '127.0.0.1:' . $server->port . '2';
 
-                $data['gameq'][$serverAddress] = [];
+                $data[$serverAddress] = [];
                 if(!isset($gameq[$serverAddress]['gq_online']))
                 {
-                    $gameq[$serverAddress]['gq_online'] = 0;
-                    $data['gameq'][$serverAddress]['players'] = [];
-                    $data['gameq'][$serverAddress]['gq_online'] = false;
+                    $data[$serverAddress]['online'] = 0;
+                    $data[[$serverAddress]['players'] = [];
                 } else {
-                    $data['gameq'][$serverAddress]['players'] = $gameq[$serverAddress]['players'];
-                    $data['gameq'][$serverAddress]['gq_online'] = $gameq[$serverAddress]['gq_online'];
+                    $data[$serverAddress]['online'] = 1;
+                    $data[$serverAddress]['players'] = $gameq[$serverAddress]['players'];
                 }
 
                 if(isset($gameq[$serverAddress]['num_players']))
                 {
-                    $data['players'][$serverAddress]['num']        = $gameq[$serverAddress]['num_players'];
-                    $data['players'][$serverAddress]['max']        = $server->server_cfg->maxPlayers;
-                    $data['players'][$serverAddress]['percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $gameq[$serverAddress]['num_players']) : 0 ;
+                    $data[$serverAddress]['players_num']        = $gameq[$serverAddress]['num_players'];
+                    $data[$serverAddress]['players_max']        = $server->server_cfg->maxPlayers;
+                    $data[$serverAddress]['players_percentage'] = (isset($server->server_cfg->maxPlayers)) ? ((100 / $server->server_cfg->maxPlayers) * $gameq[$serverAddress]['num_players']) : 0 ;
                     
                 }
                 else
                 {
-                    $data['players'][$serverAddress]['num']        = 0;
-                    $data['players'][$serverAddress]['max']        = (isset($server->server_cfg->maxPlayers)) ? $server->server_cfg->maxPlayers : 0 ;
-                    $data['players'][$serverAddress]['percentage'] = 0;
+                    $data[$serverAddress]['players_num']        = 0;
+                    $data[$serverAddress]['players_max']        = (isset($server->server_cfg->maxPlayers)) ? $server->server_cfg->maxPlayers : 0 ;
+                    $data[$serverAddress]['players_percentage'] = 0;
                 }
             
             }

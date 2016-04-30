@@ -184,7 +184,8 @@
 
             @foreach ($servers as $server)
 
-                if(data["gameq"]["127.0.0.1:{{ $server->port }}2"]['gq_online'] == 1)
+                var serverAddress = '127.0.0.1:{{ $server->port }}2';
+                if(data[serverAddress] == 1)
                 {
                     $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: green;"></i>');
                 }
@@ -193,16 +194,16 @@
                     $('#{{ $server->id }}-status').html('<i class="fa fa-circle" style="color: red;"></i>');
                 }
 
-                $('#{{ $server->id }}-players').attr('aria-valuenow', data["players"]["127.0.0.1:{{ $server->port }}2"]["percentage"]);
-                $('#{{ $server->id }}-players').attr('data-original-title', data["players"]["127.0.0.1:{{ $server->port }}2"]["percentage"] + '%');
-                $('#{{ $server->id }}-players').attr('style', 'width: ' + data["players"]["127.0.0.1:{{ $server->port }}2"]["percentage"] + '%');
+                $('#{{ $server->id }}-players').attr('aria-valuenow', data[serverAddress]["players_percentage"]);
+                $('#{{ $server->id }}-players').attr('data-original-title', data[serverAddress]["players_percentage"] + '%');
+                $('#{{ $server->id }}-players').attr('style', 'width: ' + data[serverAddress]["players_percentage"] + '%');
 
-                $('#{{ $server->id }}-model-title').html('{{ Lang::get('server.status_list') }} ( ' + data["players"]["127.0.0.1:{{ $server->port }}2"]["num"] + ' / ' + data["players"]["127.0.0.1:{{ $server->port }}2"]["max"] + ' )');
+                $('#{{ $server->id }}-model-title').html('{{ Lang::get('server.status_list') }} ( ' + data[serverAddress]["players_num"] + ' / ' + data[serverAddress]["players_max"] + ' )');
                 
                 $('#{{ $server->id }}-model-content').html('');
-                if(data["gameq"]["127.0.0.1:{{ $server->port }}2"]['gq_online'] == 1)
+                if(data[serverAddress]['online'] == 1)
                 {
-                    $.each(data["gameq"]["127.0.0.1:{{ $server->port }}2"]["players"], function() {
+                    $.each(data[serverAddress]["players"], function() {
                         $('#{{ $server->id }}-model-content').append('<tr><td>' + this["name"] + '</td><td>' + this["score"] + '</td><td>' + Math.round(this["time"] / 60) + '</td></tr>');
                     });
                 }
