@@ -78,7 +78,9 @@ class DifficultyPresets
 			autoReport = {{ $server->server_dificulty->auto_spot }};        // Automatic enemy reporting
 			multipleSaves = {{ $server->server_dificulty->unlimited_saves }};     // Multiple saves            
 		};
-		aiLevelPreset=2;
+		//aiLevelPreset is counted from 0 and can have following values: 0 (AI Level Low), 1 (AI Level Normal), 2 (AI Level High), 3 (AI Level Custom).
+		//When 3 (AI Level Custom) is chosen, values of skill and precision are stored to the class CustomAILevel.
+		aiLevelPreset=3;
 	};
 	class CustomAILevel
 	{
