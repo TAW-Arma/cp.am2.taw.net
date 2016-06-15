@@ -185,30 +185,14 @@ class ServerController extends BaseController
 
         return Redirect::to('backend/server');
     }
+    
 
     public function GetStart($server_id)
     {
         if ( ! Auth::user()->can('service_server'))
             return Redirect::to('backend#backend/server');
 
-        $server = Server::find($server_id);
-        
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '');
-        if($server->cpu_count === 1)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-        }
-        if($server->cpu_count === 2)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
-        }
-        if($server->cpu_count === 3)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc3');
-        }
+        ApiStart($server_id);
 
         return Redirect::to('backend/server');
     }
@@ -218,9 +202,7 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('service_server'))
             return Redirect::to('backend#backend/server');
 
-        $this->ApiStop($server_id);
-        sleep(1);
-        $this->ApiStart($server_id);
+        ApiRestart($server_id);
  
         return Redirect::to('backend/server');
     }
@@ -230,53 +212,23 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('service_server'))
             return Redirect::to('backend#backend/server');
 
-        $server                     = Server::find($server_id);
-        
-        if($server->cpu_count === 1)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-        }
-        if($server->cpu_count === 2)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
-        }
-        if($server->cpu_count === 3)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc3');
-        }
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '');
-
-        @unlink('C:\\arma3\\instances\\' . $server->name . '\\server.pid');
-        
-        $this->GenerateFiles($server_id);
+        ApiStop($server_id);
 
         return Redirect::to('backend/server');
     }
+    
 
     public function ApiStart($server_id)
     {
         $server = Server::find($server_id);
 
         $this->GenerateFiles($server_id);
+
         shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '');
-        if($server->cpu_count === 1)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-        }
-        if($server->cpu_count === 2)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
-        }
-        if($server->cpu_count === 3)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc3');
-        }
+
+        if($server->cpu_count > 0) shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
+        if($server->cpu_count > 1) shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
+        if($server->cpu_count > 2) shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc3');
 
         return $server->name;
     }
@@ -294,23 +246,12 @@ class ServerController extends BaseController
 
     public function ApiStop($server_id)
     {
-        $server                     = Server::find($server_id);
+        $server = Server::find($server_id);
 
-        if($server->cpu_count === 1)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-        }
-        if($server->cpu_count === 2)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
-        }
-        if($server->cpu_count === 3)
-        {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc3');
-        }
+        if($server->cpu_count > 0) shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
+        if($server->cpu_count > 1) shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
+        if($server->cpu_count > 2) shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc3');
+
         shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '');
         @unlink('C:\\arma3\\instances\\' . $server->name . '\\server.pid');
 
@@ -595,15 +536,15 @@ class ServerController extends BaseController
 
         // shell_exec('C:\\FireDaemon\\FireDaemon.exe --uninstall ' . $data['server']->name . '');
 
-
+        $server = Server::find($server_id);
 
         $file                       = new stdClass();
         $file->server_init          = View::make('backend.server.cfg_server_init', $data)->renderSections();
         $file->server_bat           = View::make('backend.server.cfg_server_bat', $data)->renderSections();
         $file->server_cfg           = View::make('backend.server.cfg_server_cfg', $data)->renderSections();
-        $file->hc1_xml              = View::make('backend.server.cfg_hc1_xml', $data)->renderSections();
-        $file->hc2_xml              = View::make('backend.server.cfg_hc2_xml', $data)->renderSections();
-        $file->hc3_xml              = View::make('backend.server.cfg_hc3_xml', $data)->renderSections();
+        if($server->cpu_count > 0) $file->hc1_xml = View::make('backend.server.cfg_hc1_xml', $data)->renderSections();
+        if($server->cpu_count > 1) $file->hc2_xml = View::make('backend.server.cfg_hc2_xml', $data)->renderSections();
+        if($server->cpu_count > 2) $file->hc3_xml = View::make('backend.server.cfg_hc3_xml', $data)->renderSections();
         $file->server_xml           = View::make('backend.server.cfg_server_xml', $data)->renderSections();
         $file->basic_cfg            = View::make('backend.server.cfg_basic_cfg', $data)->renderSections();
         $file->parameters_cfg       = View::make('backend.server.cfg_parameters_cfg', $data)->renderSections();
@@ -624,9 +565,9 @@ class ServerController extends BaseController
 
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.bat', $file->server_bat);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.cfg', $file->server_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml', $file->hc1_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml', $file->hc2_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml', $file->hc3_xml);
+        if($server->cpu_count > 0) $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml', $file->hc1_xml);
+        if($server->cpu_count > 1) $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml', $file->hc2_xml);
+        if($server->cpu_count > 2) $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml', $file->hc3_xml);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml', $file->server_xml);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\basic.cfg', $file->basic_cfg);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\parameters.cfg', $file->parameters_cfg);
@@ -637,9 +578,9 @@ class ServerController extends BaseController
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Arma3.cfg', $file->basic_cfg);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\administrator\\Arma3.cfg', $file->basic_cfg);
 
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml');
+        if($server->cpu_count > 0) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml');
+        if($server->cpu_count > 1) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml');
+        if($server->cpu_count > 2) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml');
         shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml');
     }
 
@@ -946,40 +887,47 @@ class ServerController extends BaseController
                 'ignore_errors' => true
             ]
         ];
-        $context    = stream_context_create($opts);
-        $file       = file_get_contents($url . $pids, false, $context);
-        $pidlist    = json_decode($file, true);
-        unset($url);
-        unset($opts);
-        unset($context);
-        unset($file);
-        unset($pids);
+
 
         foreach($servers as $server)
         {
-            if(file_exists('C:\\arma3\\instances\\' . $server->name . '\\server.pid'))
-            {
-                $data['cpu']['127.0.0.1:' . $server->port . '2']                = [];
-                $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
-                $data['mem']['127.0.0.1:' . $server->port . '2']                = [];
-                $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
-                $data['net']['127.0.0.1:' . $server->port . '2']                = 0;
+            $data['cpu']['127.0.0.1:' . $server->port . '2']                = [];
+            $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
+            $data['mem']['127.0.0.1:' . $server->port . '2']                = [];
+            $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
+            $data['net']['127.0.0.1:' . $server->port . '2']                = 0;
+        }
 
-                $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->name . '\\server.pid'));
-                if(isset($pidlist[$pid]))
-                {
-                    $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = $pidlist[$pid]['cpu'];
-                    $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = ((100 / $server->memory) * ($pidlist[$pid]['memory']) / 1024 / 1024);
-                    $data['net']['127.0.0.1:' . $server->port . '2']                = $pidlist[$pid]['network'];
-                }
-            }
-            else
+        $context    = stream_context_create($opts);
+        $file       = @file_get_contents($url . $pids, false, $context);
+
+        if($file) {
+
+            $pidlist    = json_decode($file, true);
+            unset($url);
+            unset($opts);
+            unset($context);
+            unset($file);
+            unset($pids);
+
+            foreach($servers as $server)
             {
-                $data['cpu']['127.0.0.1:' . $server->port . '2']                = [];
-                $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
-                $data['mem']['127.0.0.1:' . $server->port . '2']                = [];
-                $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
-                $data['net']['127.0.0.1:' . $server->port . '2']                = 0;
+                if(file_exists('C:\\arma3\\instances\\' . $server->name . '\\server.pid'))
+                {
+                    $data['cpu']['127.0.0.1:' . $server->port . '2']                = [];
+                    $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
+                    $data['mem']['127.0.0.1:' . $server->port . '2']                = [];
+                    $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
+                    $data['net']['127.0.0.1:' . $server->port . '2']                = 0;
+
+                    $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->name . '\\server.pid'));
+                    if(isset($pidlist[$pid]))
+                    {
+                        $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = $pidlist[$pid]['cpu'];
+                        $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = ((100 / $server->memory) * ($pidlist[$pid]['memory']) / 1024 / 1024);
+                        $data['net']['127.0.0.1:' . $server->port . '2']                = $pidlist[$pid]['network'];
+                    }
+                }
             }
         }
 
