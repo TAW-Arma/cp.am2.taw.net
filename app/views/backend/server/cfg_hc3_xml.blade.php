@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Service>
  <Program>
-  <Name>{{ $server->name }}_hc2</Name>
-  <DisplayName>{{ $server->hostname }} - HC2</DisplayName>
+  <Name>{{ $server->name }}_hc3</Name>
+  <DisplayName>{{ $server->hostname }} - HC3</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
   <WorkingDir>C:\arma3</WorkingDir>
   <Executable>C:\arma3\arma3server.exe</Executable>
