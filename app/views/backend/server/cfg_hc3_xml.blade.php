@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <Service>
  <Program>
-  <Name>{{ $server->port }}2_hc3</Name>
-  <DisplayName>{{ $server->port }}2 HC3</DisplayName>
+  <Name>{{ $server->name }}_hc2</Name>
+  <DisplayName>{{ $server->hostname }} - HC2</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
   <WorkingDir>C:\arma3</WorkingDir>
   <Executable>C:\arma3\arma3server.exe</Executable>
-  <Parameters>-client -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 -profiles=C:\arma3\instances\{{ $server->port }}2\profile -cfg=C:\arma3\instances\{{ $server->port }}2\basic.cfg -par=C:\arma3\instances\{{ $server->port }}2\parameters.cfg -port={{ $server->port }}2</Parameters>
+  <Parameters>-client -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 -profiles=C:\arma3\instances\{{ $server->name }}\profile -cfg=C:\arma3\instances\{{ $server->name }}\basic.cfg -par=C:\arma3\instances\{{ $server->name }}\parameters.cfg -port={{ $server->port }}2</Parameters>
   <Delay>3000</Delay>
   <StartUpMode>0</StartUpMode>
   <ForceReplace>true</ForceReplace>

@@ -105,12 +105,12 @@ class ServerController extends BaseController
         $server_dificulty_mercanary->server()->associate($server);
         $server_dificulty_mercanary->save();
 
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2");
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2\\battleye");
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2\\profile");
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2\\profile\\users");
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2\\profile\\users\\arma3");
-        mkdir("C:\\arma3\\instances\\" . $server->port . "2\\profile\\users\\root");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "\\battleye");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "\\profile");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "\\profile\\users");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "\\profile\\users\\arma3");
+        mkdir("C:\\arma3\\instances\\" . $server->name . "\\profile\\users\\root");
 
         $this->GenerateFiles($server->id);
 
@@ -180,7 +180,7 @@ class ServerController extends BaseController
             return Redirect::to('backend/server');
 
         $server = Server::find($server_id);
-        $this->recursively_remove_directory("C:\\arma3\\instances\\" . $server->port . "2");
+        $this->recursively_remove_directory("C:\\arma3\\instances\\" . $server->name . "");
         $server->delete();
 
         return Redirect::to('backend/server');
@@ -193,21 +193,21 @@ class ServerController extends BaseController
 
         $server = Server::find($server_id);
         
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '');
         if($server->cpu_count === 1)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
         }
         if($server->cpu_count === 2)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
         }
         if($server->cpu_count === 3)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc3');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc3');
         }
 
         return Redirect::to('backend/server');
@@ -234,22 +234,22 @@ class ServerController extends BaseController
         
         if($server->cpu_count === 1)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
         }
         if($server->cpu_count === 2)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
         }
         if($server->cpu_count === 3)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc3');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc3');
         }
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '');
 
-        @unlink('C:\\arma3\\instances\\' . $server->port . '2\\server.pid');
+        @unlink('C:\\arma3\\instances\\' . $server->name . '\\server.pid');
         
         $this->GenerateFiles($server_id);
 
@@ -261,21 +261,21 @@ class ServerController extends BaseController
         $server = Server::find($server_id);
 
         $this->GenerateFiles($server_id);
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '');
         if($server->cpu_count === 1)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
         }
         if($server->cpu_count === 2)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
         }
         if($server->cpu_count === 3)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->port . '2_hc3');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --start ' . $server->name . '_hc3');
         }
 
         return $server->name;
@@ -298,21 +298,21 @@ class ServerController extends BaseController
 
         if($server->cpu_count === 1)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
         }
         if($server->cpu_count === 2)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
         }
         if($server->cpu_count === 3)
         {
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc1');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc2');
-            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2_hc3');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc1');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc2');
+            shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '_hc3');
         }
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->port . '2');
-        @unlink('C:\\arma3\\instances\\' . $server->port . '2\\server.pid');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --stop ' . $server->name . '');
+        @unlink('C:\\arma3\\instances\\' . $server->name . '\\server.pid');
 
         $this->GenerateFiles($server_id);
 
@@ -593,7 +593,9 @@ class ServerController extends BaseController
         $data['server']['server_dificulty'] = $data['server']['server_dificulty_'.$difficulty];
         $data['bans']               = ServerBans::all();
 
-        // shell_exec('C:\\FireDaemon\\FireDaemon.exe --uninstall ' . $data['server']->port . '2');
+        // shell_exec('C:\\FireDaemon\\FireDaemon.exe --uninstall ' . $data['server']->name . '');
+
+
 
         $file                       = new stdClass();
         $file->server_init          = View::make('backend.server.cfg_server_init', $data)->renderSections();
@@ -609,36 +611,36 @@ class ServerController extends BaseController
         $file->beserver_cfg         = View::make('backend.server.cfg_beserver_cfg', $data)->renderSections();
         $file->arma3profile         = View::make('backend.server.cfg_arma3profile', $data)->renderSections();
 
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\battleye');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\logs');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\administrator');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3\\Saved');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3\\Saved\\steam');
-        @mkdir('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3\\Saved\\steam\\meta');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\battleye');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\logs');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\administrator');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Saved');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Saved\\steam');
+        @mkdir('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Saved\\steam\\meta');
 
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\server.bat', $file->server_bat);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\server.cfg', $file->server_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\hc1.xml', $file->hc1_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\hc2.xml', $file->hc2_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\hc3.xml', $file->hc3_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\server.xml', $file->server_xml);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\basic.cfg', $file->basic_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\parameters.cfg', $file->parameters_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\battleye\\beserver.dll', file_get_contents('C:\\arma3\\battleye\\beserver.dll'));
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\battleye\\bans.txt', $file->bans_txt);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\battleye\\beserver.cfg', $file->beserver_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3\\arma3.Arma3Profile', $file->arma3profile);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\arma3\\Arma3.cfg', $file->basic_cfg);
-        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->port . '2\\profile\\users\\administrator\\Arma3.cfg', $file->basic_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.bat', $file->server_bat);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.cfg', $file->server_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml', $file->hc1_xml);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml', $file->hc2_xml);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml', $file->hc3_xml);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml', $file->server_xml);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\basic.cfg', $file->basic_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\parameters.cfg', $file->parameters_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\battleye\\beserver.dll', file_get_contents('C:\\arma3\\battleye\\beserver.dll'));
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\battleye\\bans.txt', $file->bans_txt);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\battleye\\beserver.cfg', $file->beserver_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\arma3.Arma3Profile', $file->arma3profile);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Arma3.cfg', $file->basic_cfg);
+        $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\administrator\\Arma3.cfg', $file->basic_cfg);
 
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->port . '2\\hc1.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->port . '2\\hc2.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->port . '2\\hc3.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->port . '2\\server.xml');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml');
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml');
     }
 
     public function GetLogViewer($server_id)
@@ -667,8 +669,8 @@ class ServerController extends BaseController
             [
                 [
                     'driver' => 'LocalFileSystem',
-                    'path'   => 'C:\\www\\cp.am2.taw.net\\public\\instances\\' . $server->port . '2',
-                    'URL'    => 'http://cp.am2.taw.net/instances/' . $server->port . '2'
+                    'path'   => 'C:\\www\\cp.am2.taw.net\\public\\instances\\' . $server->name . '',
+                    'URL'    => 'http://cp.am2.taw.net/instances/' . $server->name . ''
                 ]
             ],
             'options'   => [],
@@ -685,7 +687,7 @@ class ServerController extends BaseController
         $data['bans']   = ServerBans::all();
 
         foreach(Server::all() as $server)
-            $this->file_force_contents('C:\\arma3\\instances\\' . $server->port . '2\\battleye\\bans.txt', View::make('backend.server.cfg_bans_txt', $data)->renderSections());
+            $this->file_force_contents('C:\\arma3\\instances\\' . $server->name . '\\battleye\\bans.txt', View::make('backend.server.cfg_bans_txt', $data)->renderSections());
     }
 
     public function recursively_remove_directory($dir)
@@ -856,8 +858,8 @@ class ServerController extends BaseController
 
             foreach($servers as &$server)
             {    
-                // if there is an offline server in the addServer servers, all subsequent servers will not work
-                if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid')) 
+                // if there is an offline server in the addServer serportvers, all subsequent servers will not work
+                if(file_exists('C:\\arma3\\instances\\' . $server->name . '\\server.pid')) 
                 {
                     $GameQ->addServer([
                         'type' => 'Armedassault3',
@@ -920,9 +922,9 @@ class ServerController extends BaseController
         $i = 0;
         foreach($servers as $server)
         {
-            if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'))
+            if(file_exists('C:\\arma3\\instances\\' . $server->name . '\\server.pid'))
             {
-                $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'));
+                $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->name . '\\server.pid'));
                 if($i === 0)
                 {
                     $pids .= (string) '/?' . $pid . '='. $server->port . '2';
@@ -955,7 +957,7 @@ class ServerController extends BaseController
 
         foreach($servers as $server)
         {
-            if(file_exists('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'))
+            if(file_exists('C:\\arma3\\instances\\' . $server->name . '\\server.pid'))
             {
                 $data['cpu']['127.0.0.1:' . $server->port . '2']                = [];
                 $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
@@ -963,7 +965,7 @@ class ServerController extends BaseController
                 $data['mem']['127.0.0.1:' . $server->port . '2']['percentage']  = 0;
                 $data['net']['127.0.0.1:' . $server->port . '2']                = 0;
 
-                $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->port . '2\\server.pid'));
+                $pid = str_replace(PHP_EOL, '', file_get_contents('C:\\arma3\\instances\\' . $server->name . '\\server.pid'));
                 if(isset($pidlist[$pid]))
                 {
                     $data['cpu']['127.0.0.1:' . $server->port . '2']['percentage']  = $pidlist[$pid]['cpu'];

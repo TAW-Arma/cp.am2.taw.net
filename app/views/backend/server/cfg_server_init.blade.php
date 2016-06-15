@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# Provides:             {{ $server->port }}2
+# Provides:             {{ $server->name }}
 # Required-Start:       $local_fs $remote_fs $network
 # Required-Stop:        $local_fs $remote_fs $network
 # Default-Start:        2 3 4 5
@@ -12,10 +12,10 @@
 
 set -e
 PATH=${PATH}:/data/arma3
-NAME={{ $server->port }}2
-PIDFILE=/data/arma3/instances/{{ $server->port }}2/server.pid
+NAME={{ $server->name }}
+PIDFILE=/data/arma3/instances/{{ $server->name }}/server.pid
 DAEMON="/data/arma3/arma3server"
-DAEMON_OPTS="-enableHT -exThreads={{ $server->ex_threads }} -maxMem={{ $server->memory }} -server -noSplash -noSound -noBenchmark -noPause -loadMissionToMemory -name=arma3 -profiles=/data/arma3/instances/{{ $server->port }}2/profile -pid=/data/arma3/instances/{{ $server->port }}2/server.pid -config=/data/arma3/instances/{{ $server->port }}2/server.cfg -cfg=/data/arma3/instances/{{ $server->port }}2/basic.cfg -par=/data/arma3/instances/{{ $server->port }}2/parameters.cfg -ranking=/data/arma3/instances/{{ $server->port }}2/logs/ranking.log -bepath=/data/arma3/instances/{{ $server->port }}2/battleye -port={{ $server->port }}2"
+DAEMON_OPTS="-enableHT -exThreads={{ $server->ex_threads }} -maxMem={{ $server->memory }} -server -noSplash -noSound -noBenchmark -noPause -loadMissionToMemory -name=arma3 -profiles=/data/arma3/instances/{{ $server->name }}/profile -pid=/data/arma3/instances/{{ $server->name }}/server.pid -config=/data/arma3/instances/{{ $server->name }}/server.cfg -cfg=/data/arma3/instances/{{ $server->name }}/basic.cfg -par=/data/arma3/instances/{{ $server->name }}/parameters.cfg -ranking=/data/arma3/instances/{{ $server->name }}/logs/ranking.log -bepath=/data/arma3/instances/{{ $server->name }}/battleye -port={{ $server->port }}2"
 USER=gameserver
 GROUP=gameserver
 APPDIR=/data/arma3
@@ -33,7 +33,7 @@ case "$1" in
     start)
         log_daemon_msg "Starting"
         log_progress_msg $NAME
-        if ! start-stop-daemon --start --chdir $APPDIR --quiet --chuid $USER:$GROUP --make-pidfile --pidfile $PIDFILE --background --startas /bin/bash -- -c "exec $DAEMON $DAEMON_OPTS 1>/data/arma3/instances/{{ $server->port }}2/logs/server.log 2>/data/arma3/instances/{{ $server->port }}2/logs/error.log"; then
+        if ! start-stop-daemon --start --chdir $APPDIR --quiet --chuid $USER:$GROUP --make-pidfile --pidfile $PIDFILE --background --startas /bin/bash -- -c "exec $DAEMON $DAEMON_OPTS 1>/data/arma3/instances/{{ $server->name }}/logs/server.log 2>/data/arma3/instances/{{ $server->name }}/logs/error.log"; then
             log_end_msg 1
             exit 1
         fi
@@ -48,17 +48,17 @@ case "$1" in
         fi
         TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
         PID=$(cat $PIDFILE)
-        if [ -f /data/arma3/instances/{{ $server->port }}2/logs/server.log ]; then
-            mv /data/arma3/instances/{{ $server->port }}2/logs/server.log "/data/arma3/instances/{{ $server->port }}2/logs/$TIMESTAMP-server.log"
+        if [ -f /data/arma3/instances/{{ $server->name }}/logs/server.log ]; then
+            mv /data/arma3/instances/{{ $server->name }}/logs/server.log "/data/arma3/instances/{{ $server->name }}/logs/$TIMESTAMP-server.log"
         fi
-        if [ -f /data/arma3/instances/{{ $server->port }}2/logs/error.log ]; then
-            mv /data/arma3/instances/{{ $server->port }}2/logs/error.log "/data/arma3/instances/{{ $server->port }}2/logs/$TIMESTAMP-error.log"
+        if [ -f /data/arma3/instances/{{ $server->name }}/logs/error.log ]; then
+            mv /data/arma3/instances/{{ $server->name }}/logs/error.log "/data/arma3/instances/{{ $server->name }}/logs/$TIMESTAMP-error.log"
         fi
-        if [ -f /data/arma3/instances/{{ $server->port }}2/logs/console_$PID.log ]; then
-            mv /data/arma3/instances/{{ $server->port }}2/logs/console_$PID.log "/data/arma3/instances/{{ $server->port }}2/logs/$TIMESTAMP-console.log"
+        if [ -f /data/arma3/instances/{{ $server->name }}/logs/console_$PID.log ]; then
+            mv /data/arma3/instances/{{ $server->name }}/logs/console_$PID.log "/data/arma3/instances/{{ $server->name }}/logs/$TIMESTAMP-console.log"
         fi
-        if [ -f /data/arma3/instances/{{ $server->port }}2/logs/mpStatistics_$PID.log ]; then
-            mv /data/arma3/instances/{{ $server->port }}2/logs/mpStatistics_$PID.log "/data/arma3/instances/{{ $server->port }}2/logs/$TIMESTAMP-mp-statistics.log"
+        if [ -f /data/arma3/instances/{{ $server->name }}/logs/mpStatistics_$PID.log ]; then
+            mv /data/arma3/instances/{{ $server->name }}/logs/mpStatistics_$PID.log "/data/arma3/instances/{{ $server->name }}/logs/$TIMESTAMP-mp-statistics.log"
         fi
         rm -rf $PIDFILE
         log_end_msg 0
