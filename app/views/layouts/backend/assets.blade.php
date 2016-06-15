@@ -16,6 +16,8 @@
 <link rel="stylesheet" type="text/css" media="screen" href="assets/css/smartadmin-production.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="assets/css/smartadmin-skins.min.css">
 
+<link rel="stylesheet" type="text/css" media="screen" href="assets/css/pnotify.custom.min.css">
+
 <!-- SmartAdmin RTL Support  -->
 <link rel="stylesheet" type="text/css" media="screen" href="assets/css/smartadmin-rtl.min.css">
 

@@ -230,10 +230,18 @@
     };
     $(document).ready(function()
     {
+        function success(text) {
+            new PNotify({
+                text: text,
+                type: 'success'
+            });
+        }
+
         get_player_stats();
         get_server_stats();
         $("a.start_server").unbind().click(function(event)
         {
+            var button = $(this);
             event.preventDefault();
             $.ajax({
                 type:   "GET",
@@ -241,12 +249,13 @@
                 data:   { },
                 success: function(msg)
                 {
-                    alert(msg + " Started");
+                    success(msg + " Started");
                 }
              });
         });
         $("a.stop_server").unbind().click(function(event)
         {
+            var button = $(this);
             event.preventDefault();
             $.ajax({
                 type:   "GET",
@@ -254,12 +263,13 @@
                 data:   { },
                 success: function(msg)
                 {
-                    alert(msg + " Stop");
+                    success(msg + " Stop");
                 }
              });
         });
         $("a.restart_server").unbind().click(function(event)
         {
+            var button = $(this);
             event.preventDefault();
             $.ajax({
                 type:   "GET",
@@ -267,7 +277,7 @@
                 data:   { },
                 success: function(msg)
                 {
-                    alert(msg + " Restarted");
+                    success(msg + " Restarted");
                 }
              });
         });
