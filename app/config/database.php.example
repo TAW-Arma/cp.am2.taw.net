@@ -49,9 +49,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'controlpanel',
-			'username'  => 'controlpanel',
-			'password'  => 'v02x14nc4MoEPabDQBNPrkuPOYC1cBkt',
+			'database'  => 'DATABASE',
+			'username'  => 'USERNAME',
+			'password'  => 'PASSWORD',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
