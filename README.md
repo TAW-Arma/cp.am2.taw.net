@@ -5,5 +5,5 @@ Huge thanks goes to FeralDude and Flogard who made this over the course of ~3 we
 
 Is built on [laravel](https://laravel.com/) framework v4.2.
 
-- aeroson: the database passwords are only usable from localhost, so no need to hide those ?
-- FeralDude: Yep, its only localhost
+
+![Control panel screenshot](http://image.prntscr.com/image/0b9dbf4e33814ef98db725d350b73e5c.png)
