@@ -267,16 +267,7 @@ class ServerController extends BaseController
 
         $data['server']                     = Server::with('server_cfg')->find($server_id);
         $data['missions']                   = $this->GetMissionsList();
-
-        if( Auth::user()->is('sa') or Auth::user()->is('st') ):
-
-            $data['is_admin']           = true;
-
-        else:
-
-            $data['is_admin']           = false;
-
-        endif;
+        $data['is_admin']           = true;    
 
         return View::make('backend.server.update_server_cfg', $data);
     }
@@ -286,46 +277,35 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('config_server_server'))
             return Redirect::to('backend/server');
 
-        if( Auth::user()->is('sa') or Auth::user()->is('st') ):
+    
+        $server                                         = Server::with('server_cfg')->find($server_id);
+        $server->server_cfg->motd                       = Input::get('motd');
+        $server->server_cfg->motd_interval              = Input::get('motd_interval');
+        $server->server_cfg->battleye                   = Input::get('battleye');
+        //$server->server_cfg->third_person_view          = Input::get('third_person_view');
+        $server->server_cfg->force_rotor_lib_simulation = Input::get('force_rotor_lib_simulation');
+        $server->server_cfg->reporting_ip               = Input::get('reporting_ip');
+        //$server->server_cfg->checkfiles                 = Input::get('checkfiles');
+        $server->server_cfg->kickDuplicate              = Input::get('kickDuplicate');
+        $server->server_cfg->verifySignatures           = Input::get('verifySignatures');
+        //$server->server_cfg->equalModRequired           = Input::get('equalModRequired');
+        $server->server_cfg->requiredSecureId           = Input::get('requiredSecureId');
+        $server->server_cfg->maxPlayers                 = Input::get('maxPlayers');
+        $server->server_cfg->voteMission                = Input::get('voteMission');
+        $server->server_cfg->voteThreshold              = Input::get('voteThreshold');
+        $server->server_cfg->disableVoN                 = Input::get('disableVoN');
+        $server->server_cfg->vonCodecQuality            = Input::get('vonCodecQuality');
+        $server->server_cfg->persistent                 = Input::get('persistent');
+        $server->server_cfg->timeStampFormat            = Input::get('timeStampFormat');
+        $server->server_cfg->onUnsignedData             = Input::get('onUnsignedData');
+        $server->server_cfg->onHackedData               = Input::get('onHackedData');
+        $server->server_cfg->onDifferentData            = Input::get('onDifferentData');
+        $server->server_cfg->template                   = Input::get('template');
+        $server->server_cfg->difficulty                 = Input::get('difficulty');
+        $server->server_cfg->mission_parameters         = Input::get('mission_parameters');
+        $server->server_cfg->save();
+        $server->save();
 
-            $server                                         = Server::with('server_cfg')->find($server_id);
-            $server->server_cfg->motd                       = Input::get('motd');
-            $server->server_cfg->motd_interval              = Input::get('motd_interval');
-            $server->server_cfg->battleye                   = Input::get('battleye');
-            //$server->server_cfg->third_person_view          = Input::get('third_person_view');
-            $server->server_cfg->force_rotor_lib_simulation = Input::get('force_rotor_lib_simulation');
-            $server->server_cfg->reporting_ip               = Input::get('reporting_ip');
-            //$server->server_cfg->checkfiles                 = Input::get('checkfiles');
-            $server->server_cfg->kickDuplicate              = Input::get('kickDuplicate');
-            $server->server_cfg->verifySignatures           = Input::get('verifySignatures');
-            //$server->server_cfg->equalModRequired           = Input::get('equalModRequired');
-            $server->server_cfg->requiredSecureId           = Input::get('requiredSecureId');
-            $server->server_cfg->maxPlayers                 = Input::get('maxPlayers');
-            $server->server_cfg->voteMission                = Input::get('voteMission');
-            $server->server_cfg->voteThreshold              = Input::get('voteThreshold');
-            $server->server_cfg->disableVoN                 = Input::get('disableVoN');
-            $server->server_cfg->vonCodecQuality            = Input::get('vonCodecQuality');
-            $server->server_cfg->persistent                 = Input::get('persistent');
-            $server->server_cfg->timeStampFormat            = Input::get('timeStampFormat');
-            $server->server_cfg->onUnsignedData             = Input::get('onUnsignedData');
-            $server->server_cfg->onHackedData               = Input::get('onHackedData');
-            $server->server_cfg->onDifferentData            = Input::get('onDifferentData');
-            $server->server_cfg->template                   = Input::get('template');
-            $server->server_cfg->difficulty                 = Input::get('difficulty');
-            $server->server_cfg->mission_parameters         = Input::get('mission_parameters');
-            $server->server_cfg->save();
-            $server->save();
-            
-        else:
-
-            $server                                         = Server::with('server_cfg')->find($server_id);
-            $server->server_cfg->template                   = Input::get('template');
-            $server->server_cfg->difficulty                 = Input::get('difficulty');
-            $server->server_cfg->mission_parameters         = Input::get('mission_parameters');
-            $server->server_cfg->save();
-            $server->save();
-
-        endif;
        
         return Redirect::to('backend#backend/server');
     }
@@ -535,6 +515,8 @@ class ServerController extends BaseController
         $data['bans']               = ServerBans::all();
 
         // shell_exec('C:\\FireDaemon\\FireDaemon.exe --uninstall ' . $data['server']->name . '');
+
+        $data['server']['hostname_escaped'] =  htmlspecialchars($data['server']['hostname']);
 
         $server = Server::find($server_id);
 

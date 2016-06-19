@@ -2,7 +2,7 @@
 <Service>
  <Program>
   <Name>{{ $server->name }}_hc1</Name>
-  <DisplayName>{{ $server->hostname }} - HC1</DisplayName>
+  <DisplayName>{{ $server->hostname_escaped }} - HC1</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
   <WorkingDir>C:\arma3</WorkingDir>
   <Executable>C:\arma3\arma3server.exe</Executable>
