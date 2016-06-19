@@ -560,10 +560,14 @@ class ServerController extends BaseController
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\arma3\\Arma3.cfg', $file->basic_cfg);
         $this->file_force_contents('C:\\arma3\\instances\\' . $data['server']->name . '\\profile\\users\\administrator\\Arma3.cfg', $file->basic_cfg);
 
-        if($server->cpu_count > 0) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml');
-        if($server->cpu_count > 1) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml');
-        if($server->cpu_count > 2) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml');
-        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml');
+        $hc1 = 'C:\\arma3\\instances\\' . $data['server']->name . '\\hc1.xml';
+        $hc2 = 'C:\\arma3\\instances\\' . $data['server']->name . '\\hc2.xml';
+        $hc3 = 'C:\\arma3\\instances\\' . $data['server']->name . '\\hc3.xml';
+        $ser = 'C:\\arma3\\instances\\' . $data['server']->name . '\\server.xml';
+        if($server->cpu_count > 0) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install '.$hc1.' '.$hc1);
+        if($server->cpu_count > 1) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install '.$hc2.' '.$hc2);
+        if($server->cpu_count > 2) shell_exec('C:\\FireDaemon\\FireDaemon.exe --install '.$hc3.' '.$hc3);
+        shell_exec('C:\\FireDaemon\\FireDaemon.exe --install '.$ser.' '.$ser);
     }
 
     public function GetLogViewer($server_id)
