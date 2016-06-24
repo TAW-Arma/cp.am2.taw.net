@@ -570,26 +570,44 @@ class ServerController extends BaseController
         shell_exec('C:\\FireDaemon\\FireDaemon.exe --install '.$ser.' '.$ser);
     }
 
+
+
     public function GetLogViewer($server_id)
     {
         $data['server']    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
 
-
-        $dir = "C:/arma3/instances/".$data['server']['name']."/logs/";
-        $lastMod = 0;
-        $lastModFile = '';
-        foreach (scandir($dir) as $entry) {
-            if (is_file($dir.$entry) && filectime($dir.$entry) > $lastMod) {
-                $lastMod = filectime($dir.$entry);
-                $lastModFile = $dir.$entry;
-            } 
+        function MostRecentFile($dir) {        
+            $lastMod = 0;
+            $lastModFile = '';
+            foreach (scandir($dir) as $entry) {
+                if (is_file($dir.$entry) && filectime($dir.$entry) > $lastMod) {
+                    $lastMod = filectime($dir.$entry);
+                    $lastModFile = $dir.$entry;
+                } 
+            }
+            return $lastModFile;
         }
 
-        $data["file"] = $lastModFile;
-        $data["contents"] = file_get_contents($data["file"]);
+        $data["console_log_file"] = MostRecentFile("C:/arma3/instances/".$data['server']['name']."/logs/");
+        $data["console_log_contents"] = "";
+        if(file_exists($data["console_log_file"])) {
+            $data["console_log_contents"] = file_get_contents($data["console_log_file"]);
+            if(strlen($data["console_log_contents"]) < 1) {
+                $data["console_log_contents"] = "Nothing in console log, there was probably no error.";
+            }
+        } else {
+            $data["console_log_contents"] = "File doesn't exist";
+        }
 
-        if(count($data["contents"]) <= 1) {
-            $data["contents"] = "Nothing in logs, this is weird. Maybe you need to remove -noLogs or wait for server to start, loading all the mods takes a while.";
+        $data["rpt_log_file"] = MostRecentFile("C:/arma3/instances/".$data['server']['name']."/profile/");
+        $data["rpt_log_contents"] = "";
+        if(file_exists($data["rpt_log_file"])) {
+            $data["rpt_log_contents"] = file_get_contents($data["rpt_log_file"]);
+            if(strlen($data["rpt_log_contents"]) < 1) {
+                $data["rpt_log_contents"] = "Nothing in rpt log. Maybe you need to remove -noLogs or wait for server to start, loading all the mods takes a while.";
+            }
+        } else {
+            $data["rpt_log_contents"] = "File doesn't exist";
         }
 
         return View::make('backend.server.logviewer', $data);
