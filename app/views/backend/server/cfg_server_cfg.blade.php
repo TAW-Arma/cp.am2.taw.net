@@ -47,6 +47,7 @@ doubleIdDetected                    = "";
 onUnsignedData                      = {{ $server->server_cfg->onUnsignedData }};
 onHackedData                        = {{ $server->server_cfg->onHackedData }};
 onDifferentData                     = {{ $server->server_cfg->onDifferentData }};
+allowedFilePatching                 = 2;
 guaranteedUpdates                   = false;
 class Missions
 {

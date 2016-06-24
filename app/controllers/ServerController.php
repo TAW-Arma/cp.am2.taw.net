@@ -574,6 +574,24 @@ class ServerController extends BaseController
     {
         $data['server']    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
 
+
+        $dir = "C:/arma3/instances/".$data['server']['name']."/logs/";
+        $lastMod = 0;
+        $lastModFile = '';
+        foreach (scandir($dir) as $entry) {
+            if (is_file($dir.$entry) && filectime($dir.$entry) > $lastMod) {
+                $lastMod = filectime($dir.$entry);
+                $lastModFile = $dir.$entry;
+            } 
+        }
+
+        $data["file"] = $lastModFile;
+        $data["contents"] = file_get_contents($data["file"]);
+
+        if(count($data["contents"]) <= 1) {
+            $data["contents"] = "Nothing in logs, this is weird. Maybe you need to remove -noLogs or wait for server to start, loading all the mods takes a while.";
+        }
+
         return View::make('backend.server.logviewer', $data);
     }
 
@@ -649,7 +667,7 @@ class ServerController extends BaseController
         $data['message']            = $message;
         $data['message_type']       = $message_type;
         $data['missions']           = $this->GetMissionsList();
-        $data['can_delete']         = Auth::user()->can('delete_server');
+        $data['can_delete']         = Auth::user()->can('delete_mission');
 
         return View::make('backend.server.missions', $data);
     }
