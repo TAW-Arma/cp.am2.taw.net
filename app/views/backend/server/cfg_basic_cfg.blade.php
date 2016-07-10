@@ -35,4 +35,3 @@ serverLatitude              = {{ $server->server_basic_cfg->server_latitude }};
 serverLongitudeAuto         = {{ $server->server_basic_cfg->server_longitude_auto }};
 
 serverLatitudeAuto          = {{ $server->server_basic_cfg->server_latitude_auto }};
-class sockets { maxPacketSize = 1400; };
