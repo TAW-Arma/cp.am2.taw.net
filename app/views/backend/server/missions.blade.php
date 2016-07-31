@@ -36,15 +36,15 @@
                                 <tbody>
                                     @foreach ($missions as $mission)
                                         <tr>
-                                            <td>{{ $mission }}</td>
+                                            <td>{{ $mission['name'] }}</td>
                                             @if ($can_delete)
                                                 <td style="width: 70px;">
-                                                    <a class="btn btn-success btn-xs"  href="/backend/server/download_mission/{{ $mission }}" target="_BLANK"><i class="fa fa-arrow-down"></i></a>
-                                                    <a class="btn btn-danger btn-xs"  href="/backend#backend/server/delete_mission/{{ $mission }}"><i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-success btn-xs"  href="/backend/server/download_mission/{{ $mission['url'] }}" target="_BLANK"><i class="fa fa-arrow-down"></i></a>
+                                                    <a class="btn btn-danger btn-xs"  href="/backend#backend/server/delete_mission/{{ $mission['url'] }}"><i class="fa fa-times"></i></a>
                                                 </td>
                                             @else
                                                 <td style="width: 32px;">
-                                                    <a class="btn btn-success btn-xs"  href="/backend/server/download_mission/{{ $mission }}" target="_BLANK"><i class="fa fa-arrow-down"></i></a>
+                                                    <a class="btn btn-success btn-xs"  href="/backend/server/download_mission/{{ $mission['url'] }}" target="_BLANK"><i class="fa fa-arrow-down"></i></a>
                                                 </td>
                                             @endif
                                         </tr>

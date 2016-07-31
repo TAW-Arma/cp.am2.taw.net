@@ -682,9 +682,18 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('mission_server'))
             return Redirect::to('backend/server');
         
+        $missions = array();
+      
+        foreach ($this->GetMissionsList() as $mission) {
+            $missions[] = array(
+                'name' => $mission,
+                'url' => base64_encode($mission),
+            );
+        }
+
         $data['message']            = $message;
         $data['message_type']       = $message_type;
-        $data['missions']           = $this->GetMissionsList();
+        $data['missions']           = $missions;
         $data['can_delete']         = Auth::user()->can('delete_mission');
 
         return View::make('backend.server.missions', $data);
@@ -726,7 +735,9 @@ class ServerController extends BaseController
 
     public function GetMissionsList()
     {
-        return array_slice(scandir("C:/arma3/mpmissions"), 2);
+        $missions = array_slice(scandir("C:/arma3/mpmissions"), 2);
+        natcasesort($missions);
+        return $missions;
     }
     
     public function GetDeleteMission($mission)
@@ -734,8 +745,27 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('mission_server'))
             return Redirect::to('backend/server');
         
-        if(unlink("C:/arma3/mpmissions/$mission")) $message = "success/Successfully deleted mission: $mission";
-        else $message = "danger/Failed to delete mission: $mission";
+        $mission = $this->mission_name_from_url($mission);
+        $message = 'warning/no message';
+
+        if(file_exists("C:/arma3/mpmissions/$mission")) 
+        {
+            $success = true;
+            try 
+            {
+                $success &= unlink("C:/arma3/mpmissions/$mission");
+            }
+            catch (Exception $e)
+            {
+                $success = false;
+            }
+            if($success) $message = "success/Successfully deleted mission: '$mission'";
+            else $message = "danger/Failed to delete mission: '$mission', some server is probably currently running this mission";
+        } 
+        else 
+        {
+            $message = "danger/Mission to delete not found: '$mission'";
+        }
 
         return Redirect::to('backend/server/missions/'.$message);
     }
@@ -744,9 +774,25 @@ class ServerController extends BaseController
     {
         if ( ! Auth::user()->can('mission_server'))
             return Redirect::to('backend/server');
-        
-        return Response::download("C:/arma3/mpmissions/$mission");
+
+        $mission = $this->mission_name_from_url($mission);
+     
+        if(file_exists("C:/arma3/mpmissions/$mission")) 
+        {
+            return Response::download("C:/arma3/mpmissions/$mission");
+        } 
+        else 
+        {
+            $message = "danger/Mission to download not found: '$mission'";
+            return Redirect::to('backend/server/missions/'.$message);
+        }
     }
+
+    public function mission_name_from_url($url) 
+    {
+        return base64_decode($url);
+    }
+
     
     public function GetBans()
     {
