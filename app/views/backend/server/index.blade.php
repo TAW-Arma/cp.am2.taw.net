@@ -98,7 +98,7 @@
                                                         </div>
                                                     @endif
                                                     @if ($can_delete)
-                                                        <a class="btn btn-danger btn-xs"  href="/backend#backend/server/delete/{{ $server->id }}"><i class="fa fa-times"></i></a>
+                                                        <a class="delete_server btn btn-danger btn-xs" href="/backend#backend/server/delete/{{ $server->id }}" data-serverName="{{ $server->name }}"><i class="fa fa-times"></i></a>
                                                     @endif
                                                     <div class="modal fade" id="{{ $server->id }}modal" tabindex="-1" role="dialog" aria-labelledby="{{ $server->name }}Label">
                                                         <div class="modal-dialog" role="document">
@@ -281,6 +281,13 @@
                 }
              });
         });
+        $(".delete_server").click(function(e) {
+            var serverName = $(this).data("data-serverName");
+            if(false == confirm("Are you sure want to delete server: '" + serverName +"' ?")) {
+                e.preventDefault(); 
+            }
+        });
+
     });
     window.setInterval(function()
     {
