@@ -282,7 +282,7 @@
              });
         });
         $(".delete_server").click(function(e) {
-            var serverName = $(this).data("data-serverName");
+            var serverName = $(this).attr("data-serverName");
             if(false == confirm("Are you sure want to delete server: '" + serverName +"' ?")) {
                 e.preventDefault(); 
             }
