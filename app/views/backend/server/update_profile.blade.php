@@ -226,43 +226,43 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_skill_friendly">
-                                                    {{ Lang::get('server.recruit_label_recruit_skill_friendly') }}
+                                                    {{ Lang::get('server.skill_friendly') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="recruit_skill_friendly" placeholder="{{ Lang::get('server.recruit_label_recruit_skill_friendly') }}" value="{{ $server->server_dificulty_recruit->skill_friendly }}" />
+                                                    <input type="text" name="recruit_skill_friendly" placeholder="{{ Lang::get('server.skill_friendly') }}" value="{{ $server->server_dificulty_recruit->skill_friendly }}" />
                                                 </label>
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_skill_enemy">
-                                                    {{ Lang::get('server.recruit_label_recruit_skill_enemy') }}
+                                                    {{ Lang::get('server.skill_enemy') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="recruit_skill_enemy" placeholder="{{ Lang::get('server.recruit_label_recruit_skill_enemy') }}" value="{{ $server->server_dificulty_recruit->skill_enemy }}" />
+                                                    <input type="text" name="recruit_skill_enemy" placeholder="{{ Lang::get('server.skill_enemy') }}" value="{{ $server->server_dificulty_recruit->skill_enemy }}" />
                                                 </label>
                                             </section>
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_precision_friendly">
-                                                    {{ Lang::get('server.recruit_label_recruit_precision_friendly') }}
+                                                    {{ Lang::get('server.precision_friendly') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="recruit_precision_friendly" placeholder="{{ Lang::get('server.recruit_label_recruit_precision_friendly') }}" value="{{ $server->server_dificulty_recruit->precision_friendly }}" />
+                                                    <input type="text" name="recruit_precision_friendly" placeholder="{{ Lang::get('server.precision_friendly') }}" value="{{ $server->server_dificulty_recruit->precision_friendly }}" />
                                                 </label>
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_precision_enemy">
-                                                    {{ Lang::get('server.recruit_label_recruit_precision_enemy') }}
+                                                    {{ Lang::get('server.precision_enemy') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="recruit_precision_enemy" placeholder="{{ Lang::get('server.recruit_label_recruit_precision_enemy') }}" value="{{ $server->server_dificulty_recruit->precision_enemy }}" />
+                                                    <input type="text" name="recruit_precision_enemy" placeholder="{{ Lang::get('server.precision_enemy') }}" value="{{ $server->server_dificulty_recruit->precision_enemy }}" />
                                                 </label>
                                             </section>
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_armor">
-                                                    {{ Lang::get('server.recruit_label_recruit_armor') }}
+                                                    {{ Lang::get('server.armor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -277,7 +277,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_friendly_tag">
-                                                    {{ Lang::get('server.recruit_label_recruit_friendly_tag') }}
+                                                    {{ Lang::get('server.friendly_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -294,7 +294,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_enemy_tag">
-                                                    {{ Lang::get('server.recruit_label_recruit_enemy_tag') }}
+                                                    {{ Lang::get('server.enemy_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -309,7 +309,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_mine_tag">
-                                                    {{ Lang::get('server.recruit_label_recruit_mine_tag') }}
+                                                    {{ Lang::get('server.mine_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -326,7 +326,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_hud">
-                                                    {{ Lang::get('server.recruit_label_recruit_hud') }}
+                                                    {{ Lang::get('server.hud') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -341,7 +341,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_hud_perm">
-                                                    {{ Lang::get('server.recruit_label_recruit_hud_perm') }}
+                                                    {{ Lang::get('server.hud_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -358,7 +358,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_hud_wp">
-                                                    {{ Lang::get('server.recruit_label_recruit_hud_wp') }}
+                                                    {{ Lang::get('server.hud_wp') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -373,7 +373,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_hud_wp_perm">
-                                                    {{ Lang::get('server.recruit_label_recruit_hud_wp_perm') }}
+                                                    {{ Lang::get('server.hud_wp_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -390,7 +390,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_hud_group_info">
-                                                    {{ Lang::get('server.recruit_label_recruit_hud_group_info') }}
+                                                    {{ Lang::get('server.hud_group_info') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -405,7 +405,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_auto_spot">
-                                                    {{ Lang::get('server.recruit_label_recruit_auto_spot') }}
+                                                    {{ Lang::get('server.auto_spot') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -422,7 +422,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_map">
-                                                    {{ Lang::get('server.recruit_label_recruit_map') }}
+                                                    {{ Lang::get('server.map') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -437,7 +437,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_weapon_cursor">
-                                                    {{ Lang::get('server.recruit_label_recruit_weapon_cursor') }}
+                                                    {{ Lang::get('server.weapon_cursor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -454,7 +454,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_auto_guide_at">
-                                                    {{ Lang::get('server.recruit_label_recruit_auto_guide_at') }}
+                                                    {{ Lang::get('server.auto_guide_at') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -469,7 +469,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_clock_indicator">
-                                                    {{ Lang::get('server.recruit_label_recruit_clock_indicator') }}
+                                                    {{ Lang::get('server.clock_indicator') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -486,7 +486,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_third_person_view">
-                                                    {{ Lang::get('server.recruit_label_recruit_third_person_view') }}
+                                                    {{ Lang::get('server.third_person_view') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -501,7 +501,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_ultra_ai">
-                                                    {{ Lang::get('server.recruit_label_recruit_ultra_ai') }}
+                                                    {{ Lang::get('server.ultra_ai') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -518,7 +518,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_camera_shake">
-                                                    {{ Lang::get('server.recruit_label_recruit_camera_shake') }}
+                                                    {{ Lang::get('server.camera_shake') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -533,7 +533,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_unlimited_saves">
-                                                    {{ Lang::get('server.recruit_label_recruit_unlimited_saves') }}
+                                                    {{ Lang::get('server.unlimited_saves') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -550,7 +550,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_death_messages">
-                                                    {{ Lang::get('server.recruit_label_recruit_death_messages') }}
+                                                    {{ Lang::get('server.death_messages') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -565,7 +565,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_net_stats">
-                                                    {{ Lang::get('server.recruit_label_recruit_net_stats') }}
+                                                    {{ Lang::get('server.net_stats') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -582,7 +582,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="recruit_von_id">
-                                                    {{ Lang::get('server.recruit_label_recruit_von_id') }}
+                                                    {{ Lang::get('server.von_id') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -597,7 +597,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="recruit_extended_info_type">
-                                                    {{ Lang::get('server.recruit_label_recruit_extended_info_type') }}
+                                                    {{ Lang::get('server.extended_info_type') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -618,7 +618,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_skill_friendly">
-                                                    {{ Lang::get('server.regular_label_regular_skill_friendly') }}
+                                                    {{ Lang::get('server.skill_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="regular_skill_friendly" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->skill_friendly }}" />
@@ -626,7 +626,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_skill_enemy">
-                                                    {{ Lang::get('server.regular_label_regular_skill_enemy') }}
+                                                    {{ Lang::get('server.skill_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="regular_skill_enemy" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->skill_enemy }}" />
@@ -636,7 +636,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_precision_friendly">
-                                                    {{ Lang::get('server.regular_label_regular_precision_friendly') }}
+                                                    {{ Lang::get('server.precision_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="regular_precision_friendly" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->precision_friendly }}" />
@@ -644,7 +644,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_precision_enemy">
-                                                    {{ Lang::get('server.regular_label_regular_precision_enemy') }}
+                                                    {{ Lang::get('server.precision_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="regular_precision_enemy" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->precision_enemy }}" />
@@ -654,7 +654,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_armor">
-                                                    {{ Lang::get('server.regular_label_regular_armor') }}
+                                                    {{ Lang::get('server.armor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -669,7 +669,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_friendly_tag">
-                                                    {{ Lang::get('server.regular_label_regular_friendly_tag') }}
+                                                    {{ Lang::get('server.friendly_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -686,7 +686,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_enemy_tag">
-                                                    {{ Lang::get('server.regular_label_regular_enemy_tag') }}
+                                                    {{ Lang::get('server.enemy_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -701,7 +701,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_mine_tag">
-                                                    {{ Lang::get('server.regular_label_regular_mine_tag') }}
+                                                    {{ Lang::get('server.mine_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -718,7 +718,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_hud">
-                                                    {{ Lang::get('server.regular_label_regular_hud') }}
+                                                    {{ Lang::get('server.hud') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -733,7 +733,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_hud_perm">
-                                                    {{ Lang::get('server.regular_label_regular_hud_perm') }}
+                                                    {{ Lang::get('server.hud_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -750,7 +750,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_hud_wp">
-                                                    {{ Lang::get('server.regular_label_regular_hud_wp') }}
+                                                    {{ Lang::get('server.hud_wp') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -765,7 +765,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_hud_wp_perm">
-                                                    {{ Lang::get('server.regular_label_regular_hud_wp_perm') }}
+                                                    {{ Lang::get('server.hud_wp_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -782,7 +782,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_hud_group_info">
-                                                    {{ Lang::get('server.regular_label_regular_hud_group_info') }}
+                                                    {{ Lang::get('server.hud_group_info') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -797,7 +797,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_auto_spot">
-                                                    {{ Lang::get('server.regular_label_regular_auto_spot') }}
+                                                    {{ Lang::get('server.auto_spot') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -814,7 +814,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_map">
-                                                    {{ Lang::get('server.regular_label_regular_map') }}
+                                                    {{ Lang::get('server.map') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -829,7 +829,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_weapon_cursor">
-                                                    {{ Lang::get('server.regular_label_regular_weapon_cursor') }}
+                                                    {{ Lang::get('server.weapon_cursor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -846,7 +846,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_auto_guide_at">
-                                                    {{ Lang::get('server.regular_label_regular_auto_guide_at') }}
+                                                    {{ Lang::get('server.auto_guide_at') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -861,7 +861,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_clock_indicator">
-                                                    {{ Lang::get('server.regular_label_regular_clock_indicator') }}
+                                                    {{ Lang::get('server.clock_indicator') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -878,7 +878,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_third_person_view">
-                                                    {{ Lang::get('server.regular_label_regular_third_person_view') }}
+                                                    {{ Lang::get('server.third_person_view') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -893,7 +893,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_ultra_ai">
-                                                    {{ Lang::get('server.regular_label_regular_ultra_ai') }}
+                                                    {{ Lang::get('server.ultra_ai') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -910,7 +910,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_camera_shake">
-                                                    {{ Lang::get('server.regular_label_regular_camera_shake') }}
+                                                    {{ Lang::get('server.camera_shake') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -925,7 +925,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_unlimited_saves">
-                                                    {{ Lang::get('server.regular_label_regular_unlimited_saves') }}
+                                                    {{ Lang::get('server.unlimited_saves') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -942,7 +942,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_death_messages">
-                                                    {{ Lang::get('server.regular_label_regular_death_messages') }}
+                                                    {{ Lang::get('server.death_messages') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -957,7 +957,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_net_stats">
-                                                    {{ Lang::get('server.regular_label_regular_net_stats') }}
+                                                    {{ Lang::get('server.net_stats') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -974,7 +974,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="regular_von_id">
-                                                    {{ Lang::get('server.regular_label_regular_von_id') }}
+                                                    {{ Lang::get('server.von_id') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -989,7 +989,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="regular_extended_info_type">
-                                                    {{ Lang::get('server.regular_label_regular_extended_info_type') }}
+                                                    {{ Lang::get('server.extended_info_type') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1010,7 +1010,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_skill_friendly">
-                                                    {{ Lang::get('server.veteran_label_veteran_skill_friendly') }}
+                                                    {{ Lang::get('server.skill_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="veteran_skill_friendly" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->skill_friendly }}" />
@@ -1018,7 +1018,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_skill_enemy">
-                                                    {{ Lang::get('server.veteran_label_veteran_skill_enemy') }}
+                                                    {{ Lang::get('server.skill_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="veteran_skill_enemy" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->skill_enemy }}" />
@@ -1028,7 +1028,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_precision_friendly">
-                                                    {{ Lang::get('server.veteran_label_veteran_precision_friendly') }}
+                                                    {{ Lang::get('server.precision_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="veteran_precision_friendly" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->precision_friendly }}" />
@@ -1036,7 +1036,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_precision_enemy">
-                                                    {{ Lang::get('server.veteran_label_veteran_precision_enemy') }}
+                                                    {{ Lang::get('server.precision_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="veteran_precision_enemy" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->precision_enemy }}" />
@@ -1046,7 +1046,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_armor">
-                                                    {{ Lang::get('server.veteran_label_veteran_armor') }}
+                                                    {{ Lang::get('server.armor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1061,7 +1061,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_friendly_tag">
-                                                    {{ Lang::get('server.veteran_label_veteran_friendly_tag') }}
+                                                    {{ Lang::get('server.friendly_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1078,7 +1078,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_enemy_tag">
-                                                    {{ Lang::get('server.veteran_label_veteran_enemy_tag') }}
+                                                    {{ Lang::get('server.enemy_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1093,7 +1093,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_mine_tag">
-                                                    {{ Lang::get('server.veteran_label_veteran_mine_tag') }}
+                                                    {{ Lang::get('server.mine_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1110,7 +1110,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_hud">
-                                                    {{ Lang::get('server.veteran_label_veteran_hud') }}
+                                                    {{ Lang::get('server.hud') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1125,7 +1125,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_hud_perm">
-                                                    {{ Lang::get('server.veteran_label_veteran_hud_perm') }}
+                                                    {{ Lang::get('server.hud_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1142,7 +1142,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_hud_wp">
-                                                    {{ Lang::get('server.veteran_label_veteran_hud_wp') }}
+                                                    {{ Lang::get('server.hud_wp') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1157,7 +1157,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_hud_wp_perm">
-                                                    {{ Lang::get('server.veteran_label_veteran_hud_wp_perm') }}
+                                                    {{ Lang::get('server.hud_wp_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1174,7 +1174,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_hud_group_info">
-                                                    {{ Lang::get('server.veteran_label_veteran_hud_group_info') }}
+                                                    {{ Lang::get('server.hud_group_info') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1189,7 +1189,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_auto_spot">
-                                                    {{ Lang::get('server.veteran_label_veteran_auto_spot') }}
+                                                    {{ Lang::get('server.auto_spot') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1206,7 +1206,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_map">
-                                                    {{ Lang::get('server.veteran_label_veteran_map') }}
+                                                    {{ Lang::get('server.map') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1221,7 +1221,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_weapon_cursor">
-                                                    {{ Lang::get('server.veteran_label_veteran_weapon_cursor') }}
+                                                    {{ Lang::get('server.weapon_cursor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1238,7 +1238,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_auto_guide_at">
-                                                    {{ Lang::get('server.veteran_label_veteran_auto_guide_at') }}
+                                                    {{ Lang::get('server.auto_guide_at') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1253,7 +1253,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_clock_indicator">
-                                                    {{ Lang::get('server.veteran_label_veteran_clock_indicator') }}
+                                                    {{ Lang::get('server.clock_indicator') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1270,7 +1270,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_third_person_view">
-                                                    {{ Lang::get('server.veteran_label_veteran_third_person_view') }}
+                                                    {{ Lang::get('server.third_person_view') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1285,7 +1285,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_ultra_ai">
-                                                    {{ Lang::get('server.veteran_label_veteran_ultra_ai') }}
+                                                    {{ Lang::get('server.ultra_ai') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1302,7 +1302,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_camera_shake">
-                                                    {{ Lang::get('server.veteran_label_veteran_camera_shake') }}
+                                                    {{ Lang::get('server.camera_shake') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1317,7 +1317,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_unlimited_saves">
-                                                    {{ Lang::get('server.veteran_label_veteran_unlimited_saves') }}
+                                                    {{ Lang::get('server.unlimited_saves') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1334,7 +1334,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_death_messages">
-                                                    {{ Lang::get('server.veteran_label_veteran_death_messages') }}
+                                                    {{ Lang::get('server.death_messages') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1349,7 +1349,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_net_stats">
-                                                    {{ Lang::get('server.veteran_label_veteran_net_stats') }}
+                                                    {{ Lang::get('server.net_stats') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1366,7 +1366,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="veteran_von_id">
-                                                    {{ Lang::get('server.veteran_label_veteran_von_id') }}
+                                                    {{ Lang::get('server.von_id') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1381,7 +1381,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="veteran_extended_info_type">
-                                                    {{ Lang::get('server.veteran_label_veteran_extended_info_type') }}
+                                                    {{ Lang::get('server.extended_info_type') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1402,7 +1402,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_skill_friendly">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_skill_friendly') }}
+                                                    {{ Lang::get('server.skill_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="mercenary_skill_friendly" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->skill_friendly }}" />
@@ -1410,7 +1410,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_skill_enemy">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_skill_enemy') }}
+                                                    {{ Lang::get('server.skill_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="mercenary_skill_enemy" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->skill_enemy }}" />
@@ -1420,7 +1420,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_precision_friendly">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_precision_friendly') }}
+                                                    {{ Lang::get('server.precision_friendly') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="mercenary_precision_friendly" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->precision_friendly }}" />
@@ -1428,7 +1428,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_precision_enemy">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_precision_enemy') }}
+                                                    {{ Lang::get('server.precision_enemy') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="mercenary_precision_enemy" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->precision_enemy }}" />
@@ -1438,7 +1438,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_armor">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_armor') }}
+                                                    {{ Lang::get('server.armor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1453,7 +1453,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_friendly_tag">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_friendly_tag') }}
+                                                    {{ Lang::get('server.friendly_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1470,7 +1470,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_enemy_tag">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_enemy_tag') }}
+                                                    {{ Lang::get('server.enemy_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1485,7 +1485,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_mine_tag">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_mine_tag') }}
+                                                    {{ Lang::get('server.mine_tag') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1502,7 +1502,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_hud">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_hud') }}
+                                                    {{ Lang::get('server.hud') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1517,7 +1517,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_hud_perm">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_hud_perm') }}
+                                                    {{ Lang::get('server.hud_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1534,7 +1534,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_hud_wp">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_hud_wp') }}
+                                                    {{ Lang::get('server.hud_wp') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1549,7 +1549,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_hud_wp_perm">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_hud_wp_perm') }}
+                                                    {{ Lang::get('server.hud_wp_perm') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1566,7 +1566,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_hud_group_info">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_hud_group_info') }}
+                                                    {{ Lang::get('server.hud_group_info') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1581,7 +1581,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_auto_spot">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_auto_spot') }}
+                                                    {{ Lang::get('server.auto_spot') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1598,7 +1598,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_map">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_map') }}
+                                                    {{ Lang::get('server.map') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1613,7 +1613,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_weapon_cursor">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_weapon_cursor') }}
+                                                    {{ Lang::get('server.weapon_cursor') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1630,7 +1630,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_auto_guide_at">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_auto_guide_at') }}
+                                                    {{ Lang::get('server.auto_guide_at') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1645,7 +1645,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_clock_indicator">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_clock_indicator') }}
+                                                    {{ Lang::get('server.clock_indicator') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1662,7 +1662,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_third_person_view">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_third_person_view') }}
+                                                    {{ Lang::get('server.third_person_view') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1677,7 +1677,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_ultra_ai">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_ultra_ai') }}
+                                                    {{ Lang::get('server.ultra_ai') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1694,7 +1694,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_camera_shake">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_camera_shake') }}
+                                                    {{ Lang::get('server.camera_shake') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1709,7 +1709,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_unlimited_saves">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_unlimited_saves') }}
+                                                    {{ Lang::get('server.unlimited_saves') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1726,7 +1726,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_death_messages">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_death_messages') }}
+                                                    {{ Lang::get('server.death_messages') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1741,7 +1741,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_net_stats">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_net_stats') }}
+                                                    {{ Lang::get('server.net_stats') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1758,7 +1758,7 @@
                                         <div class="row">
                                             <section class="col col-6">
                                                 <label for="mercenary_von_id">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_von_id') }}
+                                                    {{ Lang::get('server.von_id') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
@@ -1773,7 +1773,7 @@
                                             </section>
                                             <section class="col col-6">
                                                 <label for="mercenary_extended_info_type">
-                                                    {{ Lang::get('server.mercenary_label_mercenary_extended_info_type') }}
+                                                    {{ Lang::get('server.{0}') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">

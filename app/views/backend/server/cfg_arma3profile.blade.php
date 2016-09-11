@@ -58,9 +58,11 @@ class DifficultyPresets
 @endif
  
 			// Personal awareness
-			weaponInfo = 1;           // Weapon info        (0 = never, 1 = fade out, 2 = always)
-			stanceIndicator = 1;      // Stance indicator   (0 = never, 1 = fade out, 2 = always)
-			staminaBar = 1;        // Stamina bar
+			// these 3 dont have correct names, the names are taken from old outdated unused profile difficulty settings
+			weaponInfo = {{ $server->server_dificulty->auto_guide_at }};           // Weapon info        (0 = never, 1 = fade out, 2 = always)
+			stanceIndicator = {{ $server->server_dificulty->ultra_ai }};      // Stance indicator   (0 = never, 1 = fade out, 2 = always)
+			staminaBar = {{ $server->server_dificulty->extended_info_type }};        // Stamina bar
+
 			weaponCrosshair = {{ $server->server_dificulty->weapon_cursor }};   // Weapon crosshair
 			visionAid = {{ $server->server_dificulty->clock_indicator }};         // Vision aid
  
@@ -74,7 +76,7 @@ class DifficultyPresets
 			vonID = {{ $server->server_dificulty->von_id }};             // VON ID, shows who is talking
  
 			// Misc
-			mapContent = 0;        // Extended map content, shows information on map: spotted enemies if enemyTags, friendly units and assets
+			mapContent = {{ $server->server_dificulty->map }};        // Extended map content, shows information on map: spotted enemies if enemyTags, friendly units and assets
 			autoReport = {{ $server->server_dificulty->auto_spot }};        // Automatic enemy reporting
 			multipleSaves = {{ $server->server_dificulty->unlimited_saves }};     // Multiple saves            
 		};
