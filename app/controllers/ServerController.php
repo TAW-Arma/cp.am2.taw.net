@@ -2,10 +2,13 @@
 
 use Barryvdh\Elfinder;
 
-require_once('C:\\www\\cp.am2.taw.net\\vendor\\austinb\\gameq\\src\\GameQ\\Autoloader.php');
+require_once(__DIR__ ."/../../vendor/austinb/gameq/src/GameQ/Autoloader.php");
 
 class ServerController extends BaseController
-{
+{   
+
+    public $arma3path = "C:/Steam/steamapps/common/Arma 3 Server";
+
     public function GetIndex()
     {
         if ( ! Auth::user()->can('see_server'))
@@ -588,7 +591,7 @@ class ServerController extends BaseController
             return $lastModFile;
         }
 
-        $data["console_log_file"] = MostRecentFile("C:/arma3/instances/".$data['server']['name']."/logs/");
+        $data["console_log_file"] = MostRecentFile($this->arma3path."/instances/".$data['server']['name']."/logs/");
         $data["console_log_contents"] = "";
         if(file_exists($data["console_log_file"])) {
             $data["console_log_contents"] = file_get_contents($data["console_log_file"]);
@@ -599,7 +602,7 @@ class ServerController extends BaseController
             $data["console_log_contents"] = "File doesn't exist";
         }
 
-        $data["rpt_log_file"] = MostRecentFile("C:/arma3/instances/".$data['server']['name']."/profile/");
+        $data["rpt_log_file"] = MostRecentFile($this->arma3path."/instances/".$data['server']['name']."/profile/");
         $data["rpt_log_contents"] = "";
         if(file_exists($data["rpt_log_file"])) {
             $data["rpt_log_contents"] = file_get_contents($data["rpt_log_file"]);
@@ -714,7 +717,7 @@ class ServerController extends BaseController
             {
                 $message            = "danger/Failed to upload mission: '".Input::file('mission')->getClientOriginalName()."' the mission size is over ".($maxFileSizeBytes/1024/1024)." megabytes.";
             }
-            else if(Input::file('mission')->move("C:/arma3/mpmissions", Input::file('mission')->getClientOriginalName()))
+            else if(Input::file('mission')->move($this->arma3path."/mpmissions", Input::file('mission')->getClientOriginalName()))
             {
                 $message            = "success/Successfully uploaded mission: ".Input::file('mission')->getClientOriginalName();
             } 
@@ -735,7 +738,7 @@ class ServerController extends BaseController
 
     public function GetMissionsList()
     {
-        $missions = array_slice(scandir("C:/arma3/mpmissions"), 2);
+        $missions = array_slice(scandir($this->arma3path."/mpmissions"), 2);
         natcasesort($missions);
         return $missions;
     }
@@ -748,12 +751,12 @@ class ServerController extends BaseController
         $mission = $this->mission_name_from_url($mission);
         $message = 'warning/no message';
 
-        if(file_exists("C:/arma3/mpmissions/$mission")) 
+        if(file_exists($this->arma3path."/mpmissions/$mission")) 
         {
             $success = true;
             try 
             {
-                $success &= unlink("C:/arma3/mpmissions/$mission");
+                $success &= unlink($this->arma3path."/mpmissions/$mission");
             }
             catch (Exception $e)
             {
@@ -777,9 +780,9 @@ class ServerController extends BaseController
 
         $mission = $this->mission_name_from_url($mission);
      
-        if(file_exists("C:/arma3/mpmissions/$mission")) 
+        if(file_exists($this->arma3path."/mpmissions/$mission")) 
         {
-            return Response::download("C:/arma3/mpmissions/$mission");
+            return Response::download($this->arma3path."/mpmissions/$mission");
         } 
         else 
         {
