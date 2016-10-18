@@ -4,9 +4,9 @@
   <Name>{{ $server->name }}_hc2</Name>
   <DisplayName>{{ $server->hostname_escaped }} - HC2</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
-  <WorkingDir>C:\arma3</WorkingDir>
-  <Executable>C:\arma3\arma3server.exe</Executable>
-  <Parameters>-client -noLogs -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 -profiles=C:\arma3\instances\{{ $server->name }}\profile -cfg=C:\arma3\instances\{{ $server->name }}\basic.cfg -par=C:\arma3\instances\{{ $server->name }}\parameters.cfg -port={{ $server->port }}2</Parameters>
+  <WorkingDir>C:\Steam\steamapps\common\Arma 3 Server</WorkingDir>
+  <Executable>C:\Steam\steamapps\common\Arma 3 Server\arma3server.exe</Executable>
+  <Parameters>-client -noLogs -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 -profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile -cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg -par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg -port={{ $server->port }}2</Parameters>
   <Delay>3000</Delay>
   <StartUpMode>0</StartUpMode>
   <ForceReplace>true</ForceReplace>

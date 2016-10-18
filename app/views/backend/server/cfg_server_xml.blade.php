@@ -4,9 +4,9 @@
   <Name>{{ $server->name }}</Name>
   <DisplayName>{{ $server->hostname_escaped }}</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
-  <WorkingDir>C:\arma3</WorkingDir>
-  <Executable>C:\arma3\arma3server.exe</Executable>
-  <Parameters>-server -name=arma3 -profiles=C:\arma3\instances\{{ $server->name }}\profile -pid=C:\arma3\instances\{{ $server->name }}\server.pid -config=C:\arma3\instances\{{ $server->name }}\server.cfg -cfg=C:\arma3\instances\{{ $server->name }}\basic.cfg -par=C:\arma3\instances\{{ $server->name }}\parameters.cfg -ranking=C:\arma3\instances\{{ $server->name }}\logs\ranking.log -bepath=C:\arma3\instances\{{ $server->name }}\battleye -port={{ $server->port }}2</Parameters>
+  <WorkingDir>C:\Steam\steamapps\common\Arma 3 Server</WorkingDir>
+  <Executable>C:\Steam\steamapps\common\Arma 3 Server\arma3server.exe</Executable>
+  <Parameters>-server -name=arma3 -profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile -pid=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.pid -config=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.cfg -cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg -par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg -ranking=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\logs\ranking.log -bepath=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\battleye -port={{ $server->port }}2</Parameters>
   <Delay>3000</Delay>
   <StartUpMode>0</StartUpMode>
   <ForceReplace>true</ForceReplace>
