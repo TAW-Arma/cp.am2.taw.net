@@ -6,7 +6,7 @@
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
   <WorkingDir>C:\Steam\steamapps\common\Arma 3 Server</WorkingDir>
   <Executable>C:\Steam\steamapps\common\Arma 3 Server\arma3server.exe</Executable>
-  <Parameters>-server -name=arma3 -profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile -pid=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.pid -config=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.cfg -cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg -par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg -ranking=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\logs\ranking.log -bepath=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\battleye -port={{ $server->port }}2</Parameters>
+  <Parameters>-server -name=arma3 "-profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile" "-pid=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.pid" "-config=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\server.cfg" "-cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg" "-par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg" "-ranking=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\logs\ranking.log" "-bepath=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\battleye" -port={{ $server->port }}2</Parameters>
   <Delay>3000</Delay>
   <StartUpMode>0</StartUpMode>
   <ForceReplace>true</ForceReplace>
