@@ -214,19 +214,7 @@ class SquadTableSeeder extends Seeder
     {
         $user                                               = [];
 
-        $user['feraldude']                                  = User::where('username', '=', 'feraldude')->first();
-        $user['aeroson']                                    = User::where('username', '=', 'aeroson')->first();
-        $user['cloudstalker']                               = User::where('username', '=', 'cloudstalker')->first();
-        $user['juvenis']                                    = User::where('username', '=', 'juvenis')->first();
-        $user['samblues']                                   = User::where('username', '=', 'samblues')->first();
-        $user['mavericksabre']                              = User::where('username', '=', 'mavericksabre')->first();
-        $user['fijapowa']                                   = User::where('username', '=', 'fijapowa')->first();
-        $user['wargamer']                                   = User::where('username', '=', 'wargamer')->first();
-        $user['dutchwarrior']                               = User::where('username', '=', 'dutchwarrior')->first();
-        $user['naffi']                                      = User::where('username', '=', 'naffi')->first();
-        $user['zlipnit']                                    = User::where('username', '=', 'zlipnit')->first();
-        $user['tbone']                                      = User::where('username', '=', 'tbone')->first();
-        $user['mzone']                                      = User::where('username', '=', 'mzone')->first();
+        $user['admin']                                  	= User::where('username', '=', 'admin')->first();
     }
 }
 
@@ -237,19 +225,7 @@ class ServerTableSeeder extends Seeder
         $user                                               = [];
         $server                                             = [];
         
-        $user['feraldude']                                  = User::where('username', '=', 'feraldude')->first();
-        $user['aeroson']                                    = User::where('username', '=', 'aeroson')->first();
-        $user['cloudstalker']                               = User::where('username', '=', 'cloudstalker')->first();
-        $user['juvines']                                    = User::where('username', '=', 'juvines')->first();
-        $user['samblues']                                   = User::where('username', '=', 'samblues')->first();
-        $user['mavericksabre']                              = User::where('username', '=', 'mavericksabre')->first();
-        $user['fijapowa']                                   = User::where('username', '=', 'fijapowa')->first();
-        $user['wargamer']                                   = User::where('username', '=', 'wargamer')->first();
-        $user['dutchwarrior']                               = User::where('username', '=', 'dutchwarrior')->first();
-        $user['naffi']                                      = User::where('username', '=', 'naffi')->first();
-        $user['zlipnit']                                    = User::where('username', '=', 'zlipnit')->first();
-        $user['tbone']                                      = User::where('username', '=', 'tbone')->first();
-        $user['mzone']                                      = User::where('username', '=', 'mzone')->first();
+        $user['admin']                                  = User::where('username', '=', 'admin')->first();
 
     }
 }
