@@ -190,175 +190,21 @@ class UserTableSeeder extends Seeder {
             $permission['manage_squad']->id
         ]);
         $role['squad_leaders']->save();
-
-        $user['feraldude']                                  = new User;
-        $user['feraldude']->email                           = 'feraldude@taw.net';
-        $user['feraldude']->username                        = 'feraldude';
-        $user['feraldude']->password                        = '0p3r@t!0n';
-        $user['feraldude']->verified                        = 1;
-        $user['feraldude']->disabled                        = 0;
-        $user['feraldude']->save();
-        $user['feraldude']->roles()->sync(
+		
+		$user['admin']                                  	= new User;
+        $user['admin']->email                           = 'admin@taw.net';
+        $user['admin']->username                        = 'admin';
+        $user['admin']->password                        = 'admin';
+        $user['admin']->verified                        = 1;
+        $user['admin']->disabled                        = 0;
+        $user['admin']->save();
+        $user['admin']->roles()->sync(
         [
             $role['administrators']->id
         ]);
-        $user['feraldude']->save();
+        $user['admin']->save();
 
-        $user['aeroson']                                    = new User;
-        $user['aeroson']->email                             = 'aeroson@taw.net';
-        $user['aeroson']->username                          = 'aeroson';
-        $user['aeroson']->password                          = 'welcome1234';
-        $user['aeroson']->verified                          = 1;
-        $user['aeroson']->disabled                          = 0;
-        $user['aeroson']->save();
-        $user['aeroson']->roles()->sync(
-        [
-            $role['administrators']->id
-        ]);
-        $user['aeroson']->save();
-
-        $user['cloudstalker']                               = new User;
-        $user['cloudstalker']->email                        = 'cloudstalker@taw.net';
-        $user['cloudstalker']->username                     = 'cloudstalker';
-        $user['cloudstalker']->password                     = 'welcome1234';
-        $user['cloudstalker']->verified                     = 1;
-        $user['cloudstalker']->disabled                     = 0;
-        $user['cloudstalker']->save();
-        $user['cloudstalker']->roles()->sync(
-        [
-            $role['administrators']->id
-        ]);
-        $user['cloudstalker']->save();
-
-        $user['juvenis']                                    = new User;
-        $user['juvenis']->email                             = 'juvenis@taw.net';
-        $user['juvenis']->username                          = 'juvenis';
-        $user['juvenis']->password                          = 'AcoUbJOYlxKtS00f';
-        $user['juvenis']->verified                          = 1;
-        $user['juvenis']->disabled                          = 0;
-        $user['juvenis']->save();
-        $user['juvenis']->roles()->sync(
-        [
-            $role['administrators']->id
-        ]);
-        $user['juvenis']->save();
-
-        $user['samblues']                                   = new User;
-        $user['samblues']->email                            = 'samblues@taw.net';
-        $user['samblues']->username                         = 'samblues';
-        $user['samblues']->password                         = 'nZ6OpPRCQONG1xoU';
-        $user['samblues']->verified                         = 1;
-        $user['samblues']->disabled                         = 0;
-        $user['samblues']->save();
-        $user['samblues']->roles()->sync(
-        [
-            $role['administrators']->id
-        ]);
-        $user['samblues']->save();
-
-        $user['mavericksabre']                              = new User;
-        $user['mavericksabre']->email                       = 'mavericksabre@taw.net';
-        $user['mavericksabre']->username                    = 'mavericksabre';
-        $user['mavericksabre']->password                    = '4AleEH1LnRezSFvS';
-        $user['mavericksabre']->verified                    = 1;
-        $user['mavericksabre']->disabled                    = 0;
-        $user['mavericksabre']->save();
-        $user['mavericksabre']->roles()->sync(
-        [
-            $role['administrators']->id
-        ]);
-        $user['mavericksabre']->save();
-
-        $user['fijapowa']                                   = new User;
-        $user['fijapowa']->email                            = 'fijapowa@taw.net';
-        $user['fijapowa']->username                         = 'fijapowa';
-        $user['fijapowa']->password                         = 'x2roBIo7sGTEtssa';
-        $user['fijapowa']->verified                         = 1;
-        $user['fijapowa']->disabled                         = 0;
-        $user['fijapowa']->save();
-        $user['fijapowa']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['fijapowa']->save();
-
-        $user['wargamer']                                   = new User;
-        $user['wargamer']->email                            = 'wargamer@taw.net';
-        $user['wargamer']->username                         = 'wargamer';
-        $user['wargamer']->password                         = 'nrGSf6qPsexyoqfP';
-        $user['wargamer']->verified                         = 1;
-        $user['wargamer']->disabled                         = 0;
-        $user['wargamer']->save();
-        $user['wargamer']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['wargamer']->save();
-
-        $user['dutchwarrior']                               = new User;
-        $user['dutchwarrior']->email                        = 'dutchwarrior@taw.net';
-        $user['dutchwarrior']->username                     = 'dutchwarrior';
-        $user['dutchwarrior']->password                     = '6BLEvVLnth3pNCUS';
-        $user['dutchwarrior']->verified                     = 1;
-        $user['dutchwarrior']->disabled                     = 0;
-        $user['dutchwarrior']->save();
-        $user['dutchwarrior']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['dutchwarrior']->save();
-
-        $user['naffi']                                      = new User;
-        $user['naffi']->email                               = 'naffi@taw.net';
-        $user['naffi']->username                            = 'naffi';
-        $user['naffi']->password                            = '0LYmW7ngOoDmwVg6';
-        $user['naffi']->verified                            = 1;
-        $user['naffi']->disabled                            = 0;
-        $user['naffi']->save();
-        $user['naffi']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['naffi']->save();
-
-        $user['zlipnit']                                    = new User;
-        $user['zlipnit']->email                             = 'zlipnit@taw.net';
-        $user['zlipnit']->username                          = 'zlipnit';
-        $user['zlipnit']->password                          = 'sXnC3B4PDo4k83Fe';
-        $user['zlipnit']->verified                          = 1;
-        $user['zlipnit']->disabled                          = 0;
-        $user['zlipnit']->save();
-        $user['zlipnit']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['zlipnit']->save();
-
-        $user['tbone']                                      = new User;
-        $user['tbone']->email                               = 'tbone@taw.net';
-        $user['tbone']->username                            = 'tbone';
-        $user['tbone']->password                            = 'IVEZgCjQAWN7UkMo';
-        $user['tbone']->verified                            = 1;
-        $user['tbone']->disabled                            = 0;
-        $user['tbone']->save();
-        $user['tbone']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['tbone']->save();
-
-        $user['mzone']                                      = new User;
-        $user['mzone']->email                               = 'mzone@taw.net';
-        $user['mzone']->username                            = 'mzone';
-        $user['mzone']->password                            = 'x2roBIo7sGTEtssa';
-        $user['mzone']->verified                            = 1;
-        $user['mzone']->disabled                            = 0;
-        $user['mzone']->save();
-        $user['mzone']->roles()->sync(
-        [
-            $role['squad_leaders']->id
-        ]);
-        $user['mzone']->save();
+     
     }
 }
 
