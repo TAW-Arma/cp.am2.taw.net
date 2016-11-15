@@ -10,7 +10,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=123&height=250&width=700&legend=no&type=device_processor" />
+                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=308&height=250&width=700&legend=no&type=device_processor" />
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=123&height=250&width=700&legend=no&type=device_bits" />
+                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=308&height=250&width=700&legend=no&type=device_bits" />
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=123&height=250&width=700&legend=yes&type=device_mempool"/>
+                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=308&height=250&width=700&legend=yes&type=device_mempool"/>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=123&height=250&width=700&legend=yes&type=device_storage" />
+                        <img class="img-responsive" src="https://observium.jaapjolman.nl/graph.php?device=308&height=250&width=700&legend=yes&type=device_storage" />
                     </div>
                 </div>
             </div>
