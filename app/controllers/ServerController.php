@@ -70,12 +70,12 @@ class ServerController extends BaseController
         $server->admin_password             = Input::get('admin_password');
         $server->rcon_password              = Input::get('rcon_password');
         $server->max_ping                   = Input::get('max_ping');
-        $server->parameters                 = '-mod=curator;heli;kart;mark;@allinarmaterrainpack_am2;@cba_am2;@taw_am2_content;@taw_am2_maps;@taw_div_core;';
+        $server->parameters                 = '-loadMissionToMemory -mod=curator;heli;kart;mark;@taw_am2_content;@taw_div_content;@taw_div_core;@taw_am2_cup;';
         $server->save();
 
         $server_cfg                         = new ServerCFG;
         $server_cfg->server()->associate($server);
-        $server_cfg->motd                   = 'Welcome to ' . $server->hostname . ', Watch each others backs and have fun';
+        $server_cfg->motd                   = 'Welcome to ' . $server->hostname . ', Watch each others backs and have fun!';
         $server_cfg->onUnsignedData         = '""';
         $server_cfg->onHackedData           = '""';
         $server_cfg->onDifferentData        = '""';
@@ -109,12 +109,12 @@ class ServerController extends BaseController
         $server_dificulty_mercanary->server()->associate($server);
         $server_dificulty_mercanary->save();
 
-        mkdir("C:/arma3/instances/" . $server->name . "");
-        mkdir("C:/arma3/instances/" . $server->name . "/battleye");
-        mkdir("C:/arma3/instances/" . $server->name . "/profile");
-        mkdir("C:/arma3/instances/" . $server->name . "/profile/users");
-        mkdir("C:/arma3/instances/" . $server->name . "/profile/users/arma3");
-        mkdir("C:/arma3/instances/" . $server->name . "/profile/users/root");
+        mkdir($this->arma3path . $server->name . "");
+        mkdir($this->arma3path . $server->name . "/battleye");
+        mkdir($this->arma3path . $server->name . "/profile");
+        mkdir($this->arma3path . $server->name . "/profile/users");
+        mkdir($this->arma3path . $server->name . "/profile/users/arma3");
+        mkdir($this->arma3path . $server->name . "/profile/users/root");
 
         $this->GenerateFiles($server->id);
 
