@@ -23,6 +23,7 @@ return array(
     "label_private_password"                        => "Private Password",
     "label_admin_password"                          => "Admin Password",
     "label_rcon_password"                           => "RCON Password",
+	"label_command_password"						=> "Script Console Password",
     "label_max_ping"                                => "Max Ping",
     "label_parameters"                              => "Parameters",
 

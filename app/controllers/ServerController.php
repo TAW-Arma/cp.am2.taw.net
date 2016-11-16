@@ -70,6 +70,7 @@ class ServerController extends BaseController
         $server->admin_password             = Input::get('admin_password');
         $server->rcon_password              = Input::get('rcon_password');
         $server->max_ping                   = Input::get('max_ping');
+		$server->command_password			= Input::get('command_password');
         $server->parameters                 = '-loadMissionToMemory -mod=curator;heli;kart;mark;@taw_am2_content;@taw_div_content;@taw_div_core;@taw_am2_cup;';
         $server->save();
 

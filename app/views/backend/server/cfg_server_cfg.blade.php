@@ -1,6 +1,7 @@
 hostname                            = "{{ $server->hostname }}";
 password                            = "{{ $server->private_password }}";
 passwordAdmin                       = "{{ $server->admin_password }}";
+serverCommandPassword				= "{{ $server->command_password }}";
 steamport                           = {{ $server->port }}3;
 steamqueryport                      = {{ $server->port }}4;
 motd[]                              = {

@@ -95,7 +95,7 @@
                                             {{ Lang::get('server.label_private_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="private_password" placeholder="{{ Lang::get('server.label_private_password') }}" value="overlord" />
+                                            <input type="text" name="private_password" placeholder="{{ Lang::get('server.label_private_password') }}" value="education" />
                                         </label>
                                     </section>
                                     <section class="col col-6">
@@ -103,7 +103,7 @@
                                             {{ Lang::get('server.label_admin_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="admin_password" placeholder="{{ Lang::get('server.label_admin_password') }}" value="qwerty#420" />
+                                            <input type="text" name="admin_password" placeholder="{{ Lang::get('server.label_admin_password') }}" value="Madness#Employs22!" />
                                         </label>
                                     </section>
                                 </div>
@@ -122,6 +122,16 @@
                                         </label>
                                         <label class="input">
                                             <input type="text" name="max_ping" placeholder="{{ Lang::get('server.label_max_ping') }}" value="2000" />
+                                        </label>
+                                    </section>
+                                </div>
+								<div class="row">
+                                    <section class="col col-6">
+                                        <label for="command_password">
+                                            {{ Lang::get('server.label_command_password') }}
+                                        </label>
+                                        <label class="input">
+                                            <input type="text" name="command_password" placeholder="{{ Lang::get('server.label_command_password') }}" value="SidWasHere123" />
                                         </label>
                                     </section>
                                 </div>
