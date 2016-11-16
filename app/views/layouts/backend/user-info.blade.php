@@ -3,7 +3,7 @@
     <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
         
         <a href="backend#backend/my-profile">
-            <img rows="5" src="{{ Auth::user()->picture; }}" alt="me" class="online" /> 
+            <img src="{{ Auth::user()->picture; }}" alt="me" class="online" /> 
             <span>
                 {{ Auth::user()->username; }}
             </span>
