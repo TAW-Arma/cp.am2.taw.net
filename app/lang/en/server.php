@@ -29,6 +29,7 @@ return array(
 	"label_command_password"						=> "Script Console Password",
     "label_max_ping"                                => "Max Ping",
     "label_parameters"                              => "Parameters",
+	"label_startup_parameters"                      => "Startup Parameters",
     "logfile_name"                                  => "Logfile",
 
     "options"                                       => "Options",

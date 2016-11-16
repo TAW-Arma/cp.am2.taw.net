@@ -137,10 +137,10 @@
                                 </div>
                                 <section>
                                     <label for="parameters">
-                                        {{ Lang::get('server.label_parameters') }}
+                                        {{ Lang::get('server.label_startup_parameters') }}
                                     </label>
                                     <label class="textarea">
-                                        <textarea rows="9" class="custom-scroll" name="parameters" placeholder="{{ Lang::get('server.label_parameters') }}">{{ $server->parameters }}</textarea>
+                                        <textarea rows="9" class="custom-scroll" name="parameters" placeholder="{{ Lang::get('server.label_startup_parameters') }}">{{ $server->parameters }}</textarea>
                                     </label>
                                 </section>
                             </fieldset>
