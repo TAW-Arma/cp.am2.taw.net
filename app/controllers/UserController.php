@@ -16,6 +16,18 @@ class UserController extends BaseController
         return View::make('backend.security.user.index', $data);
     }
 
+    public function GetMyProfile()
+    {
+        $data['profile'] = Auth::user();
+
+        return View::make('backend.security.profile.index', $data);
+    }
+
+    public function PostMyProfile()
+    {
+        return Redirect::to('backend#backend/my-profile');
+    }
+
     public function GetCreate()
     {
         if ( ! Auth::user()->can('create_user'))
