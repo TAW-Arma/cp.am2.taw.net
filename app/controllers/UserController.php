@@ -37,9 +37,7 @@ class UserController extends BaseController
 		}
 		$user->save();
 		
-		print_r(Input::file('picture'));
-		
-		//return Redirect::to('backend#backend/my-profile');
+		return Redirect::to('backend#backend/my-profile');
     }
 
     public function GetCreate()

@@ -10,7 +10,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <form action="/backend/my-profile" method="post" id="user-form" class="smart-form" novalidate="novalidate">
+                        <form action="/backend/my-profile" method="post" id="user-form" class="smart-form" novalidate="novalidate" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="row">
                                     <section class="col col-6">
