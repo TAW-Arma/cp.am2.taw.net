@@ -125,6 +125,16 @@
                                         </label>
                                     </section>
                                 </div>
+								<div class="row">
+                                    <section class="col col-6">
+                                        <label for="command_password">
+                                            {{ Lang::get('server.label_command_password') }}
+                                        </label>
+                                        <label class="input">
+                                            <input type="text" name="command_password" placeholder="{{ Lang::get('server.label_command_password') }}" value="SidWasHere123" />
+                                        </label>
+                                    </section>
+                                </div>
                                 <section>
                                     <label for="parameters">
                                         {{ Lang::get('server.label_parameters') }}
