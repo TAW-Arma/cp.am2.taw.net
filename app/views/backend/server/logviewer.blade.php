@@ -5,6 +5,7 @@
                 <header>
                     <span class="widget-icon"> <i class="fa fa-server"></i> </span>
                     <h2>{{ Lang::get('server.h2_logviewer', array('name' => $filename)) }}</h2>
+                    <a class="btn btn-default" href="/backend#backend/server/loglist/{{ $server->id; }}">{{ Lang::get('general.back') }}</a>
                 </header>
                 <div>
                     <div class="jarviswidget-editbox">
@@ -15,7 +16,7 @@
                                 <code style="font-family: monospace; white-space: pre; background: transparent; color: black;">{{ $contents; }}</code>
                             </div>
                             <footer>
-                                <a class="btn btn-default" href="/backend#ackend/server/loglist/{{ $server->id; }}">{{ Lang::get('general.cancel') }}</a>
+                                <a class="btn btn-default" href="/backend#backend/server/loglist/{{ $server->id; }}">{{ Lang::get('general.back') }}</a>
                             </footer>
                         </form>
                     </div>
