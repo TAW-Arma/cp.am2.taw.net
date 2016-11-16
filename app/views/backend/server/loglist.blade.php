@@ -5,6 +5,9 @@
                 <header>
                     <span class="widget-icon"> <i class="fa fa-folder-open-o"></i> </span>
                     <h2>{{ Lang::get('server.h2_loglist_console') }}</h2>
+                    <div class="widget-toolbar" role="menu">
+                        <a href="/backend#backend/server" class="btn btn-default">{{ Lang::get('general.back') }}</a>
+                    </div>
                 </header>
                 <div>
                     <div class="jarviswidget-editbox">
@@ -42,6 +45,9 @@
                 <header>
                     <span class="widget-icon"> <i class="fa fa-folder-open-o"></i> </span>
                     <h2>{{ Lang::get('server.h2_loglist_rpt') }}</h2>
+                    <div class="widget-toolbar" role="menu">
+                        <a href="/backend#backend/server" class="btn btn-default">{{ Lang::get('general.back') }}</a>
+                    </div>
                 </header>
                 <div>
                     <div class="jarviswidget-editbox">
