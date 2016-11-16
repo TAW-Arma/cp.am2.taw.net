@@ -23,12 +23,7 @@
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                    </section>
-                                </div>
-                                <div class="row">
-                                    <section class="col col-6">
-                                    </section>
-                                    <section class="col col-6">
+                                        {{ Auth::user()->id }}
                                     </section>
                                 </div>
                             </fieldset>
