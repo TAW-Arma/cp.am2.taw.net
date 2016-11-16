@@ -65,7 +65,6 @@
                 </div>
             </div>
         </article>
-													<img src="{{ Auth::user()->picture; }}" alt="me"/> 
     </div>
 </div>
 <script type="text/javascript">
