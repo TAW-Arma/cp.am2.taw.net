@@ -25,6 +25,13 @@ class UserController extends BaseController
 
     public function PostMyProfile()
     {
+        $user = User::find(Auth::user()->id);
+
+        if (Input::get('password') != '')
+            $user->password = Input::get('password');
+
+        $user->save();
+
         return Redirect::to('backend#backend/my-profile');
     }
 
