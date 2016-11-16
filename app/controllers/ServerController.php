@@ -612,7 +612,7 @@ class ServerController extends BaseController
             $data["contents"] = "File doesn't exist";
         }
 
-        return View::make('backend.server.loglist', $data);
+        return View::make('backend.server.logviewer', $data);
     }
 
     /*
