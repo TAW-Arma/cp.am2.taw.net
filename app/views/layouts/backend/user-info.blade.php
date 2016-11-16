@@ -2,7 +2,7 @@
 <div class="login-info">
     <span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
         
-        <a href="javascript:void(0);">
+        <a href="backend/my-profile">
             <img src="//www.gravatar.com/avatar/{{ md5(strtolower(trim(Auth::user()->email))); }}" alt="me" class="online" /> 
             <span>
                 {{ Auth::user()->username; }}
