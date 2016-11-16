@@ -63,13 +63,7 @@
 							<fieldset>
 								<div class="row">
 									<section class="col col-6">
-								
-										<a href="backend#backend/my-profile">
-											<img src="{{ Auth::user()->picture; }}" alt="me" class="online" /> 
-											<span>
-											{{ Auth::user()->username; }}
-											</span>
-										</a>
+											<img src="{{ Auth::user()->picture; }}" alt="me"/> 
 									</section>
 								</div>
 							</fieldset>
