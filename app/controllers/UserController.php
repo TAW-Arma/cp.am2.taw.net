@@ -33,6 +33,12 @@ class UserController extends BaseController
         $user->save();
 
         return Redirect::to('backend#backend/my-profile');
+		if (Input::hasFile('picture'))
+			{
+				Input::file('picture')->move('C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\', $squad->nickname . '.png');
+				$squad->picture         = '/assets/modules/squad/' . $squad->nickname . '.png';
+				shell_exec('C:\\ImageToPAA\\ImageToPAA.exe C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\' . $squad->nickname . '.png C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\' . $squad->nickname . '.paa');
+			}
     }
 
     public function GetCreate()
@@ -119,5 +125,5 @@ class UserController extends BaseController
         $user->delete();
 
         return Redirect::to('backend#backend/security/user');
-    }
+    }		
 }
