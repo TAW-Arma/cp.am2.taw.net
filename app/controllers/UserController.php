@@ -29,16 +29,15 @@ class UserController extends BaseController
 
         if (Input::get('password') != '')
             $user->password = Input::get('password');
-
-        $user->save();
-
-        return Redirect::to('backend#backend/my-profile');
+    
 		if (Input::hasFile('picture'))
-			{
-				Input::file('picture')->move('C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\', $squad->nickname . '.png');
-				$squad->picture         = '/assets/modules/squad/' . $squad->nickname . '.png';
-				shell_exec('C:\\ImageToPAA\\ImageToPAA.exe C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\' . $squad->nickname . '.png C:\\www\\cp.am2.taw.net\\public\\assets\\modules\\squad\\' . $squad->nickname . '.paa');
-			}
+		{
+			Input::file('picture')->move('C:/inetpub/wwwroot/cp.am2.taw.net/public/assets/modules/profile/' . $user->username . '.' . Input::file('picture')->getClientOriginalExtension());
+			$user->picture = '/assets/modules/profile/' . $user->username . '.' . Input::file('picture')->getClientOriginalExtension();
+		}
+		$user->save();
+		
+		return Redirect::to('backend#backend/my-profile');
     }
 
     public function GetCreate()
