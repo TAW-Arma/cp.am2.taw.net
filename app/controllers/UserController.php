@@ -20,7 +20,7 @@ class UserController extends BaseController
     public function GetMyProfile()
     {
 		if ( ! Auth::user()->can('edit_profile'))
-            return Redirect::to('backend#backend/my-profile');
+            return Redirect::to('backend#backend/dashboard/index');
 		
         $data['profile'] = Auth::user();
 
