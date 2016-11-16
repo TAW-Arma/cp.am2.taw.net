@@ -4,6 +4,7 @@ return array(
 
     "save"                                      => "Save",
     "cancel"                                    => "Cancel",
+    "back"                                      => "Back",
     "close"                                     => "Close",
     "upload"                                    => "Upload",
 
