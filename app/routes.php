@@ -278,7 +278,7 @@ Route::get('backend/server/loglist/{id}',
     'uses'      => 'ServerController@GetLogList',
 ]);
 
-Route::get('backend/server/logviewer/{id}/{filepath}/{filename}',
+Route::get('backend/server/logviewer/{id}/{filepath}',
 [
     'before'    => 'auth',
     'uses'      => 'ServerController@GetLogViewer',

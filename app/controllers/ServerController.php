@@ -594,11 +594,11 @@ class ServerController extends BaseController
         return View::make('backend.server.loglist', $data);
     }
 
-    public function GetLogviewer($server_id, $filepath, $filename)
+    public function GetLogviewer($server_id, $filepath)
     {
         $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
         $logfile            = base64_decode($filepath);
-        $data['filename']   = base64_decode($filename);
+        $data['filename']   = basename($logfile);
         if(file_exists($logfile))
         {
             $data["contents"] = file_get_contents($logfile);
