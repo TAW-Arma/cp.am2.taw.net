@@ -34,7 +34,7 @@
                             </fieldset>
                             <footer>
                                 <button type="submit" class="btn btn-primary">{{ Lang::get('general.save') }}</button>
-                                <a class="btn btn-default" href="/backend#backend/security/user">{{ Lang::get('general.cancel') }}</a>
+                                <a class="btn btn-default" href="/backend#backend/dashboard">{{ Lang::get('general.cancel') }}</a>
                             </footer>
                         </form>
                     </div>

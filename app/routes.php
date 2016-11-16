@@ -272,7 +272,13 @@ Route::post('backend/server/update_admin/{id}',
     'uses'      => 'ServerController@PostUpdateAdmin',
 ]);
 
-Route::get('backend/server/logviewer/{id}',
+Route::get('backend/server/loglist/{id}',
+[
+    'before'    => 'auth',
+    'uses'      => 'ServerController@GetLogList',
+]);
+
+Route::get('backend/server/logviewer/{id}/{filepath}',
 [
     'before'    => 'auth',
     'uses'      => 'ServerController@GetLogViewer',

@@ -5,7 +5,10 @@ return array(
     "h2_overview"                                   => "Servers",
     "h2_create"                                     => "Create Server",
     "h2_update"                                     => "Update Server: :name",
+    "h2_loglist_console"                            => "Console Logs",
+    "h2_loglist_rpt"                                => "RPT Logs",
     "h2_logviewer"                                  => "Logviewer: :name",
+
     "h2_map_server_to_users"                        => "Mapping 'Server' < to > 'Users'",
 
     "label_status"                                  => "Status",
@@ -26,6 +29,7 @@ return array(
 	"label_command_password"						=> "Script Console Password",
     "label_max_ping"                                => "Max Ping",
     "label_parameters"                              => "Parameters",
+    "logfile_name"                                  => "Logfile",
 
     "options"                                       => "Options",
     "options_logviewer"                             => "Log Viewer",
