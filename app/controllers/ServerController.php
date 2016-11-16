@@ -574,8 +574,48 @@ class ServerController extends BaseController
         shell_exec($this->fireDeamonExe.' --install "'.$ser.'" "'.$ser.'"');
     }
 
+    public function GetLogList($server_id)
+    {
+        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $data['arma3path']  = $this->arma3path;
 
+        $data['console_logs'] = array();
+        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/logs/*.log') as $file)
+        {
+            $data['console_logs'][] = $file;
+        }
 
+        $data['rpt_logs'] = array();
+        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/profile/*.rpt') as $file)
+        {
+            $data['rpt_logs'][] = $file;
+        }
+
+        return View::make('backend.server.loglist', $data);
+    }
+
+    public function GetLogviewer($server_id, $filepath, $filename)
+    {
+        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $logfile            = base64_decode($filepath);
+        $data['filename']   = base64_decode($filename);
+        if(file_exists($logfile))
+        {
+            $data["contents"] = file_get_contents($logfile);
+            if(strlen($data["contents"]) < 1)
+            {
+                $data["contents"] = "Nothing in console log, there was probably no error.";
+            }
+        }
+        else
+        {
+            $data["contents"] = "File doesn't exist";
+        }
+
+        return View::make('backend.server.loglist', $data);
+    }
+
+    /*
     public function GetLogViewer($server_id)
     {
         $data['server']    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
@@ -616,6 +656,7 @@ class ServerController extends BaseController
 
         return View::make('backend.server.logviewer', $data);
     }
+    */
 
     public function GetFileManagerView($server_id)
     {
