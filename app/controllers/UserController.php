@@ -32,8 +32,10 @@ class UserController extends BaseController
     
 		if (Input::hasFile('picture'))
 		{
-			Input::file('picture')->move('C:/inetpub/wwwroot/cp.am2.taw.net/public/assets/modules/profile/' . $user->username . '.' . Input::file('picture')->getClientOriginalExtension());
-			$user->picture = '/assets/modules/profile/' . $user->username . '.' . Input::file('picture')->getClientOriginalExtension();
+			$extension = Input::file('picture')->getClientOriginalExtension();
+			$username  = $user->username;
+			Input::file('picture')->move('C:/inetpub/wwwroot/cp.am2.taw.net/public/assets/modules/profile/', $username . '.' . $extension);
+			$user->picture = '/assets/modules/profile/' . $username . '.' . $extension;
 		}
 		$user->save();
 		
