@@ -21,9 +21,9 @@
                                 <tbody>
                                     @foreach ($console_logs as $log)
                                         <tr>
-                                            <td>{{ $log['name'] }}</td>
+                                            <td>{{ $log }}</td>
                                             <td style="width: 32px;">
-                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($arma3path . '/instances/' . $server->name . '/logs/' . $log['name']); }}/{{ base64_encode($log['name']); }}"><i class="fa fa-arrow-down"></i></a>
+                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($arma3path . '/instances/' . $server->name . '/logs/' . $log); }}/{{ base64_encode($log); }}"><i class="fa fa-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -58,9 +58,9 @@
                                 <tbody>
                                     @foreach ($rpt_logs as $log)
                                         <tr>
-                                            <td>{{ $log['name'] }}</td>
+                                            <td>{{ $log }}</td>
                                             <td style="width: 32px;">
-                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($arma3path . '/instances/' . $server->name . '/profile/' . $log['name']); }}/{{ base64_encode($log['name']); }}"><i class="fa fa-arrow-down"></i></a>
+                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($arma3path . '/instances/' . $server->name . '/profile/' . $log); }}/{{ base64_encode($log); }}"><i class="fa fa-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

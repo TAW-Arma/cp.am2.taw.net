@@ -28,6 +28,7 @@ return array(
     "label_rcon_password"                           => "RCON Password",
     "label_max_ping"                                => "Max Ping",
     "label_parameters"                              => "Parameters",
+    "logfile_name"                                  => "Logfile",
 
     "options"                                       => "Options",
     "options_logviewer"                             => "Log Viewer",
