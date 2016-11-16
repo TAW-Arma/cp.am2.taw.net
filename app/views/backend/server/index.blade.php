@@ -80,7 +80,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 @if ($can_update)
-                                                                    <li><a href="/backend#backend/server/logviewer/{{ $server->id }}">{{ Lang::get('server.options_logviewer') }}</a></li>
+                                                                    <li><a href="/backend#backend/server/loglist/{{ $server->id }}">{{ Lang::get('server.options_logviewer') }}</a></li>
                                                                 @endif
                                                                 @if ($can_update)
                                                                     <li><a href="/backend#backend/server/update/{{ $server->id }}">{{ Lang::get('server.options_general') }}</a></li>
