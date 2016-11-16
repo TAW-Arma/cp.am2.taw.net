@@ -10,7 +10,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
                     <div class="widget-body no-padding">
-                        <form action="/backend/my-profile" method="post" id="user-form" class="smart-form" novalidate="novalidate">
+                        <form action="/backend/my-profile" method="post" id="user-form" class="smart-form" novalidate="novalidate" enctype="multipart/form-data">
                             <fieldset>
                                 <div class="row">
                                     <section class="col col-6">
@@ -22,7 +22,13 @@
                                             <input type="password" name="password" placeholder="{{ Lang::get('users.label_password') }}" value="" />
                                         </label>
                                     </section>
-                                    <section class="col col-6">
+                                    <section class="col col-6">			
+                                        <label for="picture">
+                                            {{ Lang::get('squad.label_picture') }}
+                                        </label>
+										<label for="picture" class="input input-file">
+                                            <div class="button"><input type="file" name="picture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
+										</label>
                                     </section>
                                 </div>
                             </fieldset>

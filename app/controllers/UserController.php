@@ -29,10 +29,17 @@ class UserController extends BaseController
 
         if (Input::get('password') != '')
             $user->password = Input::get('password');
-
-        $user->save();
-
-        return Redirect::to('backend#backend/my-profile');
+    
+		if (Input::hasFile('picture'))
+		{
+			$extension = Input::file('picture')->getClientOriginalExtension();
+			$username  = $user->username;
+			Input::file('picture')->move('C:/inetpub/wwwroot/cp.am2.taw.net/public/assets/modules/profile/', $username . '.' . $extension);
+			$user->picture = '/assets/modules/profile/' . $username . '.' . $extension;
+		}
+		$user->save();
+		
+		return Redirect::to('backend#backend/my-profile');
     }
 
     public function GetCreate()
@@ -119,5 +126,5 @@ class UserController extends BaseController
         $user->delete();
 
         return Redirect::to('backend#backend/security/user');
-    }
+    }		
 }
