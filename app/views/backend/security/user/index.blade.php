@@ -59,9 +59,6 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
 						<div class="widget-body no-padding">
 							<fieldset>
 								<div class="row">
@@ -77,6 +74,9 @@
 								</div>
 							</fieldset>
 						</div>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>
