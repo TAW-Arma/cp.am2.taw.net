@@ -62,6 +62,21 @@
                             </table>
                         </div>
                     </div>
+						<div class="widget-body no-padding">
+							<fieldset>
+								<div class="row">
+									<section class="col col-6">
+								
+										<a href="backend#backend/my-profile">
+											<img src="{{ Auth::user()->picture; }}" alt="me" class="online" /> 
+											<span>
+											{{ Auth::user()->username; }}
+											</span>
+										</a>
+									</section>
+								</div>
+							</fieldset>
+						</div>
                 </div>
             </div>
         </article>

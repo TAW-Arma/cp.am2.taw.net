@@ -678,7 +678,7 @@ class ServerController extends BaseController
             [
                 [
                     'driver' => 'LocalFileSystem',
-                    'path'   => 'C:/www/cp.am2.taw.net/public/instances/' . $server->name . '',
+                    'path'   => 'C:/inetpub/wwwroot/cp.am2.taw.net/public/instances/' . $server->name . '',
                     'URL'    => 'http://cp.am2.taw.net/instances/' . $server->name . ''
                 ]
             ],
