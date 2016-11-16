@@ -25,7 +25,7 @@ class UserController extends BaseController
 
     public function PostMyProfile()
     {
-        $user = User::find(Auth::user()->id);
+        $user = User::find(Auth::id());
 
         if (Input::get('password') != '')
             $user->password = Input::get('password');

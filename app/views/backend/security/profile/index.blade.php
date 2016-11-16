@@ -23,7 +23,6 @@
                                         </label>
                                     </section>
                                     <section class="col col-6">
-                                        {{ Auth::user()->id }}
                                     </section>
                                 </div>
                             </fieldset>
