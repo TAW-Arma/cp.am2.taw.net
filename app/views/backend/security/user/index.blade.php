@@ -59,21 +59,13 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-						<div class="widget-body no-padding">
-							<fieldset>
-								<div class="row">
-									<section class="col col-6">
-											<img src="{{ Auth::user()->picture; }}" alt="me"/> 
-									</section>
-								</div>
-							</fieldset>
-						</div>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
+													<img src="{{ Auth::user()->picture; }}" alt="me"/> 
     </div>
 </div>
 <script type="text/javascript">
