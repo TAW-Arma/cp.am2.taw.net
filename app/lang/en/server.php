@@ -30,6 +30,7 @@ return array(
     "label_max_ping"                                => "Max Ping",
     "label_parameters"                              => "Parameters",
 	"label_startup_parameters"                      => "Startup Parameters",
+	"label_mission_parameters"                      => "Mission Parameters",	
     "logfile_name"                                  => "Logfile",
 
     "options"                                       => "Options",

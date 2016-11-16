@@ -309,10 +309,10 @@
                                     </div>
                                     <section>
                                         <label for="mission_parameters">
-                                            {{ Lang::get('server.label_parameters') }}
+                                            {{ Lang::get('server.label_mission_parameters') }}
                                         </label>
                                         <label class="textarea">
-                                            <textarea class="custom-scroll" name="mission_parameters" placeholder="{{ Lang::get('server.label_parameters') }}">{{ $server->server_cfg->mission_parameters }}</textarea>
+                                            <textarea rows="9" class="custom-scroll" name="mission_parameters" placeholder="{{ Lang::get('server.label_mission_parameters') }}">{{ $server->server_cfg->mission_parameters }}</textarea>
                                         </label>
                                     </section>
                                 @else
