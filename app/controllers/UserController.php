@@ -12,12 +12,16 @@ class UserController extends BaseController
         $data['can_create']     = Auth::user()->can('create_user');
         $data['can_update']     = Auth::user()->can('update_user');
         $data['can_delete']     = Auth::user()->can('delete_user');
+        $data['can_profile']    = Auth::user()->can('edit_profile');
 
         return View::make('backend.security.user.index', $data);
     }
 
     public function GetMyProfile()
     {
+		if ( ! Auth::user()->can('edit_profile'))
+            return Redirect::to('backend#backend/my-profile');
+		
         $data['profile'] = Auth::user();
 
         return View::make('backend.security.profile.index', $data);
