@@ -57,7 +57,7 @@
                     @endif
 					@if (Auth::user()->can('see_administration'))
                         <li class="active">
-                            <a href="backend/administration" title="{{ Lang::get('navigation.adminisration') }}"><i class="fa fa-lg fa-fw fa-administration"></i> <span class="menu-item-parent">{{ Lang::get('navigation.administration') }}</span></a>
+                            <a href="backend/administration" title="{{ Lang::get('navigation.adminisration') }}"><i class="fa fa-lg fa-fw fa-id-card"></i> <span class="menu-item-parent">{{ Lang::get('navigation.administration') }}</span></a>
                         </li>
                     @endif
                 </ul>
