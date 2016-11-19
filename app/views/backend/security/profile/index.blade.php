@@ -28,7 +28,7 @@
                                         </label>
 										<label for="picture" class="input input-file">
 											<i class="icon-prepend fa fa-user-circle">
-                                            <div class="button"></i><input type="file" name="testpicture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
+                                            <div class="button"></i><input type="file" name="picture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
 										</label>
                                     </section>
                                 </div>
