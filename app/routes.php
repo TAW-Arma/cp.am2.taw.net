@@ -62,6 +62,18 @@ Route::get('backend/dashboard',
     'uses'      => 'DashboardController@GetIndex',
 ]);
 
+Route::get('backend/administration',
+[
+    'before'    => 'auth',
+    'uses'      => 'AdministrationController@GetAdministration',
+]);
+
+Route::post('backend/administration',
+[
+    'before'    => 'auth',
+    'uses'      => 'AdministrationController@GetIndex',
+]);
+
 Route::get('backend/my-profile',
 [
     'before'    => 'auth',

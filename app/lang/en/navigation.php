@@ -12,5 +12,6 @@ return array(
     "security_users"        => "Users",
     "security_roles"        => "Roles",
     "security_permissions"  => "Permissions",
+    "administration"  		=> "Administration",
 
 );
