@@ -22,13 +22,13 @@
                                             <input type="password" name="password" placeholder="{{ Lang::get('users.label_password') }}" value="" />
                                         </label>
                                     </section>
-                                    <section class="col col-6">			
+                                    <section class="col col-6">			 
                                         <label for="picture">
                                             {{ Lang::get('squad.label_picture') }}
                                         </label>
 										<label for="picture" class="input input-file">
 											<i class="icon-prepend fa fa-user-circle">
-                                            <div class="button"></i><input type="file" name="picture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
+                                            <div class="button"></i><input type="file" name="testpicture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
 										</label>
                                     </section>
                                 </div>
