@@ -68,11 +68,6 @@ Route::get('backend/administration',
     'uses'      => 'AdministrationController@GetAdministration',
 ]);
 
-Route::post('backend/administration',
-[
-    'before'    => 'auth',
-    'uses'      => 'AdministrationController@GetIndex',
-]);
 
 Route::get('backend/my-profile',
 [
