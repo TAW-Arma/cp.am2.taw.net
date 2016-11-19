@@ -1,0 +1,10 @@
+<?php
+
+return array(
+
+	"updatearma"        => "Update Arma",
+	"update"        	=> "Update",
+	"administration"    => "Administration",
+	"filesystem"    	=> "Filesystem",
+
+);
