@@ -27,8 +27,7 @@
                                             {{ Lang::get('squad.label_picture') }}
                                         </label>
 										<label for="picture" class="input input-file">
-											<i class="fa fa-user-circle"></i>
-                                            <div class="button"><input type="file" name="picture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
+                                            <div class="button"><i class="fa fa-user-circle"></i><input type="file" name="picture" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input type="text" placeholder="Picture" readonly="">
 										</label>
                                     </section>
                                 </div>
