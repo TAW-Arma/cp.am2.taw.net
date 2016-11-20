@@ -10,5 +10,6 @@ return array(
     "label_name"                                => "Tag",
     "label_level"                               => "Access Level",
     "label_description"                         => "Description",
+    "h2_map_server_to_roles"					=> "Mapping 'Role' < to > 'Permissions'",
 
 );
