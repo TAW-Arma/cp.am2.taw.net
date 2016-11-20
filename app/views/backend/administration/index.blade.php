@@ -28,7 +28,7 @@
 		$('#update_arma').click(function() {
 			$.ajax({
 				type:   'GET',
-				url:    '//cp.am2.taw.net/arma_update.php',
+				url:    '//cp.am2.taw.net/backend/administration/update_arma',
 				async:  'true',
 				data:   { format: 'json' },
 			}).done(function(data) {
