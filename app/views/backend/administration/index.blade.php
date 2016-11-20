@@ -13,8 +13,11 @@
                     <div class="jarviswidget-editbox">
                     </div>
 					<div class="widget-body no-padding">
-                        <div id="console_output">
-						</div>
+                        <fieldset>
+                            <label class="textarea">
+                                    <div id="console_output"></div>
+                            </label>
+                        </fieldset>
                     </div>
                 </div>
             </div>
