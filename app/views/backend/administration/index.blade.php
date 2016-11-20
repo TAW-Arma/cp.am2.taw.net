@@ -13,7 +13,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
 					<div class="widget-body no-padding">
-                        <pre id="console_output"><?php system('C:/Steam/steamapps/common/Arma 3 Server/armaupdate.cmd'); ?></pre>
+                        <pre id="console_output"></pre>
                     </div>
                 </div>
             </div>
@@ -28,6 +28,7 @@
 			$.ajax({
 				type:   'GET',
 				url:    '//cp.am2.taw.net/backend/administration/update_arma',
+				async:  'true',
 				data:   { format: 'json' },
 			}).done(function(data) {
 				console.log(data.console_output);
