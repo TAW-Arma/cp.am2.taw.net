@@ -13,7 +13,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
 					<div class="widget-body no-padding">
-                        <pre id="console_output"></pre>
+                        <div id="console_output"></div>
                     </div>
                 </div>
             </div>
