@@ -13,7 +13,7 @@
                     <div class="jarviswidget-editbox">
                     </div>
 					<div class="widget-body no-padding">
-                        <pre id="console_output"></pre>
+                        <pre id="console_output"><?php system('C:/Steam/steamapps/common/Arma 3 Server/armaupdate.cmd'); ?></pre>
                     </div>
                 </div>
             </div>
