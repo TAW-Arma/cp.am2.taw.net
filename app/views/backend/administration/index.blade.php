@@ -31,8 +31,8 @@
 				async:  'true',
 				data:   { format: 'json' },
 			}).done(function(data) {
-				console.log(data.console_output);
-				$('#console_output').html(data.console_output);
+				console.log(data);
+				$('#console_output').html(data);
 			});
 		});
     };
