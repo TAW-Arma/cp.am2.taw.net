@@ -68,6 +68,12 @@ Route::get('backend/administration',
     'uses'      => 'AdministrationController@GetAdministration',
 ]);
 
+Route::get('backend/administration/update_arma',
+[
+    'before'    => 'auth',
+    'uses'      => 'AdministrationController@GetUpdateArma',
+]);
+
 
 Route::get('backend/my-profile',
 [
