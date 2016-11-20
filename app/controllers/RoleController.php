@@ -95,4 +95,27 @@ class RoleController extends BaseController
 
         return Redirect::to('backend#backend/security/role');
     }
+
+    public function GetUpdateRole($server_id)
+    {
+        if ( ! Auth::user()->can('update_role'))
+            return Redirect::to('backend/security/role');
+
+        $data['server']                     = Server::find($server_id);
+        $data['roles']                      = Role::all();
+        if (Auth::user()->is('sa') or Auth::user()->is('st'))
+        {
+            $data['is_admin']               = true;
+        }
+        else
+        {
+            $data['is_admin']               = false;
+        }
+        $data['server_roles']               = [];
+
+        foreach($data['server']->users as $user)
+            $data['server_roles'][$user->id] = $user->id;
+
+        return View::make('backend.server.update', $data);
+    }
 }
