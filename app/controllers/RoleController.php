@@ -113,9 +113,9 @@ class RoleController extends BaseController
         }
         $data['server_roles']               = [];
 
-        foreach($data['server']->users as $user)
+        foreach($data['server']->roles as $user)
             $data['server_roles'][$user->id] = $user->id;
 
-        return View::make('backend.server.update', $data);
+        return View::make('backend.security.role.update', $data);
     }
 }
