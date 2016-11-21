@@ -305,6 +305,21 @@
                                                     </label>
                                                 </div>
                                             </section>
+											<section>
+                                                <label for="drawingInMap">
+                                                    {{ Lang::get('server.server_label_drawingInMap') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="drawingInMap" value="1" @if ($server->server_cfg->drawingInMap == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="drawingInMap" value="0" @if ($server->server_cfg->drawingInMap == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
                                         </div>
                                     </div>
                                     <section>

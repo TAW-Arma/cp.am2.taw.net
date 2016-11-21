@@ -308,6 +308,7 @@ class ServerController extends BaseController
         $server->server_cfg->template                   = Input::get('template');
         $server->server_cfg->difficulty                 = Input::get('difficulty');
         $server->server_cfg->mission_parameters         = Input::get('mission_parameters');
+		$server->server_cfg->drawingInMap				= Input::get('drawingInMap');
         $server->server_cfg->save();
         $server->save();
 

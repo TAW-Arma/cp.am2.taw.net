@@ -37,6 +37,7 @@ voteThreshold                       = {{ $server->server_cfg->voteThreshold }};
 disableVoN                          = {{ $server->server_cfg->disableVoN }};
 vonCodecQuality                     = {{ $server->server_cfg->vonCodecQuality }};
 persistent                          = {{ $server->server_cfg->persistent }};
+drawingInMap						= {{ $server->server_cfg->drawingInMap }};
 headlessClients[]                   = {"127.0.0.1","149.202.223.31"};
 localClient[]                       = {"127.0.0.1","149.202.223.31"};
 timeStampFormat                     = "{{ $server->server_cfg->timeStampFormat }}";
