@@ -69,6 +69,7 @@ return array(
     "server_label_requiredSecureId"                 => "Required Secure ID",
     "server_label_disableVoN"                       => "Disable VoN",
     "server_label_persistent"                       => "Persistent",
+	"server_label_drawingInMap"						=> "Draw In Map",
 
     "h2_basic"                                      => "Basic Config for: :name",
     "basic_label_language"                          => "Language",
