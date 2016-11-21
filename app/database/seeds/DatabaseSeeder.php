@@ -141,6 +141,56 @@ class UserTableSeeder extends Seeder {
         $permission['manage_squad']->name                    = 'manage_squad';
         $permission['manage_squad']->description             = 'Manage Squad';
         $permission['manage_squad']->save();
+		
+		$permission['config_server_server']                          	= new Permission;
+        $permission['config_server_server']->name                    	= 'config_server_server';
+        $permission['config_server_server']->description             	= 'Can change server.cfg';
+        $permission['config_server_server']->save();
+		
+		$permission['config_server_basic']                         	 	= new Permission;
+        $permission['config_server_basic']->name                    	= 'config_server_basic';
+        $permission['config_server_basic']->description             	= 'Can change basic.cfg';
+        $permission['config_server_basic']->save();
+		
+		$permission['config_server_profile']                          	= new Permission;
+        $permission['config_server_profile']->name                    	= 'config_server_profile';
+        $permission['config_server_profile']->description             	= 'Can change profile settings of the server';
+        $permission['config_server_profile']->save();
+		
+		$permission['service_server']                          			= new Permission;
+        $permission['service_server']->name                    			= 'service_server';
+        $permission['service_server']->description             			= 'Can Start / Stop / Restart servers';
+        $permission['service_server']->save();
+		
+		$permission['mission_server']                          			= new Permission;
+        $permission['mission_server']->name                    			= 'mission_server';
+        $permission['mission_server']->description             			= 'Can upload mission files';
+        $permission['mission_server']->save();
+		
+		$permission['bans_server']                          			= new Permission;
+        $permission['bans_server']->name                    			= 'bans_server';
+        $permission['bans_server']->description             			= 'Can manage the server bans';
+        $permission['bans_server']->save();
+		
+		$permission['see_all_servers']                          		= new Permission;
+        $permission['see_all_servers']->name                    		= 'see_all_servers';
+        $permission['see_all_servers']->description            			= 'Can see all server';
+        $permission['see_all_servers']->save();
+		
+		$permission['delete_mission']                          			= new Permission;
+        $permission['delete_mission']->name                    			= 'delete_mission';
+        $permission['delete_mission']->description             			= 'Delete Mission';
+        $permission['delete_mission']->save();
+		
+		$permission['edit_profile']                          			= new Permission;
+        $permission['edit_profile']->name                    			= 'edit_profile';
+        $permission['edit_profile']->description             			= 'Edit own user profile';
+        $permission['edit_profile']->save();
+		
+		$permission['see_administration']                          		= new Permission;
+        $permission['see_administration']->name                    		= 'See Administration';
+        $permission['see_administration']->description             		= 'See Administration';
+        $permission['see_administration']->save();
 
         $role['administrators']                             = new Role;
         $role['administrators']->name                       = 'administrators';
@@ -172,7 +222,17 @@ class UserTableSeeder extends Seeder {
             $permission['create_squad']->id,
             $permission['update_squad']->id,
             $permission['delete_squad']->id,
-            $permission['manage_squad']->id
+            $permission['manage_squad']->id,
+			$permission['config_server_server']->id,
+			$permission['config_server_basic']->id,
+			$permission['config_server_profile']->id,
+			$permission['service_server']->id,
+			$permission['mission_server']->id,
+			$permission['bans_server']->id,
+			$permission['see_all_servers']->id,
+			$permission['delete_mission']->id,
+			$permission['edit_profile']->id,
+			$permission['see_administration']->id,
         ]);
         $role['administrators']->save();
 
