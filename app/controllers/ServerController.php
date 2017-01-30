@@ -185,7 +185,7 @@ class ServerController extends BaseController
             return Redirect::to('backend/server');
 
         $server = Server::find($server_id);
-        $this->recursively_remove_directory($this->$arma3path . $server->name . "");
+        $this->recursively_remove_directory($this->arma3path . $server->name . "");
         $server->delete();
 
         return Redirect::to('backend/server');
