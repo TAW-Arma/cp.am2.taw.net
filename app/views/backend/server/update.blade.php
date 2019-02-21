@@ -1,6 +1,3 @@
-@if ($error== 'no_mods')
-<b style="color: red;">Dont add -mod= to parameters use the mod selector instead!</b>
-@endif
 <section id="widget-grid" class="">
     <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -178,4 +175,10 @@
         });
     };
     loadScript("assets/js/plugin/jquery-form/jquery-form.min.js", pagefunction);
+    $(document).ready(function()
+    {
+        @if ($error== 'no_mods')
+            alert("Dont add -mod= to parameters use the mod selector instead!");
+        @endif
+    });
 </script>
