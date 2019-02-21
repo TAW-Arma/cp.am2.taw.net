@@ -636,7 +636,7 @@
                                                     {{ Lang::get('server.skill_ai') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="skill_ai" placeholder="{{ Lang::get('server.skill_ai') }}" value="{{ $server->server_profile->skill_ai }}" />
+                                                    <input type="text" name="skill_ai" placeholder="{{ Lang::get('server.skill_ai') }}" value="{{ $server->server_difficulty->skill_ai }}" />
                                                 </label>
                                             </section>
                                             <section class="col col-6">
@@ -644,7 +644,7 @@
                                                     {{ Lang::get('server.precision_ai') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="precision_ai" placeholder="{{ Lang::get('server.precision_ai') }}" value="{{ $server->server_profile->precision_ai }}" />
+                                                    <input type="text" name="precision_ai" placeholder="{{ Lang::get('server.precision_ai') }}" value="{{ $server->server_difficulty->precision_ai }}" />
                                                 </label>
                                             </section>
                                         </div>
