@@ -250,19 +250,19 @@ class UserTableSeeder extends Seeder {
         ]);
         $role['squad_leaders']->save();
 		
-		$user['feraldude']                                    = new User;
-        $user['feraldude']->email                           = 'feraldude@taw.net';   
-        $user['feraldude']->picture                         = '/assets/modules/profile/admin.png';         		
-        $user['feraldude']->username                        = 'feraldude';
-        $user['feraldude']->password                        = '**********';
-        $user['feraldude']->verified                        = 1;
-        $user['feraldude']->disabled                        = 0;
-        $user['feraldude']->save();
-        $user['feraldude']->roles()->sync(
+		$user['admin']                                    = new User;
+        $user['admin']->email                           = 'admin@taw.net';   
+        $user['admin']->picture                         = '/assets/modules/profile/admin.png';         		
+        $user['admin']->username                        = 'admin';
+        $user['admin']->password                        = '**********';
+        $user['admin']->verified                        = 1;
+        $user['admin']->disabled                        = 0;
+        $user['admin']->save();
+        $user['admin']->roles()->sync(
         [
             $role['administrators']->id
         ]);
-        $user['feraldude']->save();
+        $user['admin']->save();
 
      
     }
@@ -275,7 +275,7 @@ class ServerTableSeeder extends Seeder
         $user                                               = [];
         $server                                             = [];
         
-        $user['feraldude']                                  = User::where('username', '=', 'feraldude')->first();
+        $user['admin']                                  = User::where('username', '=', 'admin')->first();
 
     }
 }
