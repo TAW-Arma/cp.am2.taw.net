@@ -15,6 +15,8 @@ return array(
     "delete"                                    => "Update: :value",
     "update"                                    => "Delete: :value",
 
+    "always"                                    => "Always",
+
     "yes"                                       => "Yes",
     "no"                                        => "No",
     

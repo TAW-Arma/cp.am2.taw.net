@@ -55,16 +55,6 @@
                                                     <textarea rows="1" class="custom-scroll" name="onDifferentData" placeholder="{{ Lang::get('server.server_label_onDifferentData') }}">{{ $server->server_cfg->onDifferentData }}</textarea>
                                                 </label>
                                             </section>
-                                            <!-- Outdated - replaced by verifySignatures!
-                                            <section>
-                                                <label for="checkfiles">
-                                                    {{ Lang::get('server.server_label_checkfiles') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="checkfiles" placeholder="{{ Lang::get('server.server_label_checkfiles') }}" value="{{ $server->server_cfg->checkfiles }}" />
-                                                </label>
-                                            </section>
-                                            -->
                                             <section>
                                                 <label for="reporting_ip">
                                                     {{ Lang::get('server.server_label_reporting_ip') }}
@@ -96,9 +86,6 @@
                                                 <label class="select">
                                                     <select class="input-sm" name="verifySignatures">
                                                         <option value="0"@if ($server->server_cfg->verifySignatures == 0) selected="true"@endif>{{ Lang::get('general.no') }}</option>
-                                                        <!-- From Arma 3 use only level 2 (level 1 is outdated and not efficent)  
-                                                        <option value="1"@if ($server->server_cfg->verifySignatures == 1) selected="true"@endif>1</option>
-                                                        -->
                                                         <option value="2"@if ($server->server_cfg->verifySignatures == 2) selected="true"@endif>{{ Lang::get('general.yes') }}</option>
                                                     </select>
                                                     <i></i>
@@ -114,21 +101,6 @@
                                                             <option value="{{ $i }}"@if ($server->server_cfg->vonCodecQuality == $i) selected="true"@endif>{{ $i }}</option>
                                                         @endfor
                                                     </select>
-                                                    <!--
-                                                    <select class="input-sm" name="vonCodecQuality">
-                                                        <option value="0"@if ($server->server_cfg->vonCodecQuality == 0) selected="true"@endif>0</option>
-                                                        <option value="1"@if ($server->server_cfg->vonCodecQuality == 1) selected="true"@endif>1</option>
-                                                        <option value="2"@if ($server->server_cfg->vonCodecQuality == 2) selected="true"@endif>2</option>
-                                                        <option value="3"@if ($server->server_cfg->vonCodecQuality == 3) selected="true"@endif>3</option>
-                                                        <option value="4"@if ($server->server_cfg->vonCodecQuality == 4) selected="true"@endif>4</option>
-                                                        <option value="5"@if ($server->server_cfg->vonCodecQuality == 5) selected="true"@endif>5</option>
-                                                        <option value="6"@if ($server->server_cfg->vonCodecQuality == 6) selected="true"@endif>6</option>
-                                                        <option value="7"@if ($server->server_cfg->vonCodecQuality == 7) selected="true"@endif>7</option>
-                                                        <option value="8"@if ($server->server_cfg->vonCodecQuality == 8) selected="true"@endif>8</option>
-                                                        <option value="9"@if ($server->server_cfg->vonCodecQuality == 9) selected="true"@endif>9</option>
-                                                        <option value="10"@if ($server->server_cfg->vonCodecQuality == 10) selected="true"@endif>10</option>
-                                                    </select>
-                                                    -->
                                                     <i></i>
                                                 </label>
                                             </section>
@@ -144,6 +116,7 @@
                                                         <option value="regular"@if ($server->server_cfg->difficulty == 'regular') selected="true"@endif>Regular</option>
                                                         <option value="veteran"@if ($server->server_cfg->difficulty == 'veteran') selected="true"@endif>Veteran</option>
                                                         <option value="mercenary"@if ($server->server_cfg->difficulty == 'mercenary') selected="true"@endif>Mercenary</option>
+                                                        <option value="Custom"@if ($server->server_cfg->difficulty == 'Custom') selected="true"@endif>Custom</option>
                                                     </select>
                                                     <i></i>
                                                 </label>
@@ -198,21 +171,6 @@
                                                     </label>
                                                 </div>
                                             </section>
-                                            <!-- NON EXISTENT PARAM <section>
-                                                <label for="third_person_view">
-                                                    {{ Lang::get('server.server_label_third_person_view') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="third_person_view" value="1" @if ($server->server_cfg->third_person_view == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="third_person_view" value="0" @if ($server->server_cfg->third_person_view == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section> -->
                                             <section>
                                                 <label for="force_rotor_lib_simulation">
                                                     {{ Lang::get('server.server_label_force_rotor_lib_simulation') }}
@@ -243,23 +201,6 @@
                                                     </label>
                                                 </div>
                                             </section>
-                                            <!-- Outdated - replaced by verifySignatures!
-                                            <section>
-                                                <label for="equalModRequired">
-                                                    {{ Lang::get('server.server_label_equalModRequired') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="equalModRequired" value="1" @if ($server->server_cfg->equalModRequired == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="equalModRequired" value="0" @if ($server->server_cfg->equalModRequired == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            -->
                                             <section>
                                                 <label for="requiredSecureId">
                                                     {{ Lang::get('server.server_label_requiredSecureId') }}
@@ -338,10 +279,11 @@
                                             </label>
                                             <label class="select">
                                                 <select class="input-sm" name="difficulty">
-                                                    <option value="recruit"@if ($server->server_cfg->difficulty == 'recruit') selected="true"@endif>Recruit</option>
-                                                    <option value="regular"@if ($server->server_cfg->difficulty == 'regular') selected="true"@endif>Regular</option>
-                                                    <option value="veteran"@if ($server->server_cfg->difficulty == 'veteran') selected="true"@endif>Veteran</option>
-                                                    <option value="mercenary"@if ($server->server_cfg->difficulty == 'mercenary') selected="true"@endif>Mercenary</option>
+                                                    <option value="Recruit"@if ($server->server_cfg->difficulty == 'Recruit') selected="true"@endif>Recruit</option>
+                                                    <option value="Regular"@if ($server->server_cfg->difficulty == 'Regular') selected="true"@endif>Regular</option>
+                                                    <option value="Veteran"@if ($server->server_cfg->difficulty == 'Veteran') selected="true"@endif>Veteran</option>
+                                                    <option value="Mercenary"@if ($server->server_cfg->difficulty == 'Mercenary') selected="true"@endif>Mercenary</option>
+                                                    <option value="Custom"@if ($server->server_cfg->difficulty == 'Custom') selected="true"@endif>Custom</option>
                                                 </select>
                                                 <i></i>
                                             </label>

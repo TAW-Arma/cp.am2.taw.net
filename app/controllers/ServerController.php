@@ -17,7 +17,7 @@ class ServerController extends BaseController
 
         if( Auth::user()->can('see_all_servers') ):
 
-            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->orderBy('name', 'asc')->get();
             $data['is_admin']           = true;
 
         else:
@@ -26,7 +26,7 @@ class ServerController extends BaseController
             foreach(Auth::user()->servers as $server)
                 $user_servers[]         = $server->id;
 
-            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
+            $data['servers']            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->whereIn('id', $user_servers)->orderBy('name', 'asc')->get();
             $data['is_admin']           = false;
 
         endif;
@@ -41,7 +41,6 @@ class ServerController extends BaseController
         $data['can_profile_cfg']    = Auth::user()->can('config_server_profile');
         $data['can_mission']        = Auth::user()->can('mission_server');
         $data['can_bans']           = Auth::user()->can('bans_server');
-
 
         return View::make('backend.server.index', $data);
     }
@@ -71,7 +70,7 @@ class ServerController extends BaseController
         $server->rcon_password              = Input::get('rcon_password');
         $server->max_ping                   = Input::get('max_ping');
 		$server->command_password			= Input::get('command_password');
-        $server->parameters                 = '-loadMissionToMemory -mod=curator;heli;kart;mark;@taw_am2_content;@taw_div_content;@taw_div_core;@taw_am2_cup;';
+        $server->parameters                 = '-loadMissionToMemory -mod=curator;heli;kart;mark;argo;jets;orange;tacops;tank;';
         $server->save();
 
         $server_cfg                         = new ServerCFG;
@@ -94,21 +93,9 @@ class ServerController extends BaseController
         $server_profile->active_keys        = $active_keys;
         $server_profile->save();
 
-        $server_dificulty_recruit           = new ServerDificultyRecruit;
-        $server_dificulty_recruit->server()->associate($server);
-        $server_dificulty_recruit->save();
-
-        $server_dificulty_regular           = new ServerDificultyRegular;
-        $server_dificulty_regular->server()->associate($server);
-        $server_dificulty_regular->save();
-
-        $server_dificulty_veteran           = new ServerDificultyVeteran;
-        $server_dificulty_veteran->server()->associate($server);
-        $server_dificulty_veteran->save();
-
-        $server_dificulty_mercanary           = new ServerDificultyMercenary;
-        $server_dificulty_mercanary->server()->associate($server);
-        $server_dificulty_mercanary->save();
+        $server_difficulty                  = new ServerDifficulty;
+        $server_difficulty->server()->associate($server);
+        $server_difficulty->save();
 
         mkdir($this->arma3path . $server->name . "");
         mkdir($this->arma3path . $server->name . "/battleye");
@@ -122,14 +109,14 @@ class ServerController extends BaseController
         return Redirect::to('backend#backend/server');
     }
     
-    public function GetUpdate($server_id)
+    public function GetUpdate($server_id, $error = '')
     {
         if ( ! Auth::user()->can('update_server'))
             return Redirect::to('backend/server');
 
         $data['server']                     = Server::find($server_id);
-        $data['users']                      = User::all();
-        if (Auth::user()->is('sa') or Auth::user()->is('st'))
+        $data['error']                      = $error;
+        if (Auth::user()->is('administrators'))
         {
             $data['is_admin']               = true;
         }
@@ -137,10 +124,6 @@ class ServerController extends BaseController
         {
             $data['is_admin']               = false;
         }
-        $data['server_users']               = [];
-
-        foreach($data['server']->users as $user)
-            $data['server_users'][$user->id] = $user->id;
 
         return View::make('backend.server.update', $data);
     }
@@ -161,10 +144,76 @@ class ServerController extends BaseController
         $server->admin_password             = Input::get('admin_password');
         $server->rcon_password              = Input::get('rcon_password');
         $server->max_ping                   = Input::get('max_ping');
-        $server->parameters                 = Input::get('parameters');
+        $server->save();
+
+        $parameters = Input::get('parameters');
+        if (strpos($parameters, '-mod=') !== false)
+        {
+            return Redirect::to('backend#backend/server/update/' . $server_id . '/no_mods');
+        }
+        $server->parameters             = Input::get('parameters');
         $server->save();
 
         return Redirect::to('backend#backend/server');
+    }
+
+    public function GetUpdateMods($server_id)
+    {
+        if ( ! Auth::user()->can('update_server'))
+            return Redirect::to('backend/server');
+
+        $data['server']                     = Server::find($server_id);
+        $data['mods']                       = $this->get_all_mods();
+        if($data['server']->mods == '')
+        {
+            $data['server']->mods = serialize(array());
+        }
+
+        if (Auth::user()->is('administrators'))
+        {
+            $data['is_admin']               = true;
+        }
+        else
+        {
+            $data['is_admin']               = false;
+        }
+
+        return View::make('backend.server.update_mods', $data);
+    }
+    
+    public function PostUpdateMods($server_id)
+    {
+        if ( ! Auth::user()->can('update_server'))
+            return Redirect::to('backend/server');
+
+        $server                             = Server::find($server_id);
+        $server->mods                       = serialize(Input::get('mods'));
+        $server->save();
+
+        return Redirect::to('backend#backend/server');
+    }
+
+    public function GetUpdateAdmin($server_id, $error = '')
+    {
+        if ( ! Auth::user()->can('update_server'))
+            return Redirect::to('backend/server');
+
+        $data['server']                     = Server::find($server_id);
+        $data['users']                      = User::all();
+        if (Auth::user()->is('administrators'))
+        {
+            $data['is_admin']               = true;
+        }
+        else
+        {
+            $data['is_admin']               = false;
+        }
+        $data['server_users']               = [];
+
+        foreach($data['server']->users as $user)
+            $data['server_users'][$user->id] = $user->id;
+
+        return View::make('backend.server.update_admin', $data);
     }
     
     public function PostUpdateAdmin($server_id)
@@ -259,7 +308,7 @@ class ServerController extends BaseController
 
         shell_exec($this->fireDeamonExe.' --stop "' . $server->name . '"');
         @unlink($this->arma3path.'/instances/' . $server->name . '/server.pid');
-
+   
         $this->GenerateFiles($server_id);
 
         return $server->name;
@@ -272,7 +321,7 @@ class ServerController extends BaseController
 
         $data['server']                     = Server::with('server_cfg')->find($server_id);
         $data['missions']                   = $this->GetMissionsList();
-        $data['is_admin']           = true;    
+        $data['is_admin']                   = true;    
 
         return View::make('backend.server.update_server_cfg', $data);
     }
@@ -287,13 +336,10 @@ class ServerController extends BaseController
         $server->server_cfg->motd                       = Input::get('motd');
         $server->server_cfg->motd_interval              = Input::get('motd_interval');
         $server->server_cfg->battleye                   = Input::get('battleye');
-        //$server->server_cfg->third_person_view          = Input::get('third_person_view');
         $server->server_cfg->force_rotor_lib_simulation = Input::get('force_rotor_lib_simulation');
         $server->server_cfg->reporting_ip               = Input::get('reporting_ip');
-        //$server->server_cfg->checkfiles                 = Input::get('checkfiles');
         $server->server_cfg->kickDuplicate              = Input::get('kickDuplicate');
         $server->server_cfg->verifySignatures           = Input::get('verifySignatures');
-        //$server->server_cfg->equalModRequired           = Input::get('equalModRequired');
         $server->server_cfg->requiredSecureId           = Input::get('requiredSecureId');
         $server->server_cfg->maxPlayers                 = Input::get('maxPlayers');
         $server->server_cfg->voteMission                = Input::get('voteMission');
@@ -363,7 +409,7 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('config_server_profile'))
             return Redirect::to('backend/server');
 
-        $data['server']                     = Server::with('server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $data['server']                     = Server::with('server_profile', 'server_difficulty')->find($server_id);
         $data['is_admin']                   = Auth::user()->is('administrators');
 
         return View::make('backend.server.update_profile', $data);
@@ -374,138 +420,54 @@ class ServerController extends BaseController
         if ( ! Auth::user()->can('config_server_profile'))
             return Redirect::to('backend/server');
 
-        $server                                                 = Server::with('server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $server                                                 = Server::with('server_profile', 'server_difficulty')->find($server_id);
         
-        $server->server_profile->version                        = Input::get('version');
-        $server->server_profile->blood                          = Input::get('blood');
         $server->server_profile->single_voice                   = Input::get('single_voice');
-        $server->server_profile->gamma                          = Input::get('gamma');
-        $server->server_profile->brightness                     = Input::get('brightness');
         $server->server_profile->max_samples_played             = Input::get('max_samples_played');
-        $server->server_profile->active_keys                    = Input::get('active_keys');
+        $server->server_profile->battleye_license               = Input::get('battleye_license');
         $server->server_profile->scene_complexity               = Input::get('scene_complexity');
         $server->server_profile->shadow_z_distance              = Input::get('shadow_z_distance');
         $server->server_profile->view_distance                  = Input::get('view_distance');
         $server->server_profile->preferred_object_view_distance = Input::get('preferred_object_view_distance');
         $server->server_profile->terrain_grid                   = Input::get('terrain_grid');
+        $server->server_profile->shadow_z_distance              = Input::get('shadow_z_distance');
         $server->server_profile->volume_cd                      = Input::get('volume_cd');
         $server->server_profile->volume_fx                      = Input::get('volume_fx');
         $server->server_profile->volume_speech                  = Input::get('volume_speech');
         $server->server_profile->volume_von                     = Input::get('volume_von');
         $server->server_profile->von_rec_threshold              = Input::get('von_rec_threshold');
+        $server->server_profile->active_keys                    = Input::get('active_keys');
         $server->server_profile->save();
 
-        $server->server_dificulty_recruit->armor                = Input::get('recruit_armor');
-        $server->server_dificulty_recruit->friendly_tag         = Input::get('recruit_friendly_tag');
-        $server->server_dificulty_recruit->enemy_tag            = Input::get('recruit_enemy_tag');
-        $server->server_dificulty_recruit->mine_tag             = Input::get('recruit_mine_tag');
-        $server->server_dificulty_recruit->hud                  = Input::get('recruit_hud');
-        $server->server_dificulty_recruit->hud_perm             = Input::get('recruit_hud_perm');
-        $server->server_dificulty_recruit->hud_wp               = Input::get('recruit_hud_wp');
-        $server->server_dificulty_recruit->hud_wp_perm          = Input::get('recruit_hud_wp_perm');
-        $server->server_dificulty_recruit->hud_group_info       = Input::get('recruit_hud_group_info');
-        $server->server_dificulty_recruit->auto_spot            = Input::get('recruit_auto_spot');
-        $server->server_dificulty_recruit->map                  = Input::get('recruit_map');
-        $server->server_dificulty_recruit->weapon_cursor        = Input::get('recruit_weapon_cursor');
-        $server->server_dificulty_recruit->auto_guide_at        = Input::get('recruit_auto_guide_at');
-        $server->server_dificulty_recruit->clock_indicator      = Input::get('recruit_clock_indicator');
-        $server->server_dificulty_recruit->third_person_view    = Input::get('recruit_third_person_view');
-        $server->server_dificulty_recruit->ultra_ai             = Input::get('recruit_ultra_ai');
-        $server->server_dificulty_recruit->camera_shake         = Input::get('recruit_camera_shake');
-        $server->server_dificulty_recruit->unlimited_saves      = Input::get('recruit_unlimited_saves');
-        $server->server_dificulty_recruit->death_messages       = Input::get('recruit_death_messages');
-        $server->server_dificulty_recruit->net_stats            = Input::get('recruit_net_stats');
-        $server->server_dificulty_recruit->von_id               = Input::get('recruit_von_id');
-        $server->server_dificulty_recruit->extended_info_type   = Input::get('recruit_extended_info_type');
-        $server->server_dificulty_recruit->skill_friendly       = Input::get('recruit_skill_friendly');
-        $server->server_dificulty_recruit->skill_enemy          = Input::get('recruit_skill_enemy');
-        $server->server_dificulty_recruit->precision_friendly   = Input::get('recruit_precision_friendly');
-        $server->server_dificulty_recruit->precision_enemy      = Input::get('recruit_precision_enemy');
-        $server->server_dificulty_recruit->save();
-
-        $server->server_dificulty_regular->armor                = Input::get('regular_armor');
-        $server->server_dificulty_regular->friendly_tag         = Input::get('regular_friendly_tag');
-        $server->server_dificulty_regular->enemy_tag            = Input::get('regular_enemy_tag');
-        $server->server_dificulty_regular->mine_tag             = Input::get('regular_mine_tag');
-        $server->server_dificulty_regular->hud                  = Input::get('regular_hud');
-        $server->server_dificulty_regular->hud_perm             = Input::get('regular_hud_perm');
-        $server->server_dificulty_regular->hud_wp               = Input::get('regular_hud_wp');
-        $server->server_dificulty_regular->hud_wp_perm          = Input::get('regular_hud_wp_perm');
-        $server->server_dificulty_regular->hud_group_info       = Input::get('regular_hud_group_info');
-        $server->server_dificulty_regular->auto_spot            = Input::get('regular_auto_spot');
-        $server->server_dificulty_regular->map                  = Input::get('regular_map');
-        $server->server_dificulty_regular->weapon_cursor        = Input::get('regular_weapon_cursor');
-        $server->server_dificulty_regular->auto_guide_at        = Input::get('regular_auto_guide_at');
-        $server->server_dificulty_regular->clock_indicator      = Input::get('regular_clock_indicator');
-        $server->server_dificulty_regular->third_person_view    = Input::get('regular_third_person_view');
-        $server->server_dificulty_regular->ultra_ai             = Input::get('regular_ultra_ai');
-        $server->server_dificulty_regular->camera_shake         = Input::get('regular_camera_shake');
-        $server->server_dificulty_regular->unlimited_saves      = Input::get('regular_unlimited_saves');
-        $server->server_dificulty_regular->death_messages       = Input::get('regular_death_messages');
-        $server->server_dificulty_regular->net_stats            = Input::get('regular_net_stats');
-        $server->server_dificulty_regular->von_id               = Input::get('regular_von_id');
-        $server->server_dificulty_regular->extended_info_type   = Input::get('regular_extended_info_type');
-        $server->server_dificulty_regular->skill_friendly       = Input::get('regular_skill_friendly');
-        $server->server_dificulty_regular->skill_enemy          = Input::get('regular_skill_enemy');
-        $server->server_dificulty_regular->precision_friendly   = Input::get('regular_precision_friendly');
-        $server->server_dificulty_regular->precision_enemy      = Input::get('regular_precision_enemy');
-        $server->server_dificulty_regular->save();
-
-        $server->server_dificulty_veteran->armor                = Input::get('veteran_armor');
-        $server->server_dificulty_veteran->friendly_tag         = Input::get('veteran_friendly_tag');
-        $server->server_dificulty_veteran->enemy_tag            = Input::get('veteran_enemy_tag');
-        $server->server_dificulty_veteran->mine_tag             = Input::get('veteran_mine_tag');
-        $server->server_dificulty_veteran->hud                  = Input::get('veteran_hud');
-        $server->server_dificulty_veteran->hud_perm             = Input::get('veteran_hud_perm');
-        $server->server_dificulty_veteran->hud_wp               = Input::get('veteran_hud_wp');
-        $server->server_dificulty_veteran->hud_wp_perm          = Input::get('veteran_hud_wp_perm');
-        $server->server_dificulty_veteran->hud_group_info       = Input::get('veteran_hud_group_info');
-        $server->server_dificulty_veteran->auto_spot            = Input::get('veteran_auto_spot');
-        $server->server_dificulty_veteran->map                  = Input::get('veteran_map');
-        $server->server_dificulty_veteran->weapon_cursor        = Input::get('veteran_weapon_cursor');
-        $server->server_dificulty_veteran->auto_guide_at        = Input::get('veteran_auto_guide_at');
-        $server->server_dificulty_veteran->clock_indicator      = Input::get('veteran_clock_indicator');
-        $server->server_dificulty_veteran->third_person_view    = Input::get('veteran_third_person_view');
-        $server->server_dificulty_veteran->ultra_ai             = Input::get('veteran_ultra_ai');
-        $server->server_dificulty_veteran->camera_shake         = Input::get('veteran_camera_shake');
-        $server->server_dificulty_veteran->unlimited_saves      = Input::get('veteran_unlimited_saves');
-        $server->server_dificulty_veteran->death_messages       = Input::get('veteran_death_messages');
-        $server->server_dificulty_veteran->net_stats            = Input::get('veteran_net_stats');
-        $server->server_dificulty_veteran->von_id               = Input::get('veteran_von_id');
-        $server->server_dificulty_veteran->extended_info_type   = Input::get('veteran_extended_info_type');
-        $server->server_dificulty_veteran->skill_friendly       = Input::get('veteran_skill_friendly');
-        $server->server_dificulty_veteran->skill_enemy          = Input::get('veteran_skill_enemy');
-        $server->server_dificulty_veteran->precision_friendly   = Input::get('veteran_precision_friendly');
-        $server->server_dificulty_veteran->precision_enemy      = Input::get('veteran_precision_enemy');
-        $server->server_dificulty_veteran->save();
-
-        $server->server_dificulty_mercenary->armor              = Input::get('mercenary_armor');
-        $server->server_dificulty_mercenary->friendly_tag       = Input::get('mercenary_friendly_tag');
-        $server->server_dificulty_mercenary->enemy_tag          = Input::get('mercenary_enemy_tag');
-        $server->server_dificulty_mercenary->mine_tag           = Input::get('mercenary_mine_tag');
-        $server->server_dificulty_mercenary->hud                = Input::get('mercenary_hud');
-        $server->server_dificulty_mercenary->hud_perm           = Input::get('mercenary_hud_perm');
-        $server->server_dificulty_mercenary->hud_wp             = Input::get('mercenary_hud_wp');
-        $server->server_dificulty_mercenary->hud_wp_perm        = Input::get('mercenary_hud_wp_perm');
-        $server->server_dificulty_mercenary->hud_group_info     = Input::get('mercenary_hud_group_info');
-        $server->server_dificulty_mercenary->auto_spot          = Input::get('mercenary_auto_spot');
-        $server->server_dificulty_mercenary->map                = Input::get('mercenary_map');
-        $server->server_dificulty_mercenary->weapon_cursor      = Input::get('mercenary_weapon_cursor');
-        $server->server_dificulty_mercenary->auto_guide_at      = Input::get('mercenary_auto_guide_at');
-        $server->server_dificulty_mercenary->clock_indicator    = Input::get('mercenary_clock_indicator');
-        $server->server_dificulty_mercenary->third_person_view  = Input::get('mercenary_third_person_view');
-        $server->server_dificulty_mercenary->ultra_ai           = Input::get('mercenary_ultra_ai');
-        $server->server_dificulty_mercenary->camera_shake       = Input::get('mercenary_camera_shake');
-        $server->server_dificulty_mercenary->unlimited_saves    = Input::get('mercenary_unlimited_saves');
-        $server->server_dificulty_mercenary->death_messages     = Input::get('mercenary_death_messages');
-        $server->server_dificulty_mercenary->net_stats          = Input::get('mercenary_net_stats');
-        $server->server_dificulty_mercenary->von_id             = Input::get('mercenary_von_id');
-        $server->server_dificulty_mercenary->extended_info_type = Input::get('mercenary_extended_info_type');
-        $server->server_dificulty_mercenary->skill_friendly     = Input::get('mercenary_skill_friendly');
-        $server->server_dificulty_mercenary->skill_enemy        = Input::get('mercenary_skill_enemy');
-        $server->server_dificulty_mercenary->precision_friendly = Input::get('mercenary_precision_friendly');
-        $server->server_dificulty_mercenary->precision_enemy    = Input::get('mercenary_precision_enemy');
-        $server->server_dificulty_mercenary->save();
+        $server->server_difficulty->auto_report                 = Input::get('auto_report');
+        $server->server_difficulty->camera_shake                = Input::get('camera_shake');
+        $server->server_difficulty->commands                    = Input::get('commands');
+        $server->server_difficulty->death_messages              = Input::get('death_messages');
+        $server->server_difficulty->detected_mines              = Input::get('detected_mines');
+        $server->server_difficulty->enemy_tags                  = Input::get('enemy_tags');
+        $server->server_difficulty->friendly_tags               = Input::get('friendly_tags');
+        $server->server_difficulty->group_indicators            = Input::get('group_indicators');
+        $server->server_difficulty->map_content                 = Input::get('map_content');
+        $server->server_difficulty->map_content_enemy           = Input::get('map_content_enemy');
+        $server->server_difficulty->map_content_friendly        = Input::get('map_content_friendly');
+        $server->server_difficulty->map_content_mines           = Input::get('map_content_mines');
+        $server->server_difficulty->map_content_ping            = Input::get('map_content_ping');
+        $server->server_difficulty->multiple_saves              = Input::get('multiple_saves');
+        $server->server_difficulty->reduced_damage              = Input::get('reduced_damage');
+        $server->server_difficulty->score_table                 = Input::get('score_table');
+        $server->server_difficulty->squad_radar                 = Input::get('squad_radar');
+        $server->server_difficulty->stamina_bar                 = Input::get('stamina_bar');
+        $server->server_difficulty->stance_indicator            = Input::get('stance_indicator');
+        $server->server_difficulty->tactical_ping               = Input::get('tactical_ping');
+        $server->server_difficulty->third_person_view           = Input::get('third_person_view');
+        $server->server_difficulty->vision_aid                  = Input::get('vision_aid');
+        $server->server_difficulty->vonid                       = Input::get('vonid');
+        $server->server_difficulty->waypoints                   = Input::get('waypoints');
+        $server->server_difficulty->weapon_crosshair            = Input::get('weapon_crosshair');
+        $server->server_difficulty->weapon_info                 = Input::get('weapon_info');
+        $server->server_difficulty->skill_ai                    = Input::get('skill_ai');
+        $server->server_difficulty->precision_ai                = Input::get('precision_ai');
+        $server->server_difficulty->save();
 
         $server->save();
 
@@ -514,13 +476,8 @@ class ServerController extends BaseController
 
     public function GenerateFiles($server_id)
     {
-        $data['server']             = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
-
-        $difficulty = $data['server']['server_cfg']['difficulty'];
-        $data['server']['server_dificulty'] = $data['server']['server_dificulty_'.$difficulty];
+        $data['server']             = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->find($server_id);
         $data['bans']               = ServerBans::all();
-
-        // shell_exec($this->fireDeamonExe.' --uninstall ' . $data['server']->name . '');
 
         $data['server']['hostname_escaped'] =  htmlspecialchars($data['server']['hostname']);
 
@@ -570,35 +527,49 @@ class ServerController extends BaseController
         $hc2 = $this->arma3path.'/instances/' . $data['server']->name . '/hc2.xml';
         $hc3 = $this->arma3path.'/instances/' . $data['server']->name . '/hc3.xml';
         $ser = $this->arma3path.'/instances/' . $data['server']->name . '/server.xml';
-        if($server->cpu_count > 0) shell_exec($this->fireDeamonExe.' --install "'.$hc1.'" "'.$hc1.'"');
-        if($server->cpu_count > 1) shell_exec($this->fireDeamonExe.' --install "'.$hc2.'" "'.$hc2.'"');
-        if($server->cpu_count > 2) shell_exec($this->fireDeamonExe.' --install "'.$hc3.'" "'.$hc3.'"');
-        shell_exec($this->fireDeamonExe.' --install "'.$ser.'" "'.$ser.'"');
+        if($server->cpu_count > 0) shell_exec($this->fireDeamonExe.' --install "'.$hc1.'"');
+        if($server->cpu_count > 1) shell_exec($this->fireDeamonExe.' --install "'.$hc2.'"');
+        if($server->cpu_count > 2) shell_exec($this->fireDeamonExe.' --install "'.$hc3.'"');
+        shell_exec($this->fireDeamonExe.' --install "'.$ser.'"');
     }
 
     public function GetLogList($server_id)
     {
-        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->find($server_id);
         $data['arma3path']  = $this->arma3path;
 
+        $i=0;
         $data['console_logs'] = array();
-        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/logs/*.log') as $file)
+        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/logs/*.log') as $path)
         {
-            $data['console_logs'][] = $file;
+            $file = basename($path);
+            $data['console_logs'][$i]['name'] = $file;
+            $data['console_logs'][$i]['path'] = $path;
+            $data['console_logs'][$i]['date'] = date("Y-m-d H:i:s",filemtime($this->arma3path.'/instances/' . $data['server']->name . '/logs/'.$file));
+            $data['console_logs'][$i]['size'] = round((filesize($this->arma3path.'/instances/' . $data['server']->name . '/logs/'.$file)/1024/1024),2);
+            $i++;
         }
+        unset($i);
 
+        $i=0;
         $data['rpt_logs'] = array();
-        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/profile/*.rpt') as $file)
+        foreach(glob($this->arma3path.'/instances/' . $data['server']->name . '/profile/*.rpt') as $path)
         {
-            $data['rpt_logs'][] = $file;
+            $file = basename($path);
+            $data['rpt_logs'][$i]['name'] = $file;
+            $data['rpt_logs'][$i]['path'] = $path;
+            $data['rpt_logs'][$i]['date'] = date("Y-m-d H:i:s",filemtime($this->arma3path.'/instances/' . $data['server']->name . '/profile/'.$file));
+            $data['rpt_logs'][$i]['size'] = round((filesize($this->arma3path.'/instances/' . $data['server']->name . '/profile/'.$file)/1024/1024),2);
+            $i++;
         }
+        unset($i);
 
         return View::make('backend.server.loglist', $data);
     }
 
     public function GetLogviewer($server_id, $filepath)
     {
-        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $data['server']     = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->find($server_id);
         $logfile            = base64_decode($filepath);
         $data['filename']   = basename($logfile);
         if(file_exists($logfile))
@@ -662,14 +633,14 @@ class ServerController extends BaseController
 
     public function GetFileManagerView($server_id)
     {
-        $data['server']    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $data['server']    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->find($server_id);
 
         return View::make('backend.server.filemanager', $data);
     }
 
     public function GetFileManagerConnector($server_id)
     {
-        $server    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->find($server_id);
+        $server    = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->find($server_id);
      
         $opts      =
         [
@@ -679,8 +650,8 @@ class ServerController extends BaseController
             [
                 [
                     'driver' => 'LocalFileSystem',
-                    'path'   => 'C:/inetpub/wwwroot/cp.am2.taw.net/public/instances/' . $server->name . '',
-                    'URL'    => 'http://cp.am2.taw.net/instances/' . $server->name . ''
+                    'path'   => 'C:/controlpanel/public/instances/' . $server->name . '',
+                    'URL'    => 'http://arma3.odin-ict.nl/instances/' . $server->name . ''
                 ]
             ],
             'options'   => [],
@@ -735,6 +706,8 @@ class ServerController extends BaseController
             $missions[] = array(
                 'name' => $mission,
                 'url' => base64_encode($mission),
+                'date' => date("Y-m-d H:i:s",filemtime($this->arma3path."/mpmissions/".$mission)),
+                'size' => round((filesize($this->arma3path."/mpmissions/".$mission)/1024/1024),2),
             );
         }
 
@@ -908,7 +881,7 @@ class ServerController extends BaseController
     {
         try {
 
-            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')/*->orderBy('name', 'asc')*/->get();
+            $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')/*->orderBy('name', 'asc')*/->get();
         
             $GameQ = new \GameQ\GameQ();
 
@@ -969,7 +942,7 @@ class ServerController extends BaseController
 
     public function ApiGetServerStats()
     {
-        $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_dificulty_recruit','server_dificulty_regular','server_dificulty_veteran','server_dificulty_mercenary')->orderBy('name', 'asc')->get();
+        $servers            = Server::with('server_cfg', 'server_basic_cfg', 'server_profile', 'server_difficulty')->orderBy('name', 'asc')->get();
 
         $data['cpu'] = [];
         $data['mem'] = [];
@@ -1084,5 +1057,24 @@ class ServerController extends BaseController
             mkdir(dirname($filename).'/', 0777, TRUE);
         
         return file_put_contents($filename, $data,$flags);
+    }
+
+    public function get_all_mods()
+    {
+        $mod_array = [];
+
+        $objects = scandir($this->arma3path);
+        foreach ($objects as $object)
+        {
+            if ($object != "." && $object != "..")
+            {
+                if ((filetype($this->arma3path . "/" . $object) == "dir") and (substr($object, 0, 1) == '@'))
+                {
+                    $mod_array[] = $object;
+                }
+            }
+        }
+
+        return $mod_array;
     }
 }

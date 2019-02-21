@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder {
         Eloquent::unguard();
 
         $this->call('UserTableSeeder');
-        $this->call('SquadTableSeeder');
         $this->call('ServerTableSeeder');
     }
 
@@ -251,31 +250,21 @@ class UserTableSeeder extends Seeder {
         ]);
         $role['squad_leaders']->save();
 		
-		$user['admin']                                  	= new User;
-        $user['admin']->email                           = 'admin@taw.net';   
-        $user['admin']->picture                         = '/assets/modules/profile/admin.png';         		
-        $user['admin']->username                        = 'admin';
-        $user['admin']->password                        = 'admin';
-        $user['admin']->verified                        = 1;
-        $user['admin']->disabled                        = 0;
-        $user['admin']->save();
-        $user['admin']->roles()->sync(
+		$user['feraldude']                                    = new User;
+        $user['feraldude']->email                           = 'feraldude@taw.net';   
+        $user['feraldude']->picture                         = '/assets/modules/profile/admin.png';         		
+        $user['feraldude']->username                        = 'feraldude';
+        $user['feraldude']->password                        = '**********';
+        $user['feraldude']->verified                        = 1;
+        $user['feraldude']->disabled                        = 0;
+        $user['feraldude']->save();
+        $user['feraldude']->roles()->sync(
         [
             $role['administrators']->id
         ]);
-        $user['admin']->save();
+        $user['feraldude']->save();
 
      
-    }
-}
-
-class SquadTableSeeder extends Seeder
-{
-    public function run()
-    {
-        $user                                               = [];
-
-        $user['admin']                                  	= User::where('username', '=', 'admin')->first();
     }
 }
 
@@ -286,7 +275,7 @@ class ServerTableSeeder extends Seeder
         $user                                               = [];
         $server                                             = [];
         
-        $user['admin']                                  = User::where('username', '=', 'admin')->first();
+        $user['feraldude']                                  = User::where('username', '=', 'feraldude')->first();
 
     }
 }

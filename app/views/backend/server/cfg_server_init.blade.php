@@ -14,8 +14,8 @@ set -e
 PATH=${PATH}:/data/arma3
 NAME={{ $server->name }}
 PIDFILE=/data/arma3/instances/{{ $server->name }}/server.pid
-DAEMON="/data/arma3/arma3server"
-DAEMON_OPTS="-enableHT -exThreads={{ $server->ex_threads }} -maxMem={{ $server->memory }} -server -noSplash -noSound -noBenchmark -noPause -loadMissionToMemory -name=arma3 -profiles=/data/arma3/instances/{{ $server->name }}/profile -pid=/data/arma3/instances/{{ $server->name }}/server.pid -config=/data/arma3/instances/{{ $server->name }}/server.cfg -cfg=/data/arma3/instances/{{ $server->name }}/basic.cfg -par=/data/arma3/instances/{{ $server->name }}/parameters.cfg -ranking=/data/arma3/instances/{{ $server->name }}/logs/ranking.log -bepath=/data/arma3/instances/{{ $server->name }}/battleye -port={{ $server->port }}2"
+DAEMON="/data/arma3/arma3server_x64"
+DAEMON_OPTS="-enableHT -exThreads={{ $server->ex_threads }} -maxMem={{ $server->memory }} -server -noSplash -noSound -noBenchmark -noPause -loadMissionToMemory -name=arma3 -profiles=/data/arma3/instances/{{ $server->name }}/profile -pid=/data/arma3/instances/{{ $server->name }}/server.pid -config=/data/arma3/instances/{{ $server->name }}/server.cfg -cfg=/data/arma3/instances/{{ $server->name }}/basic.cfg -par=/data/arma3/instances/{{ $server->name }}/parameters.cfg -ranking=/data/arma3/instances/{{ $server->name }}/logs/ranking.log -bepath=/data/arma3/instances/{{ $server->name }}/battleye -port={{ $server->port }}2 -filePatching {{ $server->parameters }}"
 USER=gameserver
 GROUP=gameserver
 APPDIR=/data/arma3

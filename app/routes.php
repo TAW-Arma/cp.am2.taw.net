@@ -225,6 +225,24 @@ Route::get('backend/server/update/{id}',
     'uses'      => 'ServerController@GetUpdate',
 ]);
 
+Route::get('backend/server/update/{id}/{error}',
+[
+    'before'    => 'auth',
+    'uses'      => 'ServerController@GetUpdate',
+]);
+
+Route::get('backend/server/update_mods/{id}',
+[
+    'before'    => 'auth',
+    'uses'      => 'ServerController@GetUpdateMods',
+]);
+
+Route::get('backend/server/update_admin/{id}',
+[
+    'before'    => 'auth',
+    'uses'      => 'ServerController@GetUpdateAdmin',
+]);
+
 Route::get('backend/server/update_server_cfg/{id}',
 [
     'before'    => 'auth',
@@ -277,6 +295,12 @@ Route::post('backend/server/update_profile/{id}',
 [
     'before'    => 'auth',
     'uses'      => 'ServerController@PostUpdateProfile',
+]);
+
+Route::post('backend/server/update_mods/{id}',
+[
+    'before'    => 'auth',
+    'uses'      => 'ServerController@PostUpdateMods',
 ]);
 
 Route::post('backend/server/update_admin/{id}',

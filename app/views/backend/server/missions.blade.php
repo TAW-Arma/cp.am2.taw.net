@@ -26,6 +26,8 @@
                                 <thead>
                                     <tr>
                                         <th>{{ Lang::get('server.missions_name') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.missions_size') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.missions_date') }}</th>
                                         @if ($can_delete)
                                             <th style="width: 70px;"></th>
                                         @else
@@ -37,10 +39,12 @@
                                     @foreach ($missions as $mission)
                                         <tr>
                                             <td>{{ $mission['name'] }}</td>
+                                            <td style="width: 150px;">{{ $mission['date'] }}</td>
+                                            <td style="width: 150px;">{{ $mission['size'] }} MB</td>
                                             @if ($can_delete)
                                                 <td style="width: 70px;">
                                                     <a class="btn btn-success btn-xs"  href="/backend/server/download_mission/{{ $mission['url'] }}" target="_BLANK"><i class="fa fa-arrow-down"></i></a>
-                                                    <a class="btn btn-danger btn-xs"  href="/backend#backend/server/delete_mission/{{ $mission['url'] }}"><i class="fa fa-times"></i></a>
+                                                    <a class="btn btn-danger btn-xs delete_mission"  href="/backend#backend/server/delete_mission/{{ $mission['url'] }}" data-missionName="{{ $mission['name'] }}"><i class="fa fa-times"></i></a>
                                                 </td>
                                             @else
                                                 <td style="width: 32px;">
@@ -72,4 +76,13 @@
     {
     };
     pagefunction();
+    $(document).ready(function()
+    {
+        $(".delete_mission").click(function(e) {
+            var missionName = $(this).attr("data-missionName");
+            if(false == confirm("Are you sure want to delete mission: '" + missionName +"' ?")) {
+                e.preventDefault(); 
+            }
+        });
+    });
 </script>

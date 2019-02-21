@@ -5,8 +5,8 @@
   <DisplayName>{{ $server->hostname_escaped }} - HC1</DisplayName>
   <DisplayNamePrefix>ArmA 3 - </DisplayNamePrefix>
   <WorkingDir>C:\Steam\steamapps\common\Arma 3 Server</WorkingDir>
-  <Executable>C:\Steam\steamapps\common\Arma 3 Server\arma3server.exe</Executable>
-  <Parameters>-client -noLogs -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 "-profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile" "-cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg" "-par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg" -port={{ $server->port }}2</Parameters>
+  <Executable>C:\Steam\steamapps\common\Arma 3 Server\arma3server_x64.exe</Executable>
+  <Parameters>-client -noLogs -connect=127.0.0.1 -password={{ $server->private_password }} -name=arma3 "-profiles=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\profile" "-cfg=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\basic.cfg" "-par=C:\Steam\steamapps\common\Arma 3 Server\instances\{{ $server->name }}\parameters.cfg" -port={{ $server->port }}2 -filePatching {{ $server->parameters }}</Parameters>
   <Delay>3000</Delay>
   <StartUpMode>0</StartUpMode>
   <ForceReplace>true</ForceReplace>

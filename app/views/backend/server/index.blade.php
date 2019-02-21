@@ -11,22 +11,22 @@
                     </div>
                     <div class="widget-body no-padding">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover" style="margin-bottom: 100px;">
+                            <table class="table table-bordered table-striped table-hover" style="margin-bottom: 180px;">
                                 <thead>
                                     <tr>
                                         <th style="width: 40px">{{ Lang::get('server.label_status') }}</th>
+                                        <th style="width: 162px;">{{ Lang::get('server.label_controls') }}</th>
                                         <th style="width: 98px">{{ Lang::get('server.label_instance_name') }}</th>
                                         <th>{{ Lang::get('server.label_hostname') }}</th>
                                         <th style="width: 50px">{{ Lang::get('server.label_port') }}</th>
                                         <th style="width: 220px">{{ Lang::get('server.label_template') }}</th>
-                                        <th style="width: 60px">{{ Lang::get('server.label_dificulty') }}</th>
+                                        <th style="width: 60px">{{ Lang::get('server.label_difficulty') }}</th>
                                         <th style="width: 120px">{{ Lang::get('server.label_players') }}</th>
                                         <th style="width: 120px">{{ Lang::get('server.label_cpu') }}</th>
                                         <th style="width: 120px">{{ Lang::get('server.label_memory') }}</th>
-                                        <th style="width: 120px">{{ Lang::get('server.label_network') }}</th>
                                         @if ( $can_create == false and $can_update == false and $can_service == false and $can_mission == false and $can_server_cfg == false and $can_basic_cfg == false and $can_profile_cfg == false)
                                         @else
-                                            <th style="width: 182px;">
+                                            <th style="width: 32px;">
                                                 @if ($can_create)
                                                     <a class="btn btn-success btn-xs" href="/backend#backend/server/create"><i class="fa fa-plus"></i></a>
                                                 @endif
@@ -38,6 +38,46 @@
                                     @foreach ($servers as $server)
                                         <tr>
                                             <td style="width: 40px; text-align: center;" id="{{ $server->id }}-status"></td>
+                                            <td style="width: 162px;">
+                                                @if ($can_service)
+                                                    <div class="btn-group" role="group" aria-label="...">
+                                                        <a class="start_server btn btn-xs btn-default" href="/backend#backend/server/start/{{ $server->id }}" alt="{{ $server->id }}" data-serverName="{{ $server->name }}"><i class="fa fa-play"></i></a>
+                                                        <a class="restart_server btn btn-xs btn-default" href="/backend#backend/server/restart/{{ $server->id }}" alt="{{ $server->id }}" data-serverName="{{ $server->name }}"><i class="fa fa-repeat"></i></a>
+                                                        <a class="stop_server btn btn-xs btn-default" href="/backend#backend/server/stop/{{ $server->id }}" alt="{{ $server->id }}" data-serverName="{{ $server->name }}"><i class="fa fa-stop"></i></a>
+                                                    </div>
+                                                @endif
+                                                @if ( $can_update == false and $can_mission == false and $can_server_cfg == false and $can_basic_cfg == false and $can_profile_cfg == false)
+                                                @else
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            {{ Lang::get('server.options') }} <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            @if ($can_update)
+                                                                <li><a href="/backend#backend/server/update/{{ $server->id }}">{{ Lang::get('server.options_general') }}</a></li>
+                                                            @endif
+                                                            @if ($can_update)
+                                                                <li><a href="/backend#backend/server/update_mods/{{ $server->id }}">{{ Lang::get('server.options_mods') }}</a></li>
+                                                            @endif
+                                                            @if ($can_server_cfg)
+                                                                <li><a href="/backend#backend/server/update_server_cfg/{{ $server->id }}">{{ Lang::get('server.options_server') }}</a></li>
+                                                            @endif
+                                                            @if ($can_basic_cfg)
+                                                                <li><a href="/backend#backend/server/update_basic_cfg/{{ $server->id }}">{{ Lang::get('server.options_basic') }}</a></li>
+                                                            @endif
+                                                            @if ($can_profile_cfg)
+                                                                <li><a href="/backend#backend/server/update_profile/{{ $server->id }}">{{ Lang::get('server.options_profile') }}</a></li>
+                                                            @endif
+                                                            @if ($can_update)
+                                                                <li><a href="/backend#backend/server/loglist/{{ $server->id }}">{{ Lang::get('server.options_logviewer') }}</a></li>
+                                                            @endif
+                                                            @if ($is_admin)
+                                                                <li><a href="/backend#backend/server/update_admin/{{ $server->id }}">{{ Lang::get('server.options_admin') }}</a></li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                            </td>
                                             <td style="width: 90px">@if(isset($server->name)) {{ $server->name }} @endif</td>
                                             <td>@if(isset($server->hostname)) {{ $server->hostname }} @endif</td>
                                             <td style="width: 50px">@if(isset($server->port)) {{ $server->port }}2 @endif</td>
@@ -60,43 +100,9 @@
                                                     <div id="{{ $server->id }}-memory" class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: %;" rel="tooltip" data-original-title="%" data-placement="top"></div>
                                                 </div>
                                             </td>
-                                            <td style="width: 120px" id="{{ $server->id }}-network">
-                                            </td>
                                             @if ( $can_create == false and $can_update == false and $can_service == false and $can_mission == false and $can_server_cfg == false and $can_basic_cfg == false and $can_profile_cfg == false)
                                             @else
-                                                <td style="width: 182px;">
-                                                    @if ($can_service)
-                                                        <div class="btn-group" role="group" aria-label="...">
-                                                            <a class="start_server btn btn-xs btn-default" href="/backend#backend/server/start/{{ $server->id }}" alt="{{ $server->id }}"><i class="fa fa-play"></i></a>
-                                                            <a class="restart_server btn btn-xs btn-default" href="/backend#backend/server/restart/{{ $server->id }}" alt="{{ $server->id }}"><i class="fa fa-repeat"></i></a>
-                                                            <a class="stop_server btn btn-xs btn-default" href="/backend#backend/server/stop/{{ $server->id }}" alt="{{ $server->id }}"><i class="fa fa-stop"></i></a>
-                                                        </div>
-                                                    @endif
-                                                    @if ( $can_update == false and $can_mission == false and $can_server_cfg == false and $can_basic_cfg == false and $can_profile_cfg == false)
-                                                    @else
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                {{ Lang::get('server.options') }} <span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                @if ($can_update)
-                                                                    <li><a href="/backend#backend/server/loglist/{{ $server->id }}">{{ Lang::get('server.options_logviewer') }}</a></li>
-                                                                @endif
-                                                                @if ($can_update)
-                                                                    <li><a href="/backend#backend/server/update/{{ $server->id }}">{{ Lang::get('server.options_general') }}</a></li>
-                                                                @endif
-                                                                @if ($can_server_cfg)
-                                                                    <li><a href="/backend#backend/server/update_server_cfg/{{ $server->id }}">{{ Lang::get('server.options_server') }}</a></li>
-                                                                @endif
-                                                                @if ($can_basic_cfg)
-                                                                    <li><a href="/backend#backend/server/update_basic_cfg/{{ $server->id }}">{{ Lang::get('server.options_basic') }}</a></li>
-                                                                @endif
-                                                                @if ($can_profile_cfg)
-                                                                    <li><a href="/backend#backend/server/update_profile/{{ $server->id }}">{{ Lang::get('server.options_profile') }}</a></li>
-                                                                @endif
-                                                            </ul>
-                                                        </div>
-                                                    @endif
+                                                <td style="width: 32px;">
                                                     @if ($can_delete)
                                                         <a class="delete_server btn btn-danger btn-xs" href="/backend#backend/server/delete/{{ $server->id }}" data-serverName="{{ $server->name }}"><i class="fa fa-times"></i></a>
                                                     @endif
@@ -165,8 +171,6 @@
                 $('#{{ $server->id }}-memory').attr('aria-valuenow', data["mem"]["127.0.0.1:{{ $server->port }}2"]["percentage"]);
                 $('#{{ $server->id }}-memory').attr('data-original-title', data["mem"]["127.0.0.1:{{ $server->port }}2"]["percentage"] + '%');
                 $('#{{ $server->id }}-memory').attr('style', 'width: ' + data["mem"]["127.0.0.1:{{ $server->port }}2"]["percentage"] + '%');
-
-                $('#{{ $server->id }}-network').html(data["net"]["127.0.0.1:{{ $server->port }}2"] + " kbps");
 
             @endforeach
         });
@@ -243,48 +247,73 @@
         {
             var button = $(this);
             event.preventDefault();
-            $.ajax({
-                type:   "GET",
-                url:    "/api/server/start/" + $(this).attr("alt"),
-                data:   { },
-                success: function(msg)
-                {
-                    success(msg + " Started");
-                }
-             });
+            var serverName = $(this).attr("data-serverName");
+            if(false == confirm("Do you want to start server: '" + serverName +"' ?"))
+            {
+                event.preventDefault();
+            }
+            else
+            {
+                $.ajax({
+                    type:   "GET",
+                    url:    "/api/server/start/" + $(this).attr("alt"),
+                    data:   { },
+                    success: function(msg)
+                    {
+                        success(msg + " Started");
+                    }
+                });
+            }
         });
         $("a.stop_server").unbind().click(function(event)
         {
             var button = $(this);
             event.preventDefault();
-            $.ajax({
-                type:   "GET",
-                url:    "/api/server/stop/" + $(this).attr("alt"),
-                data:   { },
-                success: function(msg)
-                {
-                    success(msg + " Stop");
-                }
-             });
+            var serverName = $(this).attr("data-serverName");
+            if(false == confirm("Do you want to stop server: '" + serverName +"' ?"))
+            {
+                event.preventDefault();
+            }
+            else
+            {
+                $.ajax({
+                    type:   "GET",
+                    url:    "/api/server/stop/" + $(this).attr("alt"),
+                    data:   { },
+                    success: function(msg)
+                    {
+                        success(msg + " Stop");
+                    }
+                });
+            }
         });
         $("a.restart_server").unbind().click(function(event)
         {
             var button = $(this);
             event.preventDefault();
-            $.ajax({
-                type:   "GET",
-                url:    "/api/server/restart/" + $(this).attr("alt"),
-                data:   { },
-                success: function(msg)
-                {
-                    success(msg + " Restarted");
-                }
-             });
+            var serverName = $(this).attr("data-serverName");
+            if(false == confirm("Do you want to restart server: '" + serverName +"' ?"))
+            {
+                event.preventDefault();
+            }
+            else
+            {
+                $.ajax({
+                    type:   "GET",
+                    url:    "/api/server/restart/" + $(this).attr("alt"),
+                    data:   { },
+                    success: function(msg)
+                    {
+                        success(msg + " Restarted");
+                    }
+                });
+            }
         });
         $(".delete_server").click(function(e) {
             var serverName = $(this).attr("data-serverName");
-            if(false == confirm("Are you sure want to delete server: '" + serverName +"' ?")) {
-                e.preventDefault(); 
+            if(false == confirm("Are you sure want to delete server: '" + serverName +"' ?"))
+            {
+                event.preventDefault();
             }
         });
 

@@ -26,7 +26,7 @@
                                             {{ Lang::get('server.label_hostname') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="hostname" placeholder="{{ Lang::get('server.label_hostname') }}" value="TAW.net - EU - " />
+                                            <input type="text" name="hostname" placeholder="{{ Lang::get('server.label_hostname') }}" value="401Gaming - EU - " />
                                         </label>
                                     </section>
                                 </div>
@@ -95,7 +95,7 @@
                                             {{ Lang::get('server.label_private_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="private_password" placeholder="{{ Lang::get('server.label_private_password') }}" value="education" />
+                                            <input type="text" name="private_password" placeholder="{{ Lang::get('server.label_private_password') }}" value="operation" />
                                         </label>
                                     </section>
                                     <section class="col col-6">
@@ -103,7 +103,7 @@
                                             {{ Lang::get('server.label_admin_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="admin_password" placeholder="{{ Lang::get('server.label_admin_password') }}" value="Madness#Employs22!" />
+                                            <input type="text" name="admin_password" placeholder="{{ Lang::get('server.label_admin_password') }}" value="operation" />
                                         </label>
                                     </section>
                                 </div>
@@ -113,7 +113,7 @@
                                             {{ Lang::get('server.label_rcon_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="rcon_password" placeholder="{{ Lang::get('server.label_rcon_password') }}" value="qwerty#420" />
+                                            <input type="text" name="rcon_password" placeholder="{{ Lang::get('server.label_rcon_password') }}" value="operation" />
                                         </label>
                                     </section>
                                     <section class="col col-6">
@@ -131,7 +131,7 @@
                                             {{ Lang::get('server.label_command_password') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="command_password" placeholder="{{ Lang::get('server.label_command_password') }}" value="SidWasHere123" />
+                                            <input type="text" name="command_password" placeholder="{{ Lang::get('server.label_command_password') }}" value="operation" />
                                         </label>
                                     </section>
                                 </div>

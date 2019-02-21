@@ -2,8 +2,6 @@ hostname                            = "{{ $server->hostname }}";
 password                            = "{{ $server->private_password }}";
 passwordAdmin                       = "{{ $server->admin_password }}";
 serverCommandPassword				= "{{ $server->command_password }}";
-steamport                           = {{ $server->port }}3;
-steamqueryport                      = {{ $server->port }}4;
 motd[]                              = {
 <?php
     $motd           = explode(PHP_EOL, $server->server_cfg->motd);
@@ -38,8 +36,8 @@ disableVoN                          = {{ $server->server_cfg->disableVoN }};
 vonCodecQuality                     = {{ $server->server_cfg->vonCodecQuality }};
 persistent                          = {{ $server->server_cfg->persistent }};
 drawingInMap						= {{ $server->server_cfg->drawingInMap }};
-headlessClients[]                   = {"127.0.0.1","149.202.223.31"};
-localClient[]                       = {"127.0.0.1","149.202.223.31"};
+headlessClients[]                   = {"127.0.0.1","185.216.163.36"};
+localClient[]                       = {"127.0.0.1","185.216.163.36"};
 timeStampFormat                     = "{{ $server->server_cfg->timeStampFormat }}";
 onUserConnected                     = "";
 onUserDisconnected                  = "";
@@ -53,8 +51,9 @@ class Missions
     class Mission1
     {
         template                    = "{{ $server->server_cfg->template }}";
-        difficulty                  = "Custom";
+        difficulty                  = "{{ $server->server_cfg->difficulty }}";
         {{ $server->server_cfg->mission_parameters }}
     };
 };
+forcedDifficulty                    = "{{ $server->server_cfg->difficulty }}";
 missionWhitelist[]                  = {};

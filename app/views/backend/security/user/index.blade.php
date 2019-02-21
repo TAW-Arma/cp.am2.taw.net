@@ -52,7 +52,7 @@
                                                         <a class="btn btn-warning btn-xs" href="/backend#backend/security/user/update/{{ $user->id }}"><i class="fa fa-pencil"></i></a>
                                                     @endif
                                                     @if ($can_delete)
-                                                        <a class="btn btn-danger btn-xs"  href="/backend#backend/security/user/delete/{{ $user->id }}"><i class="fa fa-times"></i></a>
+                                                        <a class="btn btn-danger btn-xs delete_user"  href="/backend#backend/security/user/delete/{{ $user->id }}" data-userName="{{ $user->username }}"><i class="fa fa-times"></i></a>
                                                     @endif
                                                 </td>
                                             @endif
@@ -73,4 +73,11 @@
     {
     };
     pagefunction();
+    $(".delete_user").click(function(e) {
+        var userName = $(this).attr("data-userName");
+        if(false == confirm("Are you sure want to delete user: '" + userName +"' ?"))
+        {
+            event.preventDefault();
+        }
+    });
 </script>

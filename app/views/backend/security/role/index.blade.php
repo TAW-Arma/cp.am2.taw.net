@@ -38,7 +38,7 @@
                                                         <a class="btn btn-warning btn-xs" href="/backend#backend/security/role/update/{{ $role->id }}"><i class="fa fa-pencil"></i></a>
                                                     @endif
                                                     @if ($can_delete)
-                                                        <a class="btn btn-danger btn-xs"  href="/backend#backend/security/role/delete/{{ $role->id }}"><i class="fa fa-times"></i></a>
+                                                        <a class="btn btn-danger btn-xs delete_role"  href="/backend#backend/security/role/delete/{{ $role->id }}"" data-roleName="{{ $role->name }}"><i class="fa fa-times"></i></a>
                                                     @endif
                                                 </td>
                                             @endif
@@ -59,4 +59,11 @@
     {
     };
     pagefunction();
+    $(".delete_role").click(function(e) {
+        var roleName = $(this).attr("data-roleName");
+        if(false == confirm("Are you sure want to delete role: '" + roleName +"' ?"))
+        {
+            event.preventDefault();
+        }
+    });
 </script>

@@ -18,15 +18,19 @@
                                 <thead>
                                     <tr>
                                         <th>{{ Lang::get('server.logfile_name') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.logfile_date') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.logfile_size') }}</th>
                                         <th style="width: 32px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($console_logs as $log)
                                         <tr>
-                                            <td>{{ basename($log) }}</td>
+                                            <td>{{ $log['name'] }}</td>
+                                            <td style="width: 150px;">{{ $log['date'] }}</td>
+                                            <td style="width: 150px;">{{ $log['size'] }} MB</td>
                                             <td style="width: 32px;">
-                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($log); }}"><i class="fa fa-arrow-down"></i></a>
+                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($log['path']); }}"><i class="fa fa-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -58,15 +62,19 @@
                                 <thead>
                                     <tr>
                                         <th>{{ Lang::get('server.logfile_name') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.logfile_date') }}</th>
+                                        <th style="width: 150px;">{{ Lang::get('server.logfile_size') }}</th>
                                         <th style="width: 32px;"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($rpt_logs as $log)
                                         <tr>
-                                            <td>{{ basename($log) }}</td>
+                                            <td>{{ $log['name'] }}</td>
+                                            <td style="width: 150px;">{{ $log['date'] }}</td>
+                                            <td style="width: 150px;">{{ $log['size'] }} MB</td>
                                             <td style="width: 32px;">
-                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($log); }}"><i class="fa fa-arrow-down"></i></a>
+                                                <a class="btn btn-success btn-xs" href="backend#backend/server/logviewer/{{ $server->id; }}/{{ base64_encode($log['path']); }}"><i class="fa fa-arrow-down"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

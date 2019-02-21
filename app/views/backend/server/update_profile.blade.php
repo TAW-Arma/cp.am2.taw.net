@@ -10,23 +10,8 @@
                             </a>
                         </li>
                         <li>
-                            <a data-toggle="tab" href="#Recruit">
-                                {{ Lang::get('server.h2_recruit') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#Regular">
-                                {{ Lang::get('server.h2_regular') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#Veteran">
-                                {{ Lang::get('server.h2_veteran') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#Mercenary">
-                                {{ Lang::get('server.h2_mercenary') }}
+                            <a data-toggle="tab" href="#Difficulty">
+                                {{ Lang::get('server.h2_difficulty') }}
                             </a>
                         </li>
                     </ul>
@@ -41,37 +26,19 @@
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="version">
-                                                    {{ Lang::get('server.profile_label_version') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="version" placeholder="{{ Lang::get('server.profile_label_version') }}" value="{{ $server->server_profile->version }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="blood">
-                                                    {{ Lang::get('server.profile_label_blood') }}
+                                                <label for="battleye_license">
+                                                    {{ Lang::get('server.profile_label_battleye_license') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="blood" value="1" @if ($server->server_profile->blood == 1) checked="true" @endif />
+                                                        <input type="radio" name="battleye_license" value="1" @if ($server->server_profile->battleye_license == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="blood" value="0" @if ($server->server_profile->blood == 0) checked="true" @endif />
+                                                        <input type="radio" name="battleye_license" value="0" @if ($server->server_profile->battleye_license == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="max_samples_played">
-                                                    {{ Lang::get('server.profile_label_max_samples_played') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="max_samples_played" placeholder="{{ Lang::get('server.profile_label_max_samples_played') }}" value="{{ $server->server_profile->max_samples_played }}" />
-                                                </label>
                                             </section>
                                             <section class="col col-6">
                                                 <label for="single_voice">
@@ -91,27 +58,20 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
+                                                <label for="max_samples_played">
+                                                    {{ Lang::get('server.profile_label_max_samples_played') }}
+                                                </label>
+                                                <label class="input">
+                                                    <input type="text" name="max_samples_played" placeholder="{{ Lang::get('server.profile_label_max_samples_played') }}" value="{{ $server->server_profile->max_samples_played }}" />
+                                                </label>
+                                            </section>
+                                            <section class="col col-6">
                                                 <label for="scene_complexity">
                                                     {{ Lang::get('server.profile_label_scene_complexity') }}
                                                 </label>
                                                 <label class="input">
                                                     <input type="text" name="scene_complexity" placeholder="{{ Lang::get('server.profile_label_scene_complexity') }}" value="{{ $server->server_profile->scene_complexity }}" />
                                                 </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="gamma">
-                                                    {{ Lang::get('server.profile_label_gamma') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="gamma" value="1" @if ($server->server_profile->gamma == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="gamma" value="0" @if ($server->server_profile->gamma == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
                                             </section>
                                         </div>
                                         <div class="row">
@@ -124,23 +84,6 @@
                                                 </label>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="brightness">
-                                                    {{ Lang::get('server.profile_label_brightness') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="brightness" value="1" @if ($server->server_profile->brightness == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="brightness" value="0" @if ($server->server_profile->brightness == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
                                                 <label for="view_distance">
                                                     {{ Lang::get('server.profile_label_view_distance') }}
                                                 </label>
@@ -148,6 +91,8 @@
                                                     <input type="text" name="view_distance" placeholder="{{ Lang::get('server.profile_label_view_distance') }}" value="{{ $server->server_profile->view_distance }}" />
                                                 </label>
                                             </section>
+                                        </div>
+                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="preferred_object_view_distance">
                                                     {{ Lang::get('server.profile_label_preferred_object_view_distance') }}
@@ -156,8 +101,6 @@
                                                     <input type="text" name="preferred_object_view_distance" placeholder="{{ Lang::get('server.profile_label_preferred_object_view_distance') }}" value="{{ $server->server_profile->preferred_object_view_distance }}" />
                                                 </label>
                                             </section>
-                                        </div>
-                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="terrain_grid">
                                                     {{ Lang::get('server.profile_label_terrain_grid') }}
@@ -166,6 +109,8 @@
                                                     <input type="text" name="terrain_grid" placeholder="{{ Lang::get('server.profile_label_terrain_grid') }}" value="{{ $server->server_profile->terrain_grid }}" />
                                                 </label>
                                             </section>
+                                        </div>
+                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="volume_cd">
                                                     {{ Lang::get('server.profile_label_volume_cd') }}
@@ -174,8 +119,6 @@
                                                     <input type="text" name="volume_cd" placeholder="{{ Lang::get('server.profile_label_volume_cd') }}" value="{{ $server->server_profile->volume_cd }}" />
                                                 </label>
                                             </section>
-                                        </div>
-                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="volume_fx">
                                                     {{ Lang::get('server.profile_label_volume_fx') }}
@@ -184,6 +127,8 @@
                                                     <input type="text" name="volume_fx" placeholder="{{ Lang::get('server.profile_label_volume_fx') }}" value="{{ $server->server_profile->volume_fx }}" />
                                                 </label>
                                             </section>
+                                        </div>
+                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="volume_speech">
                                                     {{ Lang::get('server.profile_label_volume_speech') }}
@@ -192,8 +137,6 @@
                                                     <input type="text" name="volume_speech" placeholder="{{ Lang::get('server.profile_label_volume_speech') }}" value="{{ $server->server_profile->volume_speech }}" />
                                                 </label>
                                             </section>
-                                        </div>
-                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="volume_von">
                                                     {{ Lang::get('server.profile_label_volume_von') }}
@@ -202,6 +145,8 @@
                                                     <input type="text" name="volume_von" placeholder="{{ Lang::get('server.profile_label_volume_von') }}" value="{{ $server->server_profile->volume_von }}" />
                                                 </label>
                                             </section>
+                                        </div>
+                                        <div class="row">
                                             <section class="col col-6">
                                                 <label for="von_rec_threshold">
                                                     {{ Lang::get('server.profile_label_von_rec_threshold') }}
@@ -209,6 +154,8 @@
                                                 <label class="input">
                                                     <input type="text" name="von_rec_threshold" placeholder="{{ Lang::get('server.profile_label_von_rec_threshold') }}" value="{{ $server->server_profile->von_rec_threshold }}" />
                                                 </label>
+                                            </section>
+                                            <section class="col col-6">
                                             </section>
                                         </div>
                                         <section>
@@ -221,327 +168,35 @@
                                         </section>
                                     </fieldset>
                                 </div>
-                                <div class="tab-pane" id="Recruit">
+                                <div class="tab-pane" id="Difficulty">
                                     <fieldset>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="recruit_skill_friendly">
-                                                    {{ Lang::get('server.skill_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="recruit_skill_friendly" placeholder="{{ Lang::get('server.skill_friendly') }}" value="{{ $server->server_dificulty_recruit->skill_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_skill_enemy">
-                                                    {{ Lang::get('server.skill_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="recruit_skill_enemy" placeholder="{{ Lang::get('server.skill_enemy') }}" value="{{ $server->server_dificulty_recruit->skill_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_precision_friendly">
-                                                    {{ Lang::get('server.precision_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="recruit_precision_friendly" placeholder="{{ Lang::get('server.precision_friendly') }}" value="{{ $server->server_dificulty_recruit->precision_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_precision_enemy">
-                                                    {{ Lang::get('server.precision_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="recruit_precision_enemy" placeholder="{{ Lang::get('server.precision_enemy') }}" value="{{ $server->server_dificulty_recruit->precision_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_armor">
-                                                    {{ Lang::get('server.armor') }}
+                                                <label for="auto_report">
+                                                    {{ Lang::get('server.auto_report') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_armor" value="1" @if ($server->server_dificulty_recruit->armor == 1) checked="true" @endif />
+                                                        <input type="radio" name="auto_report" value="1" @if ($server->server_difficulty->auto_report == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_armor" value="0" @if ($server->server_dificulty_recruit->armor == 0) checked="true" @endif />
+                                                        <input type="radio" name="auto_report" value="0" @if ($server->server_difficulty->auto_report == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="recruit_friendly_tag">
-                                                    {{ Lang::get('server.friendly_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_friendly_tag" value="1" @if ($server->server_dificulty_recruit->friendly_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_friendly_tag" value="0" @if ($server->server_dificulty_recruit->friendly_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_enemy_tag">
-                                                    {{ Lang::get('server.enemy_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_enemy_tag" value="1" @if ($server->server_dificulty_recruit->enemy_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_enemy_tag" value="0" @if ($server->server_dificulty_recruit->enemy_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_mine_tag">
-                                                    {{ Lang::get('server.mine_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_mine_tag" value="1" @if ($server->server_dificulty_recruit->mine_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_mine_tag" value="0" @if ($server->server_dificulty_recruit->mine_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_hud">
-                                                    {{ Lang::get('server.hud') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud" value="1" @if ($server->server_dificulty_recruit->hud == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud" value="0" @if ($server->server_dificulty_recruit->hud == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_hud_perm">
-                                                    {{ Lang::get('server.hud_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_perm" value="1" @if ($server->server_dificulty_recruit->hud_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_perm" value="0" @if ($server->server_dificulty_recruit->hud_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_hud_wp">
-                                                    {{ Lang::get('server.hud_wp') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_wp" value="1" @if ($server->server_dificulty_recruit->hud_wp == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_wp" value="0" @if ($server->server_dificulty_recruit->hud_wp == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_hud_wp_perm">
-                                                    {{ Lang::get('server.hud_wp_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_wp_perm" value="1" @if ($server->server_dificulty_recruit->hud_wp_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_wp_perm" value="0" @if ($server->server_dificulty_recruit->hud_wp_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_hud_group_info">
-                                                    {{ Lang::get('server.hud_group_info') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_group_info" value="1" @if ($server->server_dificulty_recruit->hud_group_info == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_hud_group_info" value="0" @if ($server->server_dificulty_recruit->hud_group_info == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_auto_spot">
-                                                    {{ Lang::get('server.auto_spot') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_auto_spot" value="1" @if ($server->server_dificulty_recruit->auto_spot == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_auto_spot" value="0" @if ($server->server_dificulty_recruit->auto_spot == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_map">
-                                                    {{ Lang::get('server.map') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_map" value="1" @if ($server->server_dificulty_recruit->map == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_map" value="0" @if ($server->server_dificulty_recruit->map == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_weapon_cursor">
-                                                    {{ Lang::get('server.weapon_cursor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_weapon_cursor" value="1" @if ($server->server_dificulty_recruit->weapon_cursor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_weapon_cursor" value="0" @if ($server->server_dificulty_recruit->weapon_cursor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_auto_guide_at">
-                                                    {{ Lang::get('server.auto_guide_at') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_auto_guide_at" value="1" @if ($server->server_dificulty_recruit->auto_guide_at == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_auto_guide_at" value="0" @if ($server->server_dificulty_recruit->auto_guide_at == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_clock_indicator">
-                                                    {{ Lang::get('server.clock_indicator') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_clock_indicator" value="1" @if ($server->server_dificulty_recruit->clock_indicator == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_clock_indicator" value="0" @if ($server->server_dificulty_recruit->clock_indicator == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_third_person_view">
-                                                    {{ Lang::get('server.third_person_view') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_third_person_view" value="1" @if ($server->server_dificulty_recruit->third_person_view == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_third_person_view" value="0" @if ($server->server_dificulty_recruit->third_person_view == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_ultra_ai">
-                                                    {{ Lang::get('server.ultra_ai') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_ultra_ai" value="1" @if ($server->server_dificulty_recruit->ultra_ai == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_ultra_ai" value="0" @if ($server->server_dificulty_recruit->ultra_ai == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="recruit_camera_shake">
+                                                <label for="camera_shake">
                                                     {{ Lang::get('server.camera_shake') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_camera_shake" value="1" @if ($server->server_dificulty_recruit->camera_shake == 1) checked="true" @endif />
+                                                        <input type="radio" name="camera_shake" value="1" @if ($server->server_difficulty->camera_shake == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_camera_shake" value="0" @if ($server->server_dificulty_recruit->camera_shake == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_unlimited_saves">
-                                                    {{ Lang::get('server.unlimited_saves') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_unlimited_saves" value="1" @if ($server->server_dificulty_recruit->unlimited_saves == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_unlimited_saves" value="0" @if ($server->server_dificulty_recruit->unlimited_saves == 0) checked="true" @endif />
+                                                        <input type="radio" name="camera_shake" value="0" @if ($server->server_difficulty->camera_shake == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -549,31 +204,35 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="recruit_death_messages">
+                                                <label for="commands">
+                                                    {{ Lang::get('server.commands') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="commands" value="2" @if ($server->server_difficulty->commands == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="commands" value="1" @if ($server->server_difficulty->commands == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="commands" value="0" @if ($server->server_difficulty->commands == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label for="death_messages">
                                                     {{ Lang::get('server.death_messages') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_death_messages" value="1" @if ($server->server_dificulty_recruit->death_messages == 1) checked="true" @endif />
+                                                        <input type="radio" name="death_messages" value="1" @if ($server->server_difficulty->death_messages == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_death_messages" value="0" @if ($server->server_dificulty_recruit->death_messages == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="recruit_net_stats">
-                                                    {{ Lang::get('server.net_stats') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_net_stats" value="1" @if ($server->server_dificulty_recruit->net_stats == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="recruit_net_stats" value="0" @if ($server->server_dificulty_recruit->net_stats == 0) checked="true" @endif />
+                                                        <input type="radio" name="death_messages" value="0" @if ($server->server_difficulty->death_messages == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -581,103 +240,39 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="recruit_von_id">
-                                                    {{ Lang::get('server.von_id') }}
+                                                <label for="detected_mines">
+                                                    {{ Lang::get('server.detected_mines') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_von_id" value="1" @if ($server->server_dificulty_recruit->von_id == 1) checked="true" @endif />
+                                                        <input type="radio" name="detected_mines" value="2" @if ($server->server_difficulty->detected_mines == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="detected_mines" value="1" @if ($server->server_difficulty->detected_mines == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_von_id" value="0" @if ($server->server_dificulty_recruit->von_id == 0) checked="true" @endif />
+                                                        <input type="radio" name="detected_mines" value="0" @if ($server->server_difficulty->detected_mines == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="recruit_extended_info_type">
-                                                    {{ Lang::get('server.extended_info_type') }}
+                                                <label for="enemy_tags">
+                                                    {{ Lang::get('server.enemy_tags') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_extended_info_type" value="1" @if ($server->server_dificulty_recruit->extended_info_type == 1) checked="true" @endif />
+                                                        <input type="radio" name="enemy_tags" value="2" @if ($server->server_difficulty->enemy_tags == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="enemy_tags" value="1" @if ($server->server_difficulty->enemy_tags == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="recruit_extended_info_type" value="0" @if ($server->server_dificulty_recruit->extended_info_type == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div class="tab-pane" id="Regular">
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_skill_friendly">
-                                                    {{ Lang::get('server.skill_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="regular_skill_friendly" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->skill_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_skill_enemy">
-                                                    {{ Lang::get('server.skill_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="regular_skill_enemy" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->skill_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_precision_friendly">
-                                                    {{ Lang::get('server.precision_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="regular_precision_friendly" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->precision_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_precision_enemy">
-                                                    {{ Lang::get('server.precision_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="regular_precision_enemy" placeholder="{{ Lang::get('server.regular_label_') }}" value="{{ $server->server_dificulty_regular->precision_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_armor">
-                                                    {{ Lang::get('server.armor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_armor" value="1" @if ($server->server_dificulty_regular->armor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_armor" value="0" @if ($server->server_dificulty_regular->armor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_friendly_tag">
-                                                    {{ Lang::get('server.friendly_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_friendly_tag" value="1" @if ($server->server_dificulty_regular->friendly_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_friendly_tag" value="0" @if ($server->server_dificulty_regular->friendly_tag == 0) checked="true" @endif />
+                                                        <input type="radio" name="enemy_tags" value="0" @if ($server->server_difficulty->enemy_tags == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -685,63 +280,39 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_enemy_tag">
-                                                    {{ Lang::get('server.enemy_tag') }}
+                                                <label for="friendly_tags">
+                                                    {{ Lang::get('server.friendly_tags') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_enemy_tag" value="1" @if ($server->server_dificulty_regular->enemy_tag == 1) checked="true" @endif />
+                                                        <input type="radio" name="friendly_tags" value="2" @if ($server->server_difficulty->friendly_tags == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="friendly_tags" value="1" @if ($server->server_difficulty->friendly_tags == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_enemy_tag" value="0" @if ($server->server_dificulty_regular->enemy_tag == 0) checked="true" @endif />
+                                                        <input type="radio" name="friendly_tags" value="0" @if ($server->server_difficulty->friendly_tags == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_mine_tag">
-                                                    {{ Lang::get('server.mine_tag') }}
+                                                <label for="group_indicators">
+                                                    {{ Lang::get('server.group_indicators') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_mine_tag" value="1" @if ($server->server_dificulty_regular->mine_tag == 1) checked="true" @endif />
+                                                        <input type="radio" name="group_indicators" value="2" @if ($server->server_difficulty->group_indicators == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="group_indicators" value="1" @if ($server->server_difficulty->group_indicators == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_mine_tag" value="0" @if ($server->server_dificulty_regular->mine_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_hud">
-                                                    {{ Lang::get('server.hud') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud" value="1" @if ($server->server_dificulty_regular->hud == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud" value="0" @if ($server->server_dificulty_regular->hud == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_hud_perm">
-                                                    {{ Lang::get('server.hud_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud_perm" value="1" @if ($server->server_dificulty_regular->hud_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud_perm" value="0" @if ($server->server_dificulty_regular->hud_perm == 0) checked="true" @endif />
+                                                        <input type="radio" name="group_indicators" value="0" @if ($server->server_difficulty->group_indicators == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -749,63 +320,31 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_hud_wp">
-                                                    {{ Lang::get('server.hud_wp') }}
+                                                <label for="map_content">
+                                                    {{ Lang::get('server.map_content') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_hud_wp" value="1" @if ($server->server_dificulty_regular->hud_wp == 1) checked="true" @endif />
+                                                        <input type="radio" name="map_content" value="1" @if ($server->server_difficulty->map_content == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_hud_wp" value="0" @if ($server->server_dificulty_regular->hud_wp == 0) checked="true" @endif />
+                                                        <input type="radio" name="map_content" value="0" @if ($server->server_difficulty->map_content == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_hud_wp_perm">
-                                                    {{ Lang::get('server.hud_wp_perm') }}
+                                                <label for="map_content_enemy">
+                                                    {{ Lang::get('server.map_content_enemy') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_hud_wp_perm" value="1" @if ($server->server_dificulty_regular->hud_wp_perm == 1) checked="true" @endif />
+                                                        <input type="radio" name="map_content_enemy" value="1" @if ($server->server_difficulty->map_content_enemy == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_hud_wp_perm" value="0" @if ($server->server_dificulty_regular->hud_wp_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_hud_group_info">
-                                                    {{ Lang::get('server.hud_group_info') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud_group_info" value="1" @if ($server->server_dificulty_regular->hud_group_info == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_hud_group_info" value="0" @if ($server->server_dificulty_regular->hud_group_info == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_auto_spot">
-                                                    {{ Lang::get('server.auto_spot') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_auto_spot" value="1" @if ($server->server_dificulty_regular->auto_spot == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_auto_spot" value="0" @if ($server->server_dificulty_regular->auto_spot == 0) checked="true" @endif />
+                                                        <input type="radio" name="map_content_enemy" value="0" @if ($server->server_difficulty->map_content_enemy == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -813,63 +352,31 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_map">
-                                                    {{ Lang::get('server.map') }}
+                                                <label for="map_content_friendly">
+                                                    {{ Lang::get('server.map_content_friendly') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_map" value="1" @if ($server->server_dificulty_regular->map == 1) checked="true" @endif />
+                                                        <input type="radio" name="map_content_friendly" value="1" @if ($server->server_difficulty->map_content_friendly == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_map" value="0" @if ($server->server_dificulty_regular->map == 0) checked="true" @endif />
+                                                        <input type="radio" name="map_content_friendly" value="0" @if ($server->server_difficulty->map_content_friendly == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_weapon_cursor">
-                                                    {{ Lang::get('server.weapon_cursor') }}
+                                                <label for="map_content_mines">
+                                                    {{ Lang::get('server.map_content_mines') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_weapon_cursor" value="1" @if ($server->server_dificulty_regular->weapon_cursor == 1) checked="true" @endif />
+                                                        <input type="radio" name="map_content_mines" value="1" @if ($server->server_difficulty->map_content_mines == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_weapon_cursor" value="0" @if ($server->server_dificulty_regular->weapon_cursor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_auto_guide_at">
-                                                    {{ Lang::get('server.auto_guide_at') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_auto_guide_at" value="1" @if ($server->server_dificulty_regular->auto_guide_at == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_auto_guide_at" value="0" @if ($server->server_dificulty_regular->auto_guide_at == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_clock_indicator">
-                                                    {{ Lang::get('server.clock_indicator') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_clock_indicator" value="1" @if ($server->server_dificulty_regular->clock_indicator == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_clock_indicator" value="0" @if ($server->server_dificulty_regular->clock_indicator == 0) checked="true" @endif />
+                                                        <input type="radio" name="map_content_mines" value="0" @if ($server->server_difficulty->map_content_mines == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -877,31 +384,171 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_third_person_view">
+                                                <label for="map_content_ping">
+                                                    {{ Lang::get('server.map_content_ping') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="map_content_ping" value="1" @if ($server->server_difficulty->map_content_ping == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="map_content_ping" value="0" @if ($server->server_difficulty->map_content_ping == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label for="multiple_saves">
+                                                    {{ Lang::get('server.multiple_saves') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="multiple_saves" value="1" @if ($server->server_difficulty->multiple_saves == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="multiple_saves" value="0" @if ($server->server_difficulty->multiple_saves == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label for="reduced_damage">
+                                                    {{ Lang::get('server.reduced_damage') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="reduced_damage" value="1" @if ($server->server_difficulty->reduced_damage == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="reduced_damage" value="0" @if ($server->server_difficulty->reduced_damage == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label for="score_table">
+                                                    {{ Lang::get('server.score_table') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="score_table" value="1" @if ($server->server_difficulty->score_table == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="score_table" value="0" @if ($server->server_difficulty->score_table == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label for="squad_radar">
+                                                    {{ Lang::get('server.squad_radar') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="squad_radar" value="2" @if ($server->server_difficulty->squad_radar == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="squad_radar" value="1" @if ($server->server_difficulty->squad_radar == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="squad_radar" value="0" @if ($server->server_difficulty->squad_radar == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label for="stamina_bar">
+                                                    {{ Lang::get('server.stamina_bar') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="stamina_bar" value="2" @if ($server->server_difficulty->stamina_bar == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="stamina_bar" value="1" @if ($server->server_difficulty->stamina_bar == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="stamina_bar" value="0" @if ($server->server_difficulty->stamina_bar == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label for="stance_indicator">
+                                                    {{ Lang::get('server.stance_indicator') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="stance_indicator" value="2" @if ($server->server_difficulty->stance_indicator == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="stance_indicator" value="1" @if ($server->server_difficulty->stance_indicator == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="stance_indicator" value="0" @if ($server->server_difficulty->stance_indicator == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                            <section class="col col-6">
+                                                <label for="tactical_ping">
+                                                    {{ Lang::get('server.tactical_ping') }}
+                                                </label>
+                                                <div class="inline-group">
+                                                    <label class="radio">
+                                                        <input type="radio" name="tactical_ping" value="1" @if ($server->server_difficulty->tactical_ping == 1) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.yes') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="tactical_ping" value="0" @if ($server->server_difficulty->tactical_ping == 0) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.no') }}
+                                                    </label>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="row">
+                                            <section class="col col-6">
+                                                <label for="third_person_view">
                                                     {{ Lang::get('server.third_person_view') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_third_person_view" value="1" @if ($server->server_dificulty_regular->third_person_view == 1) checked="true" @endif />
+                                                        <input type="radio" name="third_person_view" value="1" @if ($server->server_difficulty->third_person_view == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_third_person_view" value="0" @if ($server->server_dificulty_regular->third_person_view == 0) checked="true" @endif />
+                                                        <input type="radio" name="third_person_view" value="0" @if ($server->server_difficulty->third_person_view == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_ultra_ai">
-                                                    {{ Lang::get('server.ultra_ai') }}
+                                                <label for="vision_aid">
+                                                    {{ Lang::get('server.vision_aid') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_ultra_ai" value="1" @if ($server->server_dificulty_regular->ultra_ai == 1) checked="true" @endif />
+                                                        <input type="radio" name="vision_aid" value="1" @if ($server->server_difficulty->vision_aid == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_ultra_ai" value="0" @if ($server->server_dificulty_regular->ultra_ai == 0) checked="true" @endif />
+                                                        <input type="radio" name="vision_aid" value="0" @if ($server->server_difficulty->vision_aid == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -909,63 +556,35 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_camera_shake">
-                                                    {{ Lang::get('server.camera_shake') }}
+                                                <label for="vonid">
+                                                    {{ Lang::get('server.vonid') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_camera_shake" value="1" @if ($server->server_dificulty_regular->camera_shake == 1) checked="true" @endif />
+                                                        <input type="radio" name="vonid" value="1" @if ($server->server_difficulty->vonid == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_camera_shake" value="0" @if ($server->server_dificulty_regular->camera_shake == 0) checked="true" @endif />
+                                                        <input type="radio" name="vonid" value="0" @if ($server->server_difficulty->vonid == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_unlimited_saves">
-                                                    {{ Lang::get('server.unlimited_saves') }}
+                                                <label for="waypoints">
+                                                    {{ Lang::get('server.waypoints') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_unlimited_saves" value="1" @if ($server->server_dificulty_regular->unlimited_saves == 1) checked="true" @endif />
+                                                        <input type="radio" name="waypoints" value="2" @if ($server->server_difficulty->waypoints == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="waypoints" value="1" @if ($server->server_difficulty->waypoints == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_unlimited_saves" value="0" @if ($server->server_dificulty_regular->unlimited_saves == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="regular_death_messages">
-                                                    {{ Lang::get('server.death_messages') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_death_messages" value="1" @if ($server->server_dificulty_regular->death_messages == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_death_messages" value="0" @if ($server->server_dificulty_regular->death_messages == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="regular_net_stats">
-                                                    {{ Lang::get('server.net_stats') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_net_stats" value="1" @if ($server->server_dificulty_regular->net_stats == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="regular_net_stats" value="0" @if ($server->server_dificulty_regular->net_stats == 0) checked="true" @endif />
+                                                        <input type="radio" name="waypoints" value="0" @if ($server->server_difficulty->waypoints == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
@@ -973,818 +592,60 @@
                                         </div>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="regular_von_id">
-                                                    {{ Lang::get('server.von_id') }}
+                                                <label for="weapon_crosshair">
+                                                    {{ Lang::get('server.weapon_crosshair') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_von_id" value="1" @if ($server->server_dificulty_regular->von_id == 1) checked="true" @endif />
+                                                        <input type="radio" name="weapon_crosshair" value="2" @if ($server->server_difficulty->weapon_crosshair == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="weapon_crosshair" value="1" @if ($server->server_difficulty->weapon_crosshair == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_von_id" value="0" @if ($server->server_dificulty_regular->von_id == 0) checked="true" @endif />
+                                                        <input type="radio" name="weapon_crosshair" value="0" @if ($server->server_difficulty->weapon_crosshair == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="regular_extended_info_type">
-                                                    {{ Lang::get('server.extended_info_type') }}
+                                                <label for="weapon_info">
+                                                    {{ Lang::get('server.weapon_info') }}
                                                 </label>
                                                 <div class="inline-group">
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_extended_info_type" value="1" @if ($server->server_dificulty_regular->extended_info_type == 1) checked="true" @endif />
+                                                        <input type="radio" name="weapon_info" value="2" @if ($server->server_difficulty->weapon_info == 2) checked="true" @endif />
+                                                        <i></i>{{ Lang::get('general.always') }}
+                                                    </label>
+                                                    <label class="radio">
+                                                        <input type="radio" name="weapon_info" value="1" @if ($server->server_difficulty->weapon_info == 1) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.yes') }}
                                                     </label>
                                                     <label class="radio">
-                                                        <input type="radio" name="regular_extended_info_type" value="0" @if ($server->server_dificulty_regular->extended_info_type == 0) checked="true" @endif />
+                                                        <input type="radio" name="weapon_info" value="0" @if ($server->server_difficulty->weapon_info == 0) checked="true" @endif />
                                                         <i></i>{{ Lang::get('general.no') }}
                                                     </label>
                                                 </div>
                                             </section>
                                         </div>
-                                    </fieldset>
-                                </div>
-                                <div class="tab-pane" id="Veteran">
-                                    <fieldset>
                                         <div class="row">
                                             <section class="col col-6">
-                                                <label for="veteran_skill_friendly">
-                                                    {{ Lang::get('server.skill_friendly') }}
+                                                <label for="skill_ai">
+                                                    {{ Lang::get('server.skill_ai') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="veteran_skill_friendly" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->skill_friendly }}" />
+                                                    <input type="text" name="skill_ai" placeholder="{{ Lang::get('server.skill_ai') }}" value="{{ $server->server_profile->skill_ai }}" />
                                                 </label>
                                             </section>
                                             <section class="col col-6">
-                                                <label for="veteran_skill_enemy">
-                                                    {{ Lang::get('server.skill_enemy') }}
+                                                <label for="precision_ai">
+                                                    {{ Lang::get('server.precision_ai') }}
                                                 </label>
                                                 <label class="input">
-                                                    <input type="text" name="veteran_skill_enemy" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->skill_enemy }}" />
+                                                    <input type="text" name="precision_ai" placeholder="{{ Lang::get('server.precision_ai') }}" value="{{ $server->server_profile->precision_ai }}" />
                                                 </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_precision_friendly">
-                                                    {{ Lang::get('server.precision_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="veteran_precision_friendly" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->precision_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_precision_enemy">
-                                                    {{ Lang::get('server.precision_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="veteran_precision_enemy" placeholder="{{ Lang::get('server.veteran_label_') }}" value="{{ $server->server_dificulty_veteran->precision_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_armor">
-                                                    {{ Lang::get('server.armor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_armor" value="1" @if ($server->server_dificulty_veteran->armor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_armor" value="0" @if ($server->server_dificulty_veteran->armor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_friendly_tag">
-                                                    {{ Lang::get('server.friendly_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_friendly_tag" value="1" @if ($server->server_dificulty_veteran->friendly_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_friendly_tag" value="0" @if ($server->server_dificulty_veteran->friendly_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_enemy_tag">
-                                                    {{ Lang::get('server.enemy_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_enemy_tag" value="1" @if ($server->server_dificulty_veteran->enemy_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_enemy_tag" value="0" @if ($server->server_dificulty_veteran->enemy_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_mine_tag">
-                                                    {{ Lang::get('server.mine_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_mine_tag" value="1" @if ($server->server_dificulty_veteran->mine_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_mine_tag" value="0" @if ($server->server_dificulty_veteran->mine_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_hud">
-                                                    {{ Lang::get('server.hud') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud" value="1" @if ($server->server_dificulty_veteran->hud == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud" value="0" @if ($server->server_dificulty_veteran->hud == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_hud_perm">
-                                                    {{ Lang::get('server.hud_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_perm" value="1" @if ($server->server_dificulty_veteran->hud_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_perm" value="0" @if ($server->server_dificulty_veteran->hud_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_hud_wp">
-                                                    {{ Lang::get('server.hud_wp') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_wp" value="1" @if ($server->server_dificulty_veteran->hud_wp == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_wp" value="0" @if ($server->server_dificulty_veteran->hud_wp == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_hud_wp_perm">
-                                                    {{ Lang::get('server.hud_wp_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_wp_perm" value="1" @if ($server->server_dificulty_veteran->hud_wp_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_wp_perm" value="0" @if ($server->server_dificulty_veteran->hud_wp_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_hud_group_info">
-                                                    {{ Lang::get('server.hud_group_info') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_group_info" value="1" @if ($server->server_dificulty_veteran->hud_group_info == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_hud_group_info" value="0" @if ($server->server_dificulty_veteran->hud_group_info == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_auto_spot">
-                                                    {{ Lang::get('server.auto_spot') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_auto_spot" value="1" @if ($server->server_dificulty_veteran->auto_spot == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_auto_spot" value="0" @if ($server->server_dificulty_veteran->auto_spot == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_map">
-                                                    {{ Lang::get('server.map') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_map" value="1" @if ($server->server_dificulty_veteran->map == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_map" value="0" @if ($server->server_dificulty_veteran->map == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_weapon_cursor">
-                                                    {{ Lang::get('server.weapon_cursor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_weapon_cursor" value="1" @if ($server->server_dificulty_veteran->weapon_cursor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_weapon_cursor" value="0" @if ($server->server_dificulty_veteran->weapon_cursor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_auto_guide_at">
-                                                    {{ Lang::get('server.auto_guide_at') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_auto_guide_at" value="1" @if ($server->server_dificulty_veteran->auto_guide_at == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_auto_guide_at" value="0" @if ($server->server_dificulty_veteran->auto_guide_at == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_clock_indicator">
-                                                    {{ Lang::get('server.clock_indicator') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_clock_indicator" value="1" @if ($server->server_dificulty_veteran->clock_indicator == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_clock_indicator" value="0" @if ($server->server_dificulty_veteran->clock_indicator == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_third_person_view">
-                                                    {{ Lang::get('server.third_person_view') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_third_person_view" value="1" @if ($server->server_dificulty_veteran->third_person_view == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_third_person_view" value="0" @if ($server->server_dificulty_veteran->third_person_view == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_ultra_ai">
-                                                    {{ Lang::get('server.ultra_ai') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_ultra_ai" value="1" @if ($server->server_dificulty_veteran->ultra_ai == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_ultra_ai" value="0" @if ($server->server_dificulty_veteran->ultra_ai == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_camera_shake">
-                                                    {{ Lang::get('server.camera_shake') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_camera_shake" value="1" @if ($server->server_dificulty_veteran->camera_shake == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_camera_shake" value="0" @if ($server->server_dificulty_veteran->camera_shake == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_unlimited_saves">
-                                                    {{ Lang::get('server.unlimited_saves') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_unlimited_saves" value="1" @if ($server->server_dificulty_veteran->unlimited_saves == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_unlimited_saves" value="0" @if ($server->server_dificulty_veteran->unlimited_saves == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_death_messages">
-                                                    {{ Lang::get('server.death_messages') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_death_messages" value="1" @if ($server->server_dificulty_veteran->death_messages == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_death_messages" value="0" @if ($server->server_dificulty_veteran->death_messages == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_net_stats">
-                                                    {{ Lang::get('server.net_stats') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_net_stats" value="1" @if ($server->server_dificulty_veteran->net_stats == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_net_stats" value="0" @if ($server->server_dificulty_veteran->net_stats == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="veteran_von_id">
-                                                    {{ Lang::get('server.von_id') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_von_id" value="1" @if ($server->server_dificulty_veteran->von_id == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_von_id" value="0" @if ($server->server_dificulty_veteran->von_id == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="veteran_extended_info_type">
-                                                    {{ Lang::get('server.extended_info_type') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_extended_info_type" value="1" @if ($server->server_dificulty_veteran->extended_info_type == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="veteran_extended_info_type" value="0" @if ($server->server_dificulty_veteran->extended_info_type == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div class="tab-pane" id="Mercenary">
-                                    <fieldset>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_skill_friendly">
-                                                    {{ Lang::get('server.skill_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="mercenary_skill_friendly" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->skill_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_skill_enemy">
-                                                    {{ Lang::get('server.skill_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="mercenary_skill_enemy" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->skill_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_precision_friendly">
-                                                    {{ Lang::get('server.precision_friendly') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="mercenary_precision_friendly" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->precision_friendly }}" />
-                                                </label>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_precision_enemy">
-                                                    {{ Lang::get('server.precision_enemy') }}
-                                                </label>
-                                                <label class="input">
-                                                    <input type="text" name="mercenary_precision_enemy" placeholder="{{ Lang::get('server.mercenary_label_') }}" value="{{ $server->server_dificulty_mercenary->precision_enemy }}" />
-                                                </label>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_armor">
-                                                    {{ Lang::get('server.armor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_armor" value="1" @if ($server->server_dificulty_mercenary->armor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_armor" value="0" @if ($server->server_dificulty_mercenary->armor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_friendly_tag">
-                                                    {{ Lang::get('server.friendly_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_friendly_tag" value="1" @if ($server->server_dificulty_mercenary->friendly_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_friendly_tag" value="0" @if ($server->server_dificulty_mercenary->friendly_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_enemy_tag">
-                                                    {{ Lang::get('server.enemy_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_enemy_tag" value="1" @if ($server->server_dificulty_mercenary->enemy_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_enemy_tag" value="0" @if ($server->server_dificulty_mercenary->enemy_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_mine_tag">
-                                                    {{ Lang::get('server.mine_tag') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_mine_tag" value="1" @if ($server->server_dificulty_mercenary->mine_tag == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_mine_tag" value="0" @if ($server->server_dificulty_mercenary->mine_tag == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_hud">
-                                                    {{ Lang::get('server.hud') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud" value="1" @if ($server->server_dificulty_mercenary->hud == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud" value="0" @if ($server->server_dificulty_mercenary->hud == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_hud_perm">
-                                                    {{ Lang::get('server.hud_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_perm" value="1" @if ($server->server_dificulty_mercenary->hud_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_perm" value="0" @if ($server->server_dificulty_mercenary->hud_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_hud_wp">
-                                                    {{ Lang::get('server.hud_wp') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_wp" value="1" @if ($server->server_dificulty_mercenary->hud_wp == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_wp" value="0" @if ($server->server_dificulty_mercenary->hud_wp == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_hud_wp_perm">
-                                                    {{ Lang::get('server.hud_wp_perm') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_wp_perm" value="1" @if ($server->server_dificulty_mercenary->hud_wp_perm == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_wp_perm" value="0" @if ($server->server_dificulty_mercenary->hud_wp_perm == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_hud_group_info">
-                                                    {{ Lang::get('server.hud_group_info') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_group_info" value="1" @if ($server->server_dificulty_mercenary->hud_group_info == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_hud_group_info" value="0" @if ($server->server_dificulty_mercenary->hud_group_info == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_auto_spot">
-                                                    {{ Lang::get('server.auto_spot') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_auto_spot" value="1" @if ($server->server_dificulty_mercenary->auto_spot == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_auto_spot" value="0" @if ($server->server_dificulty_mercenary->auto_spot == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_map">
-                                                    {{ Lang::get('server.map') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_map" value="1" @if ($server->server_dificulty_mercenary->map == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_map" value="0" @if ($server->server_dificulty_mercenary->map == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_weapon_cursor">
-                                                    {{ Lang::get('server.weapon_cursor') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_weapon_cursor" value="1" @if ($server->server_dificulty_mercenary->weapon_cursor == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_weapon_cursor" value="0" @if ($server->server_dificulty_mercenary->weapon_cursor == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_auto_guide_at">
-                                                    {{ Lang::get('server.auto_guide_at') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_auto_guide_at" value="1" @if ($server->server_dificulty_mercenary->auto_guide_at == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_auto_guide_at" value="0" @if ($server->server_dificulty_mercenary->auto_guide_at == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_clock_indicator">
-                                                    {{ Lang::get('server.clock_indicator') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_clock_indicator" value="1" @if ($server->server_dificulty_mercenary->clock_indicator == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_clock_indicator" value="0" @if ($server->server_dificulty_mercenary->clock_indicator == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_third_person_view">
-                                                    {{ Lang::get('server.third_person_view') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_third_person_view" value="1" @if ($server->server_dificulty_mercenary->third_person_view == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_third_person_view" value="0" @if ($server->server_dificulty_mercenary->third_person_view == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_ultra_ai">
-                                                    {{ Lang::get('server.ultra_ai') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_ultra_ai" value="1" @if ($server->server_dificulty_mercenary->ultra_ai == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_ultra_ai" value="0" @if ($server->server_dificulty_mercenary->ultra_ai == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_camera_shake">
-                                                    {{ Lang::get('server.camera_shake') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_camera_shake" value="1" @if ($server->server_dificulty_mercenary->camera_shake == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_camera_shake" value="0" @if ($server->server_dificulty_mercenary->camera_shake == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_unlimited_saves">
-                                                    {{ Lang::get('server.unlimited_saves') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_unlimited_saves" value="1" @if ($server->server_dificulty_mercenary->unlimited_saves == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_unlimited_saves" value="0" @if ($server->server_dificulty_mercenary->unlimited_saves == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_death_messages">
-                                                    {{ Lang::get('server.death_messages') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_death_messages" value="1" @if ($server->server_dificulty_mercenary->death_messages == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_death_messages" value="0" @if ($server->server_dificulty_mercenary->death_messages == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_net_stats">
-                                                    {{ Lang::get('server.net_stats') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_net_stats" value="1" @if ($server->server_dificulty_mercenary->net_stats == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_net_stats" value="0" @if ($server->server_dificulty_mercenary->net_stats == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                        </div>
-                                        <div class="row">
-                                            <section class="col col-6">
-                                                <label for="mercenary_von_id">
-                                                    {{ Lang::get('server.von_id') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_von_id" value="1" @if ($server->server_dificulty_mercenary->von_id == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_von_id" value="0" @if ($server->server_dificulty_mercenary->von_id == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
-                                            </section>
-                                            <section class="col col-6">
-                                                <label for="mercenary_extended_info_type">
-                                                    {{ Lang::get('server.{0}') }}
-                                                </label>
-                                                <div class="inline-group">
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_extended_info_type" value="1" @if ($server->server_dificulty_mercenary->extended_info_type == 1) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.yes') }}
-                                                    </label>
-                                                    <label class="radio">
-                                                        <input type="radio" name="mercenary_extended_info_type" value="0" @if ($server->server_dificulty_mercenary->extended_info_type == 0) checked="true" @endif />
-                                                        <i></i>{{ Lang::get('general.no') }}
-                                                    </label>
-                                                </div>
                                             </section>
                                         </div>
                                     </fieldset>

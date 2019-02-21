@@ -36,7 +36,7 @@
                                                         <a class="btn btn-warning btn-xs" href="/backend#backend/security/permission/update/{{ $permission->id }}"><i class="fa fa-pencil"></i></a>
                                                     @endif
                                                     @if ($can_delete)
-                                                        <a class="btn btn-danger btn-xs"  href="/backend#backend/security/permission/delete/{{ $permission->id }}"><i class="fa fa-times"></i></a>
+                                                        <a class="btn btn-danger btn-xs delete_permission"  href="/backend#backend/security/permission/delete/{{ $permission->id }}" data-permissionName="{{ $permission->name }}"><i class="fa fa-times"></i></a>
                                                     @endif
                                                 </td>
                                             @endif
@@ -57,4 +57,11 @@
     {
     };
     pagefunction();
+    $(".delete_permission").click(function(e) {
+        var permissionName = $(this).attr("data-permissionName");
+        if(false == confirm("Are you sure want to delete permission: '" + permissionName +"' ?"))
+        {
+            event.preventDefault();
+        }
+    });
 </script>
