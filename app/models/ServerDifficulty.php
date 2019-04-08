@@ -1,8 +1,8 @@
 <?php
 
-class ServerDificultyMercenary extends Eloquent
+class ServerDifficulty extends Eloquent
 {
-    protected $table = 'server_dificulty_mercenary';
+    protected $table = 'server_difficulty';
 
     public function server()
     {

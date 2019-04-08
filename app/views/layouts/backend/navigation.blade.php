@@ -1,11 +1,6 @@
             <!-- NAVIGATION : This navigation is also responsive-->
             <nav>
                 <ul>
-                    @if (Auth::user()->can('see_dashboard'))
-                        <li class="active">
-                            <a href="backend/dashboard" title="{{ Lang::get('navigation.dashboard') }}"><i class="fa fa-lg fa-fw fa-dashboard"></i> <span class="menu-item-parent">{{ Lang::get('navigation.dashboard') }}</span></a>
-                        </li>
-                    @endif
                     @if (Auth::user()->can('see_server'))
                         <li>
                             <a href="backend/server" title="{{ Lang::get('navigation.server') }}"><i class="fa fa-lg fa-fw fa-server"></i> <span class="menu-item-parent">{{ Lang::get('navigation.server') }}</span></a>
@@ -28,11 +23,6 @@
                             </ul>
                         </li>
                     @endif
-                    @if (Auth::user()->can('see_squad'))
-                        <li>
-                            <a href="backend/squad" title="{{ Lang::get('navigation.squad') }}"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">{{ Lang::get('navigation.squad') }}</span></a>
-                        </li>
-                    @endif
                     @if (Auth::user()->can('see_security'))
                         <li>
                             <a href="backend/security/user" title="{{ Lang::get('navigation.security') }}"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent">{{ Lang::get('navigation.security') }}</span></a>
@@ -53,11 +43,6 @@
                                 </li>
                                 @endif
                             </ul>
-                        </li>
-                    @endif
-					@if (Auth::user()->can('see_administration'))
-                        <li class="active">
-                            <a href="backend/administration" title="{{ Lang::get('navigation.adminisration') }}"><i class="fa fa-id-card"></i> <span class="menu-item-parent">{{ Lang::get('navigation.administration') }}</span></a>
                         </li>
                     @endif
                 </ul>

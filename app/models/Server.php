@@ -24,23 +24,8 @@ class Server extends Eloquent
         return $this->hasOne('ServerProfile', 'server_id', 'id');
     }
 
-    public function server_dificulty_recruit()
+    public function server_difficulty()
     {
-        return $this->hasOne('ServerDificultyRecruit', 'server_id', 'id');
-    }
-
-    public function server_dificulty_regular()
-    {
-        return $this->hasOne('ServerDificultyRegular', 'server_id', 'id');
-    }
-
-    public function server_dificulty_veteran()
-    {
-        return $this->hasOne('ServerDificultyVeteran', 'server_id', 'id');
-    }
-
-    public function server_dificulty_mercenary()
-    {
-        return $this->hasOne('ServerDificultyMercenary', 'server_id', 'id');
+        return $this->hasOne('ServerDifficulty', 'server_id', 'id');
     }
 }
