@@ -7,7 +7,7 @@ require_once(__DIR__ ."/../../vendor/austinb/gameq/src/GameQ/Autoloader.php");
 class ServerController extends BaseController
 {   
 
-    public $fireDeamonExe = "C:/FireDaemon/FireDaemon.exe";
+    public $fireDeamonExe = "C:/FireDaemon/FireDaemon/FireDaemon.exe";
     public $arma3path = "C:/Steam/steamapps/common/Arma 3 Server";
 
     public function GetIndex()
@@ -70,7 +70,8 @@ class ServerController extends BaseController
         $server->rcon_password              = Input::get('rcon_password');
         $server->max_ping                   = Input::get('max_ping');
 		$server->command_password			= Input::get('command_password');
-        $server->parameters                 = '-loadMissionToMemory -mod=curator;heli;kart;mark;argo;jets;orange;tacops;tank;';
+		$server->mods						= "";
+        $server->parameters                 = '-loadMissionToMemory';
         $server->save();
 
         $server_cfg                         = new ServerCFG;
@@ -483,6 +484,9 @@ class ServerController extends BaseController
 
         $server = Server::find($server_id);
 
+	
+		$data['mods'] = unserialize($server->mods);
+		
         $file                       = new stdClass();
         $file->server_init          = View::make('backend.server.cfg_server_init', $data)->renderSections();
         $file->server_bat           = View::make('backend.server.cfg_server_bat', $data)->renderSections();
@@ -1061,7 +1065,7 @@ class ServerController extends BaseController
 
     public function get_all_mods()
     {
-        $mod_array = [];
+        $mod_array = ['gm'];
 
         $objects = scandir($this->arma3path);
         foreach ($objects as $object)

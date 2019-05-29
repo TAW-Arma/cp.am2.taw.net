@@ -26,7 +26,7 @@
                                             {{ Lang::get('server.label_hostname') }}
                                         </label>
                                         <label class="input">
-                                            <input type="text" name="hostname" placeholder="{{ Lang::get('server.label_hostname') }}" value="401Gaming - EU - " />
+                                            <input type="text" name="hostname" placeholder="{{ Lang::get('server.label_hostname') }}" value="TAW.NET - EU - " />
                                         </label>
                                     </section>
                                 </div>

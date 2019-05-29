@@ -1,0 +1,1 @@
+@if($mods != '')-mod=@foreach($mods as $mod){{ $mod }};@endforeach @endif;
