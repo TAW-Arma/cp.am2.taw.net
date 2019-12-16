@@ -13,7 +13,7 @@
  </Program>
  <Options>
   <AffinityMask>0</AffinityMask>
-  <Priority>3</Priority>
+  <Priority>0</Priority>
   <AppendLogs>true</AppendLogs>
   <EventLogging>true</EventLogging>
   <InteractWithDesktop>true</InteractWithDesktop>
